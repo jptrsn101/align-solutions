@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Case Studies — Align Solutions</title>
+  <style>
+    /* ─── FONTS ───────────────────────────────────────────── */
+    @font-face { font-family: 'NeueHaas'; src: url('Brand_Assets/Neue Haas Font/NeueHaasDisplayThin.ttf') format('truetype'); font-weight: 100; font-style: normal; }
+    @font-face { font-family: 'NeueHaas'; src: url('Brand_Assets/Neue Haas Font/NeueHaasDisplayRoman.ttf') format('truetype'); font-weight: 400; font-style: normal; }
+    @font-face { font-family: 'NeueHaas'; src: url('Brand_Assets/Neue Haas Font/NeueHaasDisplayMediu.ttf') format('truetype'); font-weight: 500; font-style: normal; }
+    @font-face { font-family: 'NeueHaas'; src: url('Brand_Assets/Neue Haas Font/NeueHaasDisplayBold.ttf') format('truetype'); font-weight: 700; font-style: normal; }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    /* ─── DESIGN TOKENS ───────────────────────────────────── */
+    :root {
+      --cobalt:      #3e51a3;
+      --cobalt-dk:   #2f3d7e;
+      --cobalt-lt:   #8899d4;
+      --cobalt-pale: #b8c4e8;
+      --navy:        #07091a;
+      --navy-card:   #0e1330;
+      --card-light:  #dce3f7;
+      --white:       #ffffff;
+      --grey60:      #9c9c9c;
+    }
+
+    body {
+      font-family: 'NeueHaas', system-ui, sans-serif;
+      background: var(--navy);
+      color: var(--white);
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    /* ─── NAV ─────────────────────────────────────────────── */
+    .site-nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      height: 68px;
+      display: flex; align-items: center;
+      padding: 0 2.5rem;
+      background: rgba(7,9,26,0.75);
+      backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(255,255,255,0.055);
+    }
+    .nav-logo { flex-shrink: 0; }
+    .nav-logo img { height: 40px; width: auto; display: block; }
+    .site-nav > .btn-pill { margin-left: auto; }
+    .nav-links {
+      position: absolute; left: 50%; transform: translateX(-50%);
+      display: flex; align-items: center; gap: 2.25rem; list-style: none;
+    }
+    .nav-links a {
+      font-size: 0.7rem; font-weight: 500; text-transform: uppercase;
+      letter-spacing: 0.1em; color: rgba(255,255,255,0.5);
+      text-decoration: none; transition: color 0.2s ease;
+    }
+    .nav-links a:hover, .nav-links a.active { color: rgba(255,255,255,0.9); }
+
+    /* ─── BUTTON PILL ─────────────────────────────────────── */
+    .btn-pill {
+      position: relative;
+      display: inline-flex; align-items: center; gap: 0.45rem;
+      padding: 0.55rem 1.3rem;
+      background: rgba(255,255,255,0.05);
+      border-radius: 100px;
+      color: white;
+      font-family: 'NeueHaas', system-ui, sans-serif;
+      font-size: 0.7rem; font-weight: 500;
+      text-transform: uppercase; letter-spacing: 0.1em;
+      text-decoration: none; white-space: nowrap;
+      cursor: pointer; border: none;
+      transition: background 0.25s ease, transform 0.2s cubic-bezier(0.34,1.56,0.64,1);
+    }
+    .btn-pill::before {
+      content: '';
+      position: absolute; inset: 0; border-radius: 100px; padding: 1px;
+      background: linear-gradient(140deg, rgba(136,153,212,0.75) 0%, rgba(62,81,163,0.4) 45%, rgba(62,81,163,0.05) 100%);
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor; mask-composite: exclude; pointer-events: none;
+    }
+    .btn-pill:hover { background: rgba(255,255,255,0.1); transform: translateY(-1px); }
+    .btn-pill:active { transform: translateY(0); }
+    .btn-pill-lg { padding: 0.8rem 1.9rem; font-size: 0.78rem; }
+
+    
+    /* ─── SITE FOOTER ─────────────────────────────────── */
+    .footer-inner { max-width: 1240px; margin: 0 auto; }
+    .footer-cols { display: grid; grid-template-columns: 1.4fr 1fr 1fr 0.75fr 1.1fr; gap: 3rem; padding-bottom: 2.5rem; border-bottom: 1px solid rgba(255,255,255,0.08); }
+    .footer-col-place { font-size: 1rem; font-weight: 500; color: #fff; display: block; margin-bottom: 0.35rem; }
+    .footer-col-time { font-size: 0.85rem; color: rgba(255,255,255,0.4); display: block; margin-bottom: 0.15rem; font-variant-numeric: tabular-nums; letter-spacing: 0.02em; }
+    .footer-col-tz { font-size: 0.72rem; color: rgba(255,255,255,0.2); display: block; }
+    .footer-col-heading { font-size: 0.58rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.2em; color: rgba(255,255,255,0.28); display: block; margin-bottom: 1.25rem; }
+    .footer-col a { display: block; font-size: 0.875rem; font-weight: 400; color: rgba(255,255,255,0.5); text-decoration: none; margin-bottom: 0.7rem; transition: color 0.2s ease; }
+    .footer-col a:hover { color: rgba(255,255,255,0.9); }
+    .footer-col a:last-child { margin-bottom: 0; }
+    .footer-meta { display: flex; align-items: center; gap: 2rem; padding: 1.5rem 0; font-size: 0.63rem; letter-spacing: 0.04em; color: rgba(255,255,255,0.18); }
+    .footer-meta a { color: rgba(255,255,255,0.18); text-decoration: none; transition: color 0.2s; }
+    .footer-meta a:hover { color: rgba(255,255,255,0.5); }
+    .footer-meta-spacer { margin-left: auto; }
+    .footer-visual { position: relative; min-height: 780px; overflow: hidden; background: #07091a; display: flex; flex-direction: column; justify-content: flex-end; }
+    .footer-mark-wrap { position: absolute; top: 0; left: 50%; transform: translateX(-50%); z-index: 1; pointer-events: none; }
+    @keyframes markColorFlow { 0% { filter: sepia(1) hue-rotate(207deg) saturate(9) brightness(1.45); } 50% { filter: sepia(1) hue-rotate(220deg) saturate(11) brightness(1.6); } 100% { filter: sepia(1) hue-rotate(207deg) saturate(9) brightness(1.45); } }
+    .footer-mark-img { display: block; height: 740px; width: auto; opacity: 0.9; animation: markColorFlow 6s ease-in-out infinite; }
+    .footer-content { position: relative; z-index: 3; padding: 2.5rem 2.5rem 0; backdrop-filter: blur(22px); -webkit-backdrop-filter: blur(22px); background: linear-gradient(to bottom, rgba(7,9,26,0.88) 0%, rgba(7,9,26,0.98) 100%); border-top: 1px solid rgba(255,255,255,0.1); }
+    .footer-visual-wordmark { text-align: center; font-size: clamp(58px,10.5vw,150px); font-weight: 700; text-transform: uppercase; letter-spacing: -0.035em; line-height: 0.85; color: #fff; white-space: nowrap; }
+
+
+
+    /* ─── ANIMATION UTILITIES ─────────────────────────────── */
+    .fade-up {
+      opacity: 0; transform: translateY(28px);
+      transition: opacity 0.9s cubic-bezier(0.16,1,0.3,1), transform 0.9s cubic-bezier(0.16,1,0.3,1);
+    }
+    .fade-up.in { opacity: 1; transform: translateY(0); }
+    .fd1 { transition-delay: 0.08s; } .fd2 { transition-delay: 0.18s; }
+    .fd3 { transition-delay: 0.28s; } .fd4 { transition-delay: 0.38s; }
+
+    /* ─── TYPOGRAPHY UTILITIES ────────────────────────────── */
+    .grad-text {
+      background: linear-gradient(90deg, rgba(255,255,255,0.9) 0%, var(--cobalt-lt) 55%, var(--cobalt) 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    .eyebrow {
+      font-size: 0.62rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.22em; color: rgba(255,255,255,0.3); display: block;
+    }
+
+    /* ─── PAGE HERO ───────────────────────────────────────── */
+    .page-hero {
+      min-height: 65vh;
+      padding-top: 68px;
+      display: flex; flex-direction: column; justify-content: flex-end;
+      padding-bottom: 5rem;
+      padding-left: 2.5rem; padding-right: 2.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .page-hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 10% 80%, rgba(62,81,163,0.18) 0%, transparent 65%),
+        radial-gradient(ellipse 50% 40% at 85% 20%, rgba(47,61,126,0.12) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .page-hero::after {
+      content: '';
+      position: absolute; bottom: 0; left: 0; right: 0; height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(136,153,212,0.2), transparent);
+    }
+    .hero-inner { position: relative; max-width: 900px; }
+    .hero-eyebrow { margin-bottom: 1.4rem; }
+    .hero-h1 {
+      font-size: clamp(2.6rem, 5vw, 4.2rem);
+      font-weight: 700;
+      line-height: 1.05;
+      letter-spacing: -0.025em;
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+    }
+    .hero-sub {
+      font-size: 1.05rem; font-weight: 400; line-height: 1.6;
+      color: rgba(255,255,255,0.45); max-width: 540px;
+    }
+
+    /* ─── FILTER PILLS ────────────────────────────────────── */
+    .filter-section {
+      padding: 2.5rem 2.5rem 0;
+      max-width: 1240px; margin: 0 auto;
+    }
+    .filter-row {
+      display: flex; flex-wrap: wrap; gap: 0.6rem;
+      padding-bottom: 2.5rem;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .filter-pill {
+      display: inline-flex; align-items: center;
+      padding: 0.45rem 1.1rem;
+      border-radius: 100px;
+      font-size: 0.65rem; font-weight: 500;
+      text-transform: uppercase; letter-spacing: 0.12em;
+      color: rgba(255,255,255,0.4);
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      cursor: pointer; text-decoration: none;
+      transition: background 0.2s, color 0.2s, border-color 0.2s;
+    }
+    .filter-pill:hover,
+    .filter-pill.active {
+      background: rgba(62,81,163,0.2);
+      color: var(--cobalt-pale);
+      border-color: rgba(62,81,163,0.4);
+    }
+
+    /* ─── CASE STUDY GRID ─────────────────────────────────── */
+    .cases-section {
+      padding: 3rem 2.5rem 5rem;
+      max-width: 1240px; margin: 0 auto;
+    }
+    .cases-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.25rem;
+    }
+    /* Photo strip at top of card */
+    .card-photo {
+      width: calc(100% + 3.5rem); margin: -2rem -1.75rem 1.75rem;
+      height: 160px; overflow: hidden; position: relative; flex-shrink: 0;
+    }
+    .card-photo img {
+      width: 100%; height: 100%; object-fit: cover; display: block;
+      transition: transform 0.6s cubic-bezier(0.16,1,0.3,1);
+    }
+    .card-photo-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, var(--navy-card) 0%, transparent 60%);
+    }
+    .card-photo-tint {
+      position: absolute; inset: 0;
+      background: var(--cobalt);
+      mix-blend-mode: multiply; opacity: 0.45;
+    }
+    .case-card:hover .card-photo img { transform: scale(1.04); }
+
+    .case-card {
+      position: relative;
+      background: var(--navy-card);
+      border-radius: 16px;
+      padding: 2rem 1.75rem 1.75rem;
+      display: flex; flex-direction: column;
+      border: 1px solid rgba(255,255,255,0.05);
+      overflow: hidden;
+      transition: border-color 0.3s ease, transform 0.3s cubic-bezier(0.16,1,0.3,1);
+    }
+    /* Cobalt glow on hover */
+    .case-card::before {
+      content: '';
+      position: absolute; inset: 0; border-radius: 16px;
+      box-shadow: inset 0 0 0 1px rgba(136,153,212,0);
+      transition: box-shadow 0.35s ease;
+      pointer-events: none;
+    }
+    .case-card::after {
+      content: '';
+      position: absolute; bottom: -60px; left: -20px;
+      width: 200px; height: 200px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(62,81,163,0.18) 0%, transparent 70%);
+      opacity: 0; transition: opacity 0.4s ease;
+      pointer-events: none;
+    }
+    .case-card:hover { transform: translateY(-3px); border-color: rgba(136,153,212,0.15); }
+    .case-card:hover::before { box-shadow: inset 0 0 0 1px rgba(136,153,212,0.18), 0 8px 48px rgba(62,81,163,0.22), 0 2px 12px rgba(0,0,0,0.4); }
+    .case-card:hover::after { opacity: 1; }
+
+    .card-number {
+      font-size: 0.58rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.2em;
+      color: rgba(255,255,255,0.15); margin-bottom: 1.5rem;
+    }
+    .card-sector-tag {
+      display: inline-flex; align-items: center;
+      padding: 0.28rem 0.75rem;
+      background: rgba(62,81,163,0.2);
+      border: 1px solid rgba(62,81,163,0.3);
+      border-radius: 100px;
+      font-size: 0.58rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.12em;
+      color: var(--cobalt-pale);
+      margin-bottom: 1.25rem;
+      width: fit-content;
+    }
+    .card-title {
+      font-size: 1.15rem; font-weight: 700;
+      line-height: 1.2; letter-spacing: -0.015em;
+      text-transform: uppercase;
+      color: var(--white);
+      margin-bottom: 1rem;
+    }
+    .card-stat {
+      font-size: 1.75rem; font-weight: 700;
+      letter-spacing: -0.02em; line-height: 1;
+      background: linear-gradient(90deg, var(--white) 0%, var(--cobalt-lt) 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 1rem;
+    }
+    .card-desc {
+      font-size: 0.82rem; font-weight: 400; line-height: 1.6;
+      color: rgba(255,255,255,0.38);
+      flex: 1;
+      margin-bottom: 1.5rem;
+    }
+    .card-link {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      font-size: 0.65rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.12em;
+      color: rgba(255,255,255,0.3);
+      text-decoration: none;
+      transition: color 0.2s, gap 0.2s cubic-bezier(0.34,1.56,0.64,1);
+      width: fit-content; margin-top: auto;
+    }
+    .card-link svg { transition: transform 0.2s cubic-bezier(0.34,1.56,0.64,1); }
+    .card-link:hover { color: var(--cobalt-pale); gap: 0.65rem; }
+    .card-link:hover svg { transform: translate(2px, -2px); }
+
+    /* ─── BOTTOM CTA ──────────────────────────────────────── */
+    .cta-section {
+      padding: 6rem 2.5rem;
+      text-align: center;
+      position: relative;
+      border-top: 1px solid rgba(255,255,255,0.05);
+    }
+    .cta-section::before {
+      content: '';
+      position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+      width: 600px; height: 300px;
+      background: radial-gradient(ellipse at top, rgba(62,81,163,0.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .cta-label {
+      font-size: 0.62rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.22em; color: rgba(255,255,255,0.3);
+      display: block; margin-bottom: 1.25rem;
+    }
+    .cta-heading {
+      font-size: clamp(2rem, 3.5vw, 3rem);
+      font-weight: 700; text-transform: uppercase;
+      letter-spacing: -0.02em; line-height: 1.1;
+      margin-bottom: 1rem;
+    }
+    .cta-sub {
+      font-size: 0.95rem; color: rgba(255,255,255,0.4);
+      line-height: 1.6; max-width: 440px; margin: 0 auto 2.5rem;
+    }
+
+    /* ─── RESPONSIVE ──────────────────────────────────────── */
+    @media (max-width: 1024px) {
+      .cases-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 768px) {
+      .page-hero { padding-left: 1.5rem; padding-right: 1.5rem; }
+      .cases-grid { grid-template-columns: 1fr; }
+      .filter-section, .cases-section { padding-left: 1.5rem; padding-right: 1.5rem; }
+      .nav-links { display: none; }
+      .sectors-band { padding: 1.5rem; }
+      footer { padding: 2rem 1.5rem; }
+      .footer-bottom-row { padding: 1rem 1.5rem; }
+    }
+  
+    /* ─── GRADIENT-FLOOD BUTTON ────────────────────────── */
+    .btn-grad {
+      position: relative; display: inline-flex; align-items: center; gap: 0.55rem;
+      padding: 0.75rem 1.6rem; border-radius: 100px;
+      border: 1px solid rgba(255,255,255,0.18); color: rgba(255,255,255,0.75);
+      font-family: 'NeueHaas', system-ui, sans-serif;
+      font-size: 0.75rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.1em;
+      text-decoration: none; white-space: nowrap; cursor: pointer;
+      overflow: hidden; isolation: isolate;
+      transition: color 0.35s ease, border-color 0.35s ease, transform 0.2s cubic-bezier(0.34,1.56,0.64,1);
+    }
+    .btn-grad::before {
+      content: ''; position: absolute; inset: 0; z-index: -1; border-radius: 100px;
+      background: linear-gradient(120deg, #8899d4 0%, #dce3f7 100%);
+      transform: translateX(-105%);
+      transition: transform 0.45s cubic-bezier(0.34,1.56,0.64,1);
+    }
+    .btn-grad:hover { color: #07091a; border-color: transparent; transform: translateY(-1px); }
+    .btn-grad:hover::before { transform: translateX(0); }
+    .btn-grad:active { transform: translateY(0); }
+    .btn-grad svg { flex-shrink: 0; }
+    .btn-submit { width: 100%; justify-content: center; background: rgba(62,81,163,0.18); }
+    .btn-submit:hover { background: transparent; }
+  </style>
+</head>
+<body>
+
+  <!-- ─── NAV ─────────────────────────────────────────────── -->
+  <nav class="site-nav">
+    <a href="index.html" class="nav-logo" aria-label="Align Solutions">
+      <img src="Brand_Assets/SVG Logos/Asset 7.svg" alt="Align Solutions" />
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="packages.html">Packages</a></li>
+      <li><a href="how-we-work.html">How We Work</a></li>
+      <li><a href="case-studies.html" class="active">Case Studies</a></li>
+      <li><a href="sectors.html">Sectors</a></li>
+      <li><a href="about.html">About</a></li>
+    </ul>
+    <a href="contact.html" class="btn-pill">
+      Get In Touch
+      <svg width="11" height="11" viewBox="0 0 11 11" fill="none"><path d="M2 9L9 2M9 2H3M9 2V8" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
+  </nav>
+
+  <!-- ─── PAGE HERO ─────────────────────────────────────────── -->
+  <section class="page-hero">
+    <div class="hero-inner">
+      <span class="eyebrow hero-eyebrow fade-up">Case Studies</span>
+      <h1 class="hero-h1 fade-up fd1">
+        Engineering Outcomes<br />
+        <span class="grad-text">That Speak for Themselves</span>
+      </h1>
+      <p class="hero-sub fade-up fd2">
+        Real projects. Measurable results. Across every sector we serve.
+      </p>
+    </div>
+  </section>
+
+  <!-- ─── FILTER PILLS ─────────────────────────────────────── -->
+  <div class="filter-section">
+    <div class="filter-row fade-up">
+      <a href="#" class="filter-pill active">All</a>
+      <a href="#" class="filter-pill">Oil &amp; Gas</a>
+      <a href="#" class="filter-pill">Manufacturing</a>
+      <a href="#" class="filter-pill">Water &amp; Utilities</a>
+      <a href="#" class="filter-pill">Power &amp; Energy</a>
+      <a href="#" class="filter-pill">Pharmaceutical</a>
+      <a href="#" class="filter-pill">Marine</a>
+    </div>
+  </div>
+
+  <!-- ─── CASE STUDY GRID ───────────────────────────────────── -->
+  <section class="cases-section">
+    <div class="cases-grid">
+
+      <!-- Card 01: Oil & Gas -->
+      <article class="case-card fade-up">
+        <div class="card-photo">
+          <img src="https://placehold.co/600x320/0a0c1a/1a2040" alt="Oil and gas pipeline infrastructure" />
+          <div class="card-photo-tint"></div>
+          <div class="card-photo-overlay"></div>
+        </div>
+        <span class="card-number">01</span>
+        <span class="card-sector-tag">Oil &amp; Gas</span>
+        <h2 class="card-title">Pipeline Integrity Programme</h2>
+        <div class="card-stat">34%</div>
+        <p class="card-desc">
+          Delivered a full RCM programme for a North Sea operator managing 120km of subsea pipeline assets. Reduction in unplanned downtime achieved within 18 months.
+        </p>
+        <a href="contact.html" class="card-link">
+          Discuss a similar project
+          <svg width="11" height="11" viewBox="0 0 11 11" fill="none"><path d="M2 9L9 2M9 2H3M9 2V8" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </article>
+
+      <!-- Card 02: Manufacturing -->
+      <article class="case-card fade-up fd1">
+        <div class="card-photo">
+          <img src="https://placehold.co/600x320/0a0c1a/1a2040" alt="Manufacturing production line" />
+          <div class="card-photo-tint"></div>
+          <div class="card-photo-overlay"></div>
+        </div>
+        <span class="card-number">02</span>
+        <span class="card-sector-tag">Manufacturing</span>
+        <h2 class="card-title">Automated Line Redesign</h2>
+        <div class="card-stat">18%</div>
+        <p class="card-desc">
+          Redesigned and documented a critical production line for a FMCG manufacturer in the East Midlands. OEE improvement sustained across a 12-month baseline period.
+        </p>
+        <a href="contact.html" class="card-link">
+          Discuss a similar project
+          <svg width="11" height="11" viewBox="0 0 11 11" fill="none"><path d="M2 9L9 2M9 2H3M9 2V8" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </article>
+
+      <!-- Card 03: Water & Utilities -->
+      <article class="case-card fade-up fd2">
+        <div class="card-photo">
+          <img src="https://placehold.co/600x320/0a0c1a/1a2040" alt="Water treatment facility" />
+          <div class="card-photo-tint"></div>
+          <div class="card-photo-overlay"></div>
+        </div>
+        <span class="card-number">03</span>
+        <span class="card-sector-tag">Water &amp; Utilities</span>
+        <h2 class="card-title">Treatment Works Maintenance Strategy</h2>
+        <div class="card-stat">£420K</div>
+        <p class="card-desc">
+          Developed and implemented a planned maintenance strategy across 6 water treatment facilities. Annual savings confirmed in year-one audit against baseline costs.
+        </p>
+        <a href="contact.html" class="card-link">
+          Discuss a similar project
+          <svg width="11" height="11" viewBox="0 0 11 11" fill="none"><path d="M2 9L9 2M9 2H3M9 2V8" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </article>
+
+      <!-- Card 04: Power & Energy -->
+      <article class="case-card fade-up fd3">
+        <div class="card-photo">
+          <img src="https://placehold.co/600x320/0a0c1a/1a2040" alt="Power plant turbine" />
+          <div class="card-photo-tint"></div>
+          <div class="card-photo-overlay"></div>
+        </div>
+        <span class="card-number">04</span>
+        <span class="card-sector-tag">Power &amp; Energy</span>
+        <h2 class="card-title">Asset Management Framework</h2>
+        <div class="card-stat">99.2%</div>
+        <p class="card-desc">
+          Created a comprehensive asset management framework for a 450MW combined cycle gas turbine plant. Asset uptime maintained over a 24-month post-implementation period.
+        </p>
+        <a href="contact.html" class="card-link">
+          Discuss a similar project
+          <svg width="11" height="11" viewBox="0 0 11 11" fill="none"><path d="M2 9L9 2M9 2H3M9 2V8" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </article>
+
+      <!-- Card 05: Pharmaceutical -->
+      <article class="case-card fade-up fd4">
+        <div class="card-photo">
+          <img src="https://placehold.co/600x320/0a0c1a/1a2040" alt="Pharmaceutical cleanroom" />
+          <div class="card-photo-tint"></div>
+          <div class="card-photo-overlay"></div>
+        </div>
+        <span class="card-number">05</span>
+        <span class="card-sector-tag">Pharmaceutical</span>
+        <h2 class="card-title">Cleanroom Engineering Review</h2>
+        <div class="card-stat">Zero</div>
+        <p class="card-desc">
+          Full engineering review of GMP cleanroom systems, resolving 23 identified compliance risks. Zero compliance failures recorded across two subsequent regulatory inspections.
+        </p>
+        <a href="contact.html" class="card-link">
+          Discuss a similar project
+          <svg width="11" height="11" viewBox="0 0 11 11" fill="none"><path d="M2 9L9 2M9 2H3M9 2V8" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </article>
+
+      <!-- Card 06: Marine -->
+      <article class="case-card fade-up fd1">
+        <div class="card-photo">
+          <img src="https://placehold.co/600x320/0a0c1a/1a2040" alt="Offshore support vessel" />
+          <div class="card-photo-tint"></div>
+          <div class="card-photo-overlay"></div>
+        </div>
+        <span class="card-number">06</span>
+        <span class="card-sector-tag">Marine</span>
+        <h2 class="card-title">Vessel Maintenance Overhaul</h2>
+        <div class="card-stat">40%</div>
+        <p class="card-desc">
+          Overhauled the maintenance strategy for a fleet of 8 offshore support vessels. Maintenance cost reduction achieved within 24 months through RCM and spare parts rationalisation.
+        </p>
+        <a href="contact.html" class="card-link">
+          Discuss a similar project
+          <svg width="11" height="11" viewBox="0 0 11 11" fill="none"><path d="M2 9L9 2M9 2H3M9 2V8" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ─── BOTTOM CTA ────────────────────────────────────────── -->
+  <section class="cta-section">
+    <span class="cta-label fade-up">Work With Us</span>
+    <h2 class="cta-heading fade-up fd1">
+      Have a project<br /><span class="grad-text">in mind?</span>
+    </h2>
+    <p class="cta-sub fade-up fd2">
+      Tell us what you're working on. We'll give you a straight answer on how we can help.
+    </p>
+    <a href="contact.html" class="btn-grad fade-up fd3">
+      Start the Conversation
+      <svg width="11" height="11" viewBox="0 0 11 11" fill="none"><path d="M2 9L9 2M9 2H3M9 2V8" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
+  </section>
+
+  <!-- ─── FOOTER ────────────────────────────────────────────── -->
+  <!-- ═══════════════════════════════════ FOOTER ════════ -->
+<footer class="site-footer">
+  <div class="footer-visual">
+    <div class="footer-mark-wrap">
+      <img src="Brand_Assets/SVG Logos/Asset 1.svg" class="footer-mark-img" alt="" aria-hidden="true" />
+    </div>
+    <div class="footer-content">
+      <div class="footer-inner">
+        <div class="footer-cols">
+          <div class="footer-col">
+            <span class="footer-col-place">UK — Nottingham</span>
+            <span class="footer-col-time" id="footer-time">--:--:--</span>
+            <span class="footer-col-tz">(GMT / BST)</span>
+          </div>
+          <div class="footer-col">
+            <span class="footer-col-heading">Services</span>
+            <a href="services.html">Design Engineering</a>
+            <a href="services.html">Maintenance Engineering</a>
+            <a href="services.html">Reliability Engineering</a>
+            <a href="services.html">Asset Management</a>
+            <a href="services.html">Technical Consultancy</a>
+            <a href="services.html">Project Delivery</a>
+          </div>
+          <div class="footer-col">
+            <span class="footer-col-heading">Company</span>
+            <a href="about.html">About</a>
+            <a href="how-we-work.html">How We Work</a>
+            <a href="case-studies.html">Case Studies</a>
+            <a href="packages.html">Packages</a>
+            <a href="sectors.html">Sectors</a>
+          </div>
+          <div class="footer-col">
+            <span class="footer-col-heading">Social</span>
+            <a href="#">LinkedIn</a>
+            <a href="#">Twitter</a>
+          </div>
+          <div class="footer-col">
+            <span class="footer-col-heading">Contact</span>
+            <a href="contact.html">Get In Touch</a>
+            <a href="mailto:hello@alignsolutions.co.uk">hello@alignsolutions.co.uk</a>
+            <a href="tel:+441234567890">+44 (0)1234 567 890</a>
+          </div>
+        </div>
+        <div class="footer-meta">
+          <span>©2026 Align Solutions Ltd. All rights reserved.</span>
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms &amp; Conditions</a>
+          <span class="footer-meta-spacer"></span>
+          <span>alignsolutions.co.uk</span>
+        </div>
+      </div>
+      <div class="footer-visual-wordmark">Align Solutions</div>
+    </div>
+  </div>
+</footer>
+
+  <!-- ─── SCRIPTS ───────────────────────────────────────────── -->
+  <script>
+    /* IntersectionObserver for .fade-up elements */
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
+    }, { threshold: 0.05, rootMargin: '0px 0px 60px 0px' });
+    document.querySelectorAll('.fade-up').forEach(el => io.observe(el));
+
+    /* Trigger hero elements immediately on load */
+    window.addEventListener('load', () => {
+      document.querySelectorAll('.page-hero .fade-up').forEach((el, i) => {
+        setTimeout(() => el.classList.add('in'), 80 + i * 130);
+      });
+      setTimeout(() => {
+        document.querySelectorAll('.fade-up').forEach(el => el.classList.add('in'));
+      }, 350);
+    });
+  
+// ── Live footer clock ───────────────────────────────
+function updateFooterClock() {
+  const el = document.getElementById('footer-time');
+  if (!el) return;
+  el.textContent = new Date().toLocaleTimeString('en-GB', {
+    timeZone: 'Europe/London', hour12: false,
+    hour: '2-digit', minute: '2-digit', second: '2-digit'
+  });
+}
+setInterval(updateFooterClock, 1000);
+updateFooterClock();
+</script>
+
+</body>
+</html>

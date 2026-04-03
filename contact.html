@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact — Align Solutions</title>
+  <style>
+    /* ─── FONTS ───────────────────────────────────────────── */
+    @font-face { font-family: 'NeueHaas'; src: url('Brand_Assets/Neue Haas Font/NeueHaasDisplayThin.ttf') format('truetype'); font-weight: 100; font-style: normal; }
+    @font-face { font-family: 'NeueHaas'; src: url('Brand_Assets/Neue Haas Font/NeueHaasDisplayRoman.ttf') format('truetype'); font-weight: 400; font-style: normal; }
+    @font-face { font-family: 'NeueHaas'; src: url('Brand_Assets/Neue Haas Font/NeueHaasDisplayMediu.ttf') format('truetype'); font-weight: 500; font-style: normal; }
+    @font-face { font-family: 'NeueHaas'; src: url('Brand_Assets/Neue Haas Font/NeueHaasDisplayBold.ttf') format('truetype'); font-weight: 700; font-style: normal; }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    /* ─── TOKENS ──────────────────────────────────────────── */
+    :root {
+      --cobalt:      #3e51a3;
+      --cobalt-dk:   #2f3d7e;
+      --cobalt-lt:   #8899d4;
+      --cobalt-pale: #b8c4e8;
+      --navy:        #07091a;
+      --navy-card:   #0e1330;
+      --card-light:  #dce3f7;
+      --white:       #ffffff;
+      --grey60:      #9c9c9c;
+    }
+
+    body {
+      font-family: 'NeueHaas', system-ui, sans-serif;
+      background: var(--navy);
+      color: var(--white);
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    /* ─── NAV ─────────────────────────────────────────────── */
+    .site-nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      height: 68px; display: flex; align-items: center;
+      padding: 0 2.5rem;
+      background: rgba(7,9,26,0.75);
+      backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(255,255,255,0.055);
+    }
+    .nav-logo { flex-shrink: 0; }
+    .nav-logo img { height: 40px; width: auto; display: block; }
+    .site-nav > .btn-pill { margin-left: auto; }
+    .nav-links {
+      position: absolute; left: 50%; transform: translateX(-50%);
+      display: flex; align-items: center; gap: 2.25rem; list-style: none;
+    }
+    .nav-links a {
+      font-size: 0.7rem; font-weight: 500; text-transform: uppercase;
+      letter-spacing: 0.1em; color: rgba(255,255,255,0.5);
+      text-decoration: none; transition: color 0.2s ease;
+    }
+    .nav-links a:hover, .nav-links a.active { color: rgba(255,255,255,0.9); }
+
+    /* ─── PILL BUTTON ─────────────────────────────────────── */
+    .btn-pill {
+      position: relative; display: inline-flex; align-items: center; gap: 0.45rem;
+      padding: 0.55rem 1.3rem; background: rgba(255,255,255,0.05);
+      border-radius: 100px; color: white; font-family: 'NeueHaas', system-ui, sans-serif;
+      font-size: 0.7rem; font-weight: 500; text-transform: uppercase;
+      letter-spacing: 0.1em; text-decoration: none; white-space: nowrap;
+      cursor: pointer; border: none;
+      transition: background 0.25s ease, transform 0.2s cubic-bezier(0.34,1.56,0.64,1);
+    }
+    .btn-pill::before {
+      content: ''; position: absolute; inset: 0; border-radius: 100px; padding: 1px;
+      background: linear-gradient(140deg, rgba(136,153,212,0.75) 0%, rgba(62,81,163,0.4) 45%, rgba(62,81,163,0.05) 100%);
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor; mask-composite: exclude; pointer-events: none;
+    }
+    .btn-pill:hover { background: rgba(255,255,255,0.1); transform: translateY(-1px); }
+    .btn-pill:active { transform: translateY(0); }
+    .btn-pill-lg { padding: 0.8rem 1.9rem; font-size: 0.78rem; }
+
+    /* ─── PAGE HERO ───────────────────────────────────────── */
+    .page-hero {
+      padding-top: 68px;
+      min-height: 50vh;
+      display: flex; align-items: flex-end;
+      padding-bottom: 5rem;
+      position: relative; overflow: hidden;
+    }
+    .hero-glow {
+      position: absolute; inset: 0; pointer-events: none;
+      background:
+        radial-gradient(ellipse 70% 60% at 30% 80%, rgba(62,81,163,0.4) 0%, transparent 65%),
+        radial-gradient(ellipse 40% 40% at 60% 20%, rgba(47,61,126,0.2) 0%, transparent 60%);
+    }
+    .hero-inner {
+      position: relative; z-index: 1;
+      max-width: 1240px; margin: 0 auto; padding: 0 2.5rem; width: 100%;
+    }
+    .eyebrow {
+      font-size: 0.62rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.22em; color: rgba(255,255,255,0.3);
+      display: block; margin-bottom: 1.5rem;
+    }
+    .page-title {
+      font-size: clamp(3rem, 6vw, 6rem);
+      font-weight: 700; line-height: 1.0; letter-spacing: -0.03em;
+      margin-bottom: 1.25rem;
+    }
+    .grad-text {
+      background: linear-gradient(90deg, rgba(255,255,255,0.9) 0%, var(--cobalt-lt) 55%, var(--cobalt) 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero-sub {
+      font-size: 1.0625rem; font-weight: 400; line-height: 1.65;
+      color: rgba(255,255,255,0.45); max-width: 480px;
+    }
+
+    /* ─── MAIN CONTACT SECTION ────────────────────────────── */
+    .contact-section {
+      max-width: 1240px; margin: 0 auto;
+      padding: 6rem 2.5rem 8rem;
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 7rem;
+      align-items: start;
+    }
+
+    /* ─── FORM ────────────────────────────────────────────── */
+    .form-group {
+      display: flex; flex-direction: column; gap: 0.5rem;
+      margin-bottom: 1.5rem;
+    }
+    .form-group:last-of-type { margin-bottom: 2rem; }
+    label {
+      font-size: 0.65rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.12em; color: rgba(255,255,255,0.4);
+    }
+    input, select, textarea {
+      font-family: 'NeueHaas', system-ui, sans-serif;
+      font-size: 0.9rem; font-weight: 400;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 10px;
+      padding: 0.85rem 1.1rem;
+      color: var(--white);
+      outline: none;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+      -webkit-appearance: none; appearance: none;
+      width: 100%;
+    }
+    input::placeholder, textarea::placeholder { color: rgba(255,255,255,0.2); }
+    input:focus, select:focus, textarea:focus {
+      border-color: rgba(136,153,212,0.5);
+      box-shadow: 0 0 0 3px rgba(62,81,163,0.15);
+    }
+    select {
+      background-image: url("data:image/svg+xml,%3Csvg width='10' height='6' viewBox='0 0 10 6' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1L5 5L9 1' stroke='rgba(255,255,255,0.3)' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 1rem center;
+      padding-right: 2.5rem;
+      cursor: pointer;
+    }
+    select option { background: var(--navy-card); color: var(--white); }
+    textarea { resize: vertical; min-height: 140px; line-height: 1.6; }
+
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+
+    .btn-submit {
+      width: 100%; justify-content: center;
+      padding: 1rem 2rem; font-size: 0.8rem;
+      background: rgba(62,81,163,0.25);
+    }
+    .btn-submit::before {
+      background: linear-gradient(140deg, rgba(136,153,212,0.9) 0%, rgba(62,81,163,0.6) 45%, rgba(62,81,163,0.2) 100%);
+    }
+    .btn-submit:hover { background: rgba(62,81,163,0.4); }
+
+    /* ─── CONTACT INFO ────────────────────────────────────── */
+    .contact-info { padding-top: 0.5rem; }
+    .info-heading {
+      font-size: clamp(1.5rem, 2.5vw, 2.25rem);
+      font-weight: 700; letter-spacing: -0.02em;
+      line-height: 1.1; margin-bottom: 3rem;
+    }
+    .info-block {
+      padding: 1.5rem 0;
+      border-top: 1px solid rgba(255,255,255,0.07);
+    }
+    .info-block:last-of-type { border-bottom: 1px solid rgba(255,255,255,0.07); }
+    .info-label {
+      font-size: 0.6rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.18em; color: rgba(255,255,255,0.28);
+      display: block; margin-bottom: 0.5rem;
+    }
+    .info-value {
+      font-size: 0.95rem; font-weight: 400;
+      color: rgba(255,255,255,0.75); line-height: 1.6;
+      text-decoration: none;
+    }
+    a.info-value:hover { color: var(--cobalt-lt); }
+
+    .social-row {
+      display: flex; gap: 1rem; margin-top: 2rem;
+    }
+    .social-link {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      font-size: 0.68rem; font-weight: 500; text-transform: uppercase;
+      letter-spacing: 0.1em; color: rgba(255,255,255,0.4);
+      text-decoration: none; padding: 0.5rem 0;
+      transition: color 0.2s;
+    }
+    .social-link:hover { color: rgba(255,255,255,0.8); }
+
+    
+    /* ─── SITE FOOTER ─────────────────────────────────── */
+    .footer-inner { max-width: 1240px; margin: 0 auto; }
+    .footer-cols { display: grid; grid-template-columns: 1.4fr 1fr 1fr 0.75fr 1.1fr; gap: 3rem; padding-bottom: 2.5rem; border-bottom: 1px solid rgba(255,255,255,0.08); }
+    .footer-col-place { font-size: 1rem; font-weight: 500; color: #fff; display: block; margin-bottom: 0.35rem; }
+    .footer-col-time { font-size: 0.85rem; color: rgba(255,255,255,0.4); display: block; margin-bottom: 0.15rem; font-variant-numeric: tabular-nums; letter-spacing: 0.02em; }
+    .footer-col-tz { font-size: 0.72rem; color: rgba(255,255,255,0.2); display: block; }
+    .footer-col-heading { font-size: 0.58rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.2em; color: rgba(255,255,255,0.28); display: block; margin-bottom: 1.25rem; }
+    .footer-col a { display: block; font-size: 0.875rem; font-weight: 400; color: rgba(255,255,255,0.5); text-decoration: none; margin-bottom: 0.7rem; transition: color 0.2s ease; }
+    .footer-col a:hover { color: rgba(255,255,255,0.9); }
+    .footer-col a:last-child { margin-bottom: 0; }
+    .footer-meta { display: flex; align-items: center; gap: 2rem; padding: 1.5rem 0; font-size: 0.63rem; letter-spacing: 0.04em; color: rgba(255,255,255,0.18); }
+    .footer-meta a { color: rgba(255,255,255,0.18); text-decoration: none; transition: color 0.2s; }
+    .footer-meta a:hover { color: rgba(255,255,255,0.5); }
+    .footer-meta-spacer { margin-left: auto; }
+    .footer-visual { position: relative; min-height: 780px; overflow: hidden; background: #07091a; display: flex; flex-direction: column; justify-content: flex-end; }
+    .footer-mark-wrap { position: absolute; top: 0; left: 50%; transform: translateX(-50%); z-index: 1; pointer-events: none; }
+    @keyframes markColorFlow { 0% { filter: sepia(1) hue-rotate(207deg) saturate(9) brightness(1.45); } 50% { filter: sepia(1) hue-rotate(220deg) saturate(11) brightness(1.6); } 100% { filter: sepia(1) hue-rotate(207deg) saturate(9) brightness(1.45); } }
+    .footer-mark-img { display: block; height: 740px; width: auto; opacity: 0.9; animation: markColorFlow 6s ease-in-out infinite; }
+    .footer-content { position: relative; z-index: 3; padding: 2.5rem 2.5rem 0; backdrop-filter: blur(22px); -webkit-backdrop-filter: blur(22px); background: linear-gradient(to bottom, rgba(7,9,26,0.88) 0%, rgba(7,9,26,0.98) 100%); border-top: 1px solid rgba(255,255,255,0.1); }
+    .footer-visual-wordmark { text-align: center; font-size: clamp(58px,10.5vw,150px); font-weight: 700; text-transform: uppercase; letter-spacing: -0.035em; line-height: 0.85; color: #fff; white-space: nowrap; }
+
+
+
+    /* ─── ANIMATIONS ──────────────────────────────────────── */
+    .fade-up {
+      opacity: 0; transform: translateY(28px);
+      transition: opacity 0.9s cubic-bezier(0.16,1,0.3,1), transform 0.9s cubic-bezier(0.16,1,0.3,1);
+    }
+    .fade-up.in { opacity: 1; transform: translateY(0); }
+    .fd1 { transition-delay: 0.08s; }
+    .fd2 { transition-delay: 0.18s; }
+    .fd3 { transition-delay: 0.28s; }
+  
+    /* ─── GRADIENT-FLOOD BUTTON ────────────────────────── */
+    .btn-grad {
+      position: relative; display: inline-flex; align-items: center; gap: 0.55rem;
+      padding: 0.75rem 1.6rem; border-radius: 100px;
+      border: 1px solid rgba(255,255,255,0.18); color: rgba(255,255,255,0.75);
+      font-family: 'NeueHaas', system-ui, sans-serif;
+      font-size: 0.75rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.1em;
+      text-decoration: none; white-space: nowrap; cursor: pointer;
+      overflow: hidden; isolation: isolate;
+      transition: color 0.35s ease, border-color 0.35s ease, transform 0.2s cubic-bezier(0.34,1.56,0.64,1);
+    }
+    .btn-grad::before {
+      content: ''; position: absolute; inset: 0; z-index: -1; border-radius: 100px;
+      background: linear-gradient(120deg, #8899d4 0%, #dce3f7 100%);
+      transform: translateX(-105%);
+      transition: transform 0.45s cubic-bezier(0.34,1.56,0.64,1);
+    }
+    .btn-grad:hover { color: #07091a; border-color: transparent; transform: translateY(-1px); }
+    .btn-grad:hover::before { transform: translateX(0); }
+    .btn-grad:active { transform: translateY(0); }
+    .btn-grad svg { flex-shrink: 0; }
+    .btn-submit { width: 100%; justify-content: center; background: rgba(62,81,163,0.18); }
+    .btn-submit:hover { background: transparent; }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════ NAV ══════════════ -->
+<nav class="site-nav">
+  <a href="index.html" class="nav-logo" aria-label="Align Solutions">
+    <img src="Brand_Assets/SVG Logos/Asset 7.svg" alt="Align Solutions" />
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="services.html">Services</a></li>
+    <li><a href="packages.html">Packages</a></li>
+    <li><a href="how-we-work.html">How We Work</a></li>
+    <li><a href="case-studies.html">Case Studies</a></li>
+    <li><a href="sectors.html">Sectors</a></li>
+    <li><a href="about.html">About</a></li>
+  </ul>
+  <a href="contact.html" class="btn-pill" style="background: rgba(62,81,163,0.3);">
+    Get In Touch
+    <svg width="11" height="11" viewBox="0 0 11 11" fill="none">
+      <path d="M2 9L9 2M9 2H3M9 2V8" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </a>
+</nav>
+
+
+<!-- ═══════════════════════════════ PAGE HERO ════════════ -->
+<section class="page-hero">
+  <div class="hero-glow"></div>
+  <div class="hero-inner">
+    <span class="eyebrow fade-up">Contact</span>
+    <h1 class="page-title fade-up fd1">
+      Start the<br><span class="grad-text">Conversation</span>
+    </h1>
+    <p class="hero-sub fade-up fd2">We'd love to hear about your project. Tell us what you're working on.</p>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════ CONTACT SECTION ══════════ -->
+<section>
+  <div class="contact-section">
+
+    <!-- Form column -->
+    <div>
+      <form action="#" method="post" novalidate>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="name">Full Name</label>
+            <input type="text" id="name" name="name" placeholder="Your name" required />
+          </div>
+          <div class="form-group">
+            <label for="company">Company</label>
+            <input type="text" id="company" name="company" placeholder="Company name" />
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="email">Email Address</label>
+            <input type="email" id="email" name="email" placeholder="you@company.com" required />
+          </div>
+          <div class="form-group">
+            <label for="phone">Phone <span style="color:rgba(255,255,255,0.2); font-weight:400; text-transform:none; letter-spacing:0;">(optional)</span></label>
+            <input type="tel" id="phone" name="phone" placeholder="+44 7xxx xxxxxx" />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="service">Service Interest</label>
+          <select id="service" name="service">
+            <option value="" disabled selected>Select a service</option>
+            <option value="design">Design Engineering</option>
+            <option value="maintenance">Maintenance Engineering</option>
+            <option value="reliability">Reliability Engineering</option>
+            <option value="asset">Asset Management</option>
+            <option value="consultancy">Technical Consultancy</option>
+            <option value="project">Project Delivery</option>
+            <option value="general">General Enquiry</option>
+          </select>
+        </div>
+
+        <div class="form-group" style="margin-bottom: 2rem;">
+          <label for="message">Message</label>
+          <textarea id="message" name="message" rows="5" placeholder="Tell us about your project, timeline and any key requirements…"></textarea>
+        </div>
+
+        <button type="submit" class="btn-grad btn-submit">
+          Send Message
+          <svg width="11" height="11" viewBox="0 0 11 11" fill="none">
+            <path d="M2 9L9 2M9 2H3M9 2V8" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </form>
+    </div>
+
+    <!-- Info column -->
+    <div class="contact-info fade-up fd1">
+      <h2 class="info-heading">Get in touch with our engineering team.</h2>
+
+      <div class="info-block">
+        <span class="info-label">Email</span>
+        <a href="mailto:hello@alignsolutions.co.uk" class="info-value">hello@alignsolutions.co.uk</a>
+      </div>
+
+      <div class="info-block">
+        <span class="info-label">Phone</span>
+        <a href="tel:+441234567890" class="info-value">+44 (0)1234 567 890</a>
+      </div>
+
+      <div class="info-block">
+        <span class="info-label">Address</span>
+        <span class="info-value">
+          Align Solutions Ltd<br>
+          Engineering House<br>
+          Nottingham, NG1 1AA
+        </span>
+      </div>
+
+      <div class="info-block">
+        <span class="info-label">Office Hours</span>
+        <span class="info-value">Monday – Friday<br>08:00 – 17:30</span>
+      </div>
+
+      <div class="social-row">
+        <a href="#" class="social-link" aria-label="LinkedIn">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+          LinkedIn
+        </a>
+        <a href="#" class="social-link" aria-label="Twitter / X">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+          Twitter
+        </a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════ FOOTER ════════ -->
+<footer class="site-footer">
+  <div class="footer-visual">
+    <div class="footer-mark-wrap">
+      <img src="Brand_Assets/SVG Logos/Asset 1.svg" class="footer-mark-img" alt="" aria-hidden="true" />
+    </div>
+    <div class="footer-content">
+      <div class="footer-inner">
+        <div class="footer-cols">
+          <div class="footer-col">
+            <span class="footer-col-place">UK — Nottingham</span>
+            <span class="footer-col-time" id="footer-time">--:--:--</span>
+            <span class="footer-col-tz">(GMT / BST)</span>
+          </div>
+          <div class="footer-col">
+            <span class="footer-col-heading">Services</span>
+            <a href="services.html">Design Engineering</a>
+            <a href="services.html">Maintenance Engineering</a>
+            <a href="services.html">Reliability Engineering</a>
+            <a href="services.html">Asset Management</a>
+            <a href="services.html">Technical Consultancy</a>
+            <a href="services.html">Project Delivery</a>
+          </div>
+          <div class="footer-col">
+            <span class="footer-col-heading">Company</span>
+            <a href="about.html">About</a>
+            <a href="how-we-work.html">How We Work</a>
+            <a href="case-studies.html">Case Studies</a>
+            <a href="packages.html">Packages</a>
+            <a href="sectors.html">Sectors</a>
+          </div>
+          <div class="footer-col">
+            <span class="footer-col-heading">Social</span>
+            <a href="#">LinkedIn</a>
+            <a href="#">Twitter</a>
+          </div>
+          <div class="footer-col">
+            <span class="footer-col-heading">Contact</span>
+            <a href="contact.html">Get In Touch</a>
+            <a href="mailto:hello@alignsolutions.co.uk">hello@alignsolutions.co.uk</a>
+            <a href="tel:+441234567890">+44 (0)1234 567 890</a>
+          </div>
+        </div>
+        <div class="footer-meta">
+          <span>©2026 Align Solutions Ltd. All rights reserved.</span>
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms &amp; Conditions</a>
+          <span class="footer-meta-spacer"></span>
+          <span>alignsolutions.co.uk</span>
+        </div>
+      </div>
+      <div class="footer-visual-wordmark">Align Solutions</div>
+    </div>
+  </div>
+</footer>
+
+
+<script>
+// ── Fade-up animations ──────────────────────────────────
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
+}, { threshold: 0.05, rootMargin: '0px 0px 60px 0px' });
+document.querySelectorAll('.fade-up').forEach(el => io.observe(el));
+
+window.addEventListener('load', () => {
+  document.querySelectorAll('.page-hero .fade-up').forEach((el, i) => {
+    setTimeout(() => el.classList.add('in'), 80 + i * 130);
+  });
+  setTimeout(() => {
+    document.querySelectorAll('.fade-up').forEach(el => el.classList.add('in'));
+  }, 350);
+});
+
+// ── Live footer clock ───────────────────────────────
+function updateFooterClock() {
+  const el = document.getElementById('footer-time');
+  if (!el) return;
+  el.textContent = new Date().toLocaleTimeString('en-GB', {
+    timeZone: 'Europe/London', hour12: false,
+    hour: '2-digit', minute: '2-digit', second: '2-digit'
+  });
+}
+setInterval(updateFooterClock, 1000);
+updateFooterClock();
+</script>
+</body>
+</html>

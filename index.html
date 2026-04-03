@@ -1,0 +1,1337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Align Solutions — Engineering Excellence</title>
+  <style>
+    @font-face {
+      font-family: 'NeueHaas';
+      src: url('Brand_Assets/Neue Haas Font/NeueHaasDisplayThin.ttf') format('truetype');
+      font-weight: 100; font-style: normal;
+    }
+    @font-face {
+      font-family: 'NeueHaas';
+      src: url('Brand_Assets/Neue Haas Font/NeueHaasDisplayRoman.ttf') format('truetype');
+      font-weight: 400; font-style: normal;
+    }
+    @font-face {
+      font-family: 'NeueHaas';
+      src: url('Brand_Assets/Neue Haas Font/NeueHaasDisplayMediu.ttf') format('truetype');
+      font-weight: 500; font-style: normal;
+    }
+    @font-face {
+      font-family: 'NeueHaas';
+      src: url('Brand_Assets/Neue Haas Font/NeueHaasDisplayBold.ttf') format('truetype');
+      font-weight: 700; font-style: normal;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    :root {
+      --cobalt:      #3e51a3;
+      --cobalt-dk:   #2f3d7e;
+      --cobalt-lt:   #8899d4;
+      --cobalt-pale: #b8c4e8;
+      --navy:        #07091a;
+      --navy-card:   #0e1330;
+      --card-light:  #dce3f7;
+      --white:       #ffffff;
+      --grey60:      #9c9c9c;
+    }
+
+    body {
+      font-family: 'NeueHaas', system-ui, sans-serif;
+      background: var(--navy);
+      color: var(--white);
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    /* ─── NAV ─────────────────────────────────────────── */
+    .site-nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      height: 68px;
+      display: flex; align-items: center;
+      padding: 0 2.5rem;
+      background: rgba(7, 9, 26, 0.75);
+      backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(255,255,255,0.055);
+    }
+    .nav-logo { flex-shrink: 0; }
+    .nav-logo img { height: 40px; width: auto; display: block; }
+    .site-nav > .btn-pill { margin-left: auto; }
+
+    .nav-links {
+      position: absolute; left: 50%; transform: translateX(-50%);
+      display: flex; align-items: center; gap: 2.25rem; list-style: none;
+    }
+    .nav-links a {
+      font-size: 0.7rem; font-weight: 500; text-transform: uppercase;
+      letter-spacing: 0.1em; color: rgba(255,255,255,0.5);
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+    .nav-links a:hover, .nav-links a.active { color: rgba(255,255,255,0.9); }
+
+    /* Auros-style gradient-border pill button */
+    .btn-pill {
+      position: relative;
+      display: inline-flex; align-items: center; gap: 0.45rem;
+      padding: 0.55rem 1.3rem;
+      background: rgba(255,255,255,0.05);
+      border-radius: 100px;
+      color: white; font-family: 'NeueHaas', system-ui, sans-serif;
+      font-size: 0.7rem; font-weight: 500;
+      text-transform: uppercase; letter-spacing: 0.1em;
+      text-decoration: none; white-space: nowrap; cursor: pointer;
+      border: none;
+      transition: background 0.25s ease, transform 0.2s cubic-bezier(0.34,1.56,0.64,1);
+    }
+    .btn-pill::before {
+      content: '';
+      position: absolute; inset: 0;
+      border-radius: 100px;
+      padding: 1px;
+      background: linear-gradient(140deg, rgba(136,153,212,0.75) 0%, rgba(62,81,163,0.4) 45%, rgba(62,81,163,0.05) 100%);
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      pointer-events: none;
+    }
+    .btn-pill:hover {
+      background: rgba(255,255,255,0.1);
+      transform: translateY(-1px);
+    }
+    .btn-pill:active { transform: translateY(0); }
+
+    .btn-pill-lg {
+      padding: 0.8rem 1.9rem;
+      font-size: 0.78rem;
+    }
+    .btn-pill-lg::before {
+      background: linear-gradient(140deg, rgba(136,153,212,0.9) 0%, rgba(62,81,163,0.5) 45%, rgba(62,81,163,0.1) 100%);
+    }
+
+    /* ─── DOTTED SURFACE ZONE (hero only) ───────────── */
+    .hero-scroll-zone {
+      position: relative;
+    }
+    /* Canvas container fills the hero zone */
+    #dotted-surface {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+    }
+    /* Canvas is sticky so it stays in viewport while the hero is in view */
+    #dotted-surface canvas {
+      position: sticky;
+      top: 0;
+      display: block;
+    }
+    /* Gradient dissolve: transparent at 55% → full navy at 100%.
+       Fades the dots away before the scroll-text section begins. */
+    .hero-scroll-zone::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 45%;
+      background: linear-gradient(to bottom, transparent 0%, var(--navy) 100%);
+      z-index: 2;
+      pointer-events: none;
+    }
+    /* Hero sits above the canvas layer */
+    .hero-scroll-zone > .hero {
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ─── HERO ────────────────────────────────────────── */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex; align-items: center; justify-content: center;
+      text-align: center; overflow: hidden;
+    }
+    /* Cinematic background photo with cobalt treatment */
+    .hero-photo {
+      position: absolute; inset: 0;
+      background: url('https://placehold.co/1920x1080/0a0d1f/1a1a2e') center/cover no-repeat;
+    }
+    .hero-photo-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to bottom, rgba(7,9,26,0.45) 0%, rgba(7,9,26,0.2) 40%, rgba(7,9,26,0.7) 100%);
+    }
+    .hero-photo-tint {
+      position: absolute; inset: 0;
+      background: var(--cobalt);
+      mix-blend-mode: multiply;
+      opacity: 0.55;
+    }
+    .hero-glow {
+      position: absolute; inset: 0; pointer-events: none;
+      background:
+        radial-gradient(ellipse 85% 65% at 50% 65%, rgba(62,81,163,0.55) 0%, transparent 65%),
+        radial-gradient(ellipse 50% 40% at 50% 25%, rgba(47,61,126,0.3) 0%, transparent 60%);
+    }
+    .hero-noise {
+      position: absolute; inset: 0; opacity: 0.03; pointer-events: none;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-size: 256px;
+    }
+    .hero-content {
+      position: relative; z-index: 2;
+      max-width: 860px; padding: 0 2rem;
+    }
+    .hero-eyebrow {
+      display: block;
+      font-size: 0.62rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.22em; color: rgba(255,255,255,0.38);
+      margin-bottom: 2rem;
+    }
+    .hero-heading {
+      font-size: clamp(3rem, 6.5vw, 6.5rem);
+      font-weight: 700; line-height: 1.0;
+      letter-spacing: -0.03em;
+      margin-bottom: 2rem;
+    }
+    .hero-line-1 { display: block; color: #fff; }
+    .hero-line-2 {
+      display: block;
+      background: linear-gradient(
+        90deg,
+        #ffffff 0%,
+        var(--cobalt-lt) 25%,
+        #ffffff 50%,
+        var(--cobalt) 75%,
+        var(--cobalt-lt) 100%
+      );
+      background-size: 400% 100%;
+      background-position: var(--gp, 0%) 0%;
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero-sub {
+      font-size: 1.0625rem; font-weight: 400; line-height: 1.65;
+      color: rgba(255,255,255,0.45); max-width: 420px;
+      margin: 0 auto 2.75rem;
+    }
+
+    /* ─── SCROLL-TEXT SECTION ─────────────────────────── */
+    .scroll-text-section {
+      position: relative;
+      padding: 9rem 0 5rem;
+      overflow: hidden;
+    }
+    /* Flex column + align-items:center → each oversized line overflows equally left/right */
+    .scroll-lines {
+      margin-bottom: 7rem;
+      display: flex; flex-direction: column; align-items: center;
+    }
+
+    /* ── Scroll-driven gradient shared across all gradient text ── */
+    /* --gp is a percentage 0→100 driven by window.scrollY / maxScroll */
+    /* The gradient is 400% wide so position shift = dramatic colour travel */
+    .scroll-line {
+      font-size: clamp(88px, 17vw, 240px);
+      font-weight: 500;
+      line-height: 0.9;
+      letter-spacing: -0.04em;
+      white-space: nowrap;
+      will-change: transform;
+      user-select: none;
+      padding-bottom: 0.18em; /* room for descenders — clipped by background-clip:text at line-height 0.9 */
+      /* Gradient replaces flat colour */
+      background: linear-gradient(
+        90deg,
+        rgba(255,255,255,0.08) 0%,
+        var(--cobalt-lt) 25%,
+        rgba(255,255,255,0.12) 50%,
+        var(--cobalt) 75%,
+        rgba(255,255,255,0.08) 100%
+      );
+      background-size: 400% 100%;
+      background-position: var(--gp, 0%) 0%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .scroll-line-2 { margin-top: 0.05em; }
+
+    .scroll-statement {
+      max-width: 800px; margin: 0 auto;
+      text-align: center; padding: 0 2rem;
+    }
+    .scroll-statement-text {
+      font-size: clamp(1.45rem, 2.8vw, 2.4rem);
+      font-weight: 400; line-height: 1.4;
+      color: rgba(255,255,255,0.82); letter-spacing: -0.01em;
+    }
+    .grad-text {
+      background: linear-gradient(
+        90deg,
+        #ffffff 0%,
+        var(--cobalt-lt) 25%,
+        #ffffff 50%,
+        var(--cobalt) 75%,
+        var(--cobalt-lt) 100%
+      );
+      background-size: 400% 100%;
+      background-position: var(--gp, 0%) 0%;
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* ─── BENTO STATS ─────────────────────────────────── */
+    .bento-wrap {
+      padding: 6rem 2.5rem 6rem;
+      max-width: 1240px; margin: 0 auto;
+    }
+    .bento-eyebrow {
+      font-size: 0.62rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.22em; color: rgba(255,255,255,0.3);
+      margin-bottom: 1.75rem; display: block;
+    }
+    .bento-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 1fr 1fr;
+      grid-template-rows: 310px 195px;
+      gap: 10px;
+    }
+    .bento-card {
+      border-radius: 16px;
+      padding: 2rem 2.25rem 2rem;
+      display: flex; flex-direction: column;
+      justify-content: space-between;
+      overflow: hidden; position: relative;
+    }
+    /* Tall light card */
+    .bc-1 {
+      grid-column: 1; grid-row: 1 / 3;
+      background: var(--card-light);
+    }
+    /* Wide dark top-right card */
+    .bc-2 {
+      grid-column: 2 / 4; grid-row: 1;
+      background: var(--navy-card);
+    }
+    /* Bottom two small cards */
+    .bc-3 { grid-column: 2; grid-row: 2; background: var(--navy-card); }
+    .bc-4 { grid-column: 3; grid-row: 2; background: var(--navy-card); }
+
+    /* Subtle cobalt tint on dark cards */
+    .bc-2::before, .bc-3::before, .bc-4::before {
+      content: ''; position: absolute; inset: 0; pointer-events: none; border-radius: 16px;
+      background: radial-gradient(ellipse 80% 70% at 80% 80%, rgba(62,81,163,0.18) 0%, transparent 60%);
+    }
+
+    /* ── Dot grid canvas overlay ── */
+    .bento-dots {
+      position: absolute; inset: 0;
+      border-radius: 16px;
+      pointer-events: none; /* canvas JS handles pointer events separately */
+      z-index: 1;
+    }
+    /* Content sits above dots */
+    .bento-card > *:not(.bento-dots) { position: relative; z-index: 2; }
+
+    .bento-label {
+      font-size: 0.62rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.16em; position: relative;
+    }
+    .bento-label-dark { color: rgba(7,9,26,0.5); }
+    .bento-label-light { color: rgba(255,255,255,0.4); }
+
+    .bento-num {
+      font-weight: 700; letter-spacing: -0.045em; line-height: 0.88;
+      position: relative;
+    }
+    .bento-num-dark  { color: var(--navy); }
+    .bento-num-light { color: #ffffff; }
+    .bento-num-xl { font-size: clamp(4rem, 7.5vw, 7.5rem); }
+    .bento-num-lg { font-size: clamp(3.5rem, 6vw, 5.75rem); }
+    .bento-num-md { font-size: clamp(2.75rem, 4.5vw, 4.25rem); }
+
+    /* ─── SERVICES EXPLORE ────────────────────────────── */
+    .explore-outer {
+      border-top: 1px solid rgba(255,255,255,0.05);
+    }
+    .explore-wrap {
+      max-width: 1240px; margin: 0 auto;
+      padding: 7rem 2.5rem;
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 6rem; align-items: start;
+    }
+    .explore-eyebrow {
+      font-size: 0.62rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.22em; color: rgba(255,255,255,0.3);
+      margin-bottom: 1.5rem; display: block;
+    }
+    .explore-heading {
+      font-size: clamp(2rem, 3.5vw, 3.25rem);
+      font-weight: 700; line-height: 1.05;
+      letter-spacing: -0.025em; margin-bottom: 3rem;
+    }
+    .svc-row {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.4rem 0;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      text-decoration: none; color: white;
+      transition: opacity 0.2s ease;
+    }
+    .svc-row:last-child { border-bottom: 1px solid rgba(255,255,255,0.08); }
+    .svc-row:hover { opacity: 0.55; }
+    .svc-row-name {
+      font-size: 1.05rem; font-weight: 500; letter-spacing: -0.01em;
+    }
+    .svc-row-ico {
+      width: 28px; height: 28px; border-radius: 50%;
+      border: 1px solid rgba(255,255,255,0.2);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; margin-left: 1rem;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .svc-row:hover .svc-row-ico {
+      border-color: rgba(255,255,255,0.55);
+      background: rgba(255,255,255,0.07);
+    }
+    .explore-visual-col {
+      display: flex; align-items: flex-start; justify-content: center;
+      padding-top: 3rem;
+    }
+    /* Cinematic photo card in explore section */
+    .explore-photo {
+      width: 100%; border-radius: 16px; overflow: hidden;
+      position: relative; aspect-ratio: 3/4;
+      box-shadow: 0 2px 8px rgba(62,81,163,0.15), 0 24px 64px rgba(0,0,0,0.5);
+    }
+    .explore-photo img {
+      width: 100%; height: 100%; object-fit: cover; display: block;
+    }
+    .explore-photo-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(7,9,26,0.75) 0%, transparent 50%);
+    }
+    .explore-photo-tint {
+      position: absolute; inset: 0;
+      background: var(--cobalt);
+      mix-blend-mode: multiply;
+      opacity: 0.3;
+    }
+    .explore-photo-label {
+      position: absolute; bottom: 1.5rem; left: 1.75rem;
+      font-size: 0.6rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.18em; color: rgba(255,255,255,0.5);
+    }
+
+    /* ─── GRADIENT-FLOOD BUTTON (Highful Minds style) ── */
+    /* Normal state: plain pill with faint border.
+       Hover: cobalt-lt→card-light gradient floods in from left. */
+    .btn-grad {
+      position: relative;
+      display: inline-flex; align-items: center; gap: 0.55rem;
+      padding: 0.75rem 1.6rem;
+      border-radius: 100px;
+      border: 1px solid rgba(255,255,255,0.18);
+      color: rgba(255,255,255,0.75);
+      font-family: 'NeueHaas', system-ui, sans-serif;
+      font-size: 0.75rem; font-weight: 500;
+      text-transform: uppercase; letter-spacing: 0.1em;
+      text-decoration: none; white-space: nowrap; cursor: pointer;
+      overflow: hidden;
+      isolation: isolate;
+      transition: color 0.35s ease, border-color 0.35s ease, transform 0.2s cubic-bezier(0.34,1.56,0.64,1);
+    }
+    .btn-grad::before {
+      content: '';
+      position: absolute; inset: 0; z-index: -1;
+      border-radius: 100px;
+      background: linear-gradient(120deg, var(--cobalt-lt) 0%, var(--card-light) 100%);
+      transform: translateX(-105%);
+      transition: transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    .btn-grad:hover { color: var(--navy); border-color: transparent; transform: translateY(-1px); }
+    .btn-grad:hover::before { transform: translateX(0); }
+    .btn-grad:active { transform: translateY(0); }
+    /* Arrow icon inherits color */
+    .btn-grad svg { flex-shrink: 0; }
+
+    /* ─── LOGO + GLASS PANEL ──────────────────────────── */
+    .logo-glass-wrap {
+      position: relative; width: 100%; max-width: 400px;
+      aspect-ratio: 1/1.05; margin-top: 1rem;
+    }
+    .logo-glass-mark {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%; object-fit: contain;
+      opacity: 0.18;
+      filter: drop-shadow(0 0 48px rgba(62,81,163,0.45));
+    }
+    /* Frosted glass panel covers right ~55% */
+    .logo-glass-panel {
+      position: absolute;
+      right: -8%; top: 8%; bottom: 8%;
+      width: 58%;
+      backdrop-filter: blur(28px); -webkit-backdrop-filter: blur(28px);
+      background: rgba(14,19,48,0.28);
+      border-radius: 20px;
+      border: 1px solid rgba(255,255,255,0.08);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.06);
+      display: flex; flex-direction: column; justify-content: flex-end;
+      padding: 1.75rem;
+    }
+    .logo-glass-label {
+      font-size: 0.6rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.2em; color: rgba(255,255,255,0.3);
+      display: block; margin-bottom: 0.6rem;
+    }
+    .logo-glass-copy {
+      font-size: 0.9rem; font-weight: 500; line-height: 1.4;
+      color: rgba(255,255,255,0.65); letter-spacing: -0.01em;
+    }
+
+    /* ─── QUOTE ───────────────────────────────────────── */
+    .quote-section {
+      padding: 11rem 2rem;
+      text-align: center; position: relative; overflow: hidden;
+    }
+    .quote-section::before {
+      content: ''; position: absolute; inset: 0; pointer-events: none;
+      background: radial-gradient(ellipse 65% 70% at 50% 50%, rgba(62,81,163,0.28) 0%, transparent 65%);
+    }
+    .quote-text {
+      position: relative; z-index: 1;
+      font-size: clamp(2.5rem, 5.5vw, 5.5rem);
+      font-weight: 700; line-height: 1.08; letter-spacing: -0.03em;
+      max-width: 940px; margin: 0 auto; color: #fff;
+    }
+
+    /* ─── SITE FOOTER ────────────────────────────────── */
+    .site-footer {
+      background: var(--navy);
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+    /* Full-height visual section — mark + glass + content all stacked */
+    .footer-visual {
+      position: relative; min-height: 780px; overflow: hidden;
+      background: var(--navy);
+      display: flex; flex-direction: column; justify-content: flex-end;
+    }
+    /* Mark sits at top, centred — no blend modes that could taint the navy bg */
+    .footer-mark-wrap {
+      position: absolute; top: 0; left: 50%;
+      transform: translateX(-50%);
+      z-index: 1; pointer-events: none;
+    }
+    /* Subtle cobalt gradient sweep on the mark — tight hue range, no purple */
+    @keyframes markColorFlow {
+      0%   { filter: sepia(1) hue-rotate(207deg) saturate(9)  brightness(1.45); }
+      50%  { filter: sepia(1) hue-rotate(220deg) saturate(11) brightness(1.6);  }
+      100% { filter: sepia(1) hue-rotate(207deg) saturate(9)  brightness(1.45); }
+    }
+    .footer-mark-img {
+      display: block; height: 740px; width: auto; opacity: 0.9;
+      animation: markColorFlow 6s ease-in-out infinite;
+    }
+    /* Content layer — IS the glass: backdrop + dark bg + top divider line */
+    .footer-content {
+      position: relative; z-index: 3; padding: 2.5rem 2.5rem 0;
+      backdrop-filter: blur(22px); -webkit-backdrop-filter: blur(22px);
+      background: linear-gradient(to bottom, rgba(7,9,26,0.88) 0%, rgba(7,9,26,0.98) 100%);
+      border-top: 1px solid rgba(255,255,255,0.1);
+    }
+    .footer-inner { max-width: 1240px; margin: 0 auto; }
+    .footer-cols {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr 1fr 0.75fr 1.1fr;
+      gap: 3rem;
+      padding-bottom: 2.5rem;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .footer-col-place {
+      font-size: 1rem; font-weight: 500; color: var(--white);
+      display: block; margin-bottom: 0.35rem;
+    }
+    .footer-col-time {
+      font-size: 0.85rem; color: rgba(255,255,255,0.4);
+      display: block; margin-bottom: 0.15rem;
+      font-variant-numeric: tabular-nums; letter-spacing: 0.02em;
+    }
+    .footer-col-tz {
+      font-size: 0.72rem; color: rgba(255,255,255,0.2); display: block;
+    }
+    .footer-col-heading {
+      font-size: 0.58rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.2em; color: rgba(255,255,255,0.28);
+      display: block; margin-bottom: 1.25rem;
+    }
+    .footer-col a {
+      display: block; font-size: 0.875rem; font-weight: 400;
+      color: rgba(255,255,255,0.5); text-decoration: none;
+      margin-bottom: 0.7rem;
+      transition: color 0.2s ease;
+    }
+    .footer-col a:hover { color: rgba(255,255,255,0.9); }
+    .footer-col a:last-child { margin-bottom: 0; }
+    .footer-meta {
+      display: flex; align-items: center; gap: 2rem;
+      padding: 1.5rem 0;
+      font-size: 0.63rem; letter-spacing: 0.04em;
+      color: rgba(255,255,255,0.18);
+    }
+    .footer-meta a {
+      color: rgba(255,255,255,0.18); text-decoration: none; transition: color 0.2s;
+    }
+    .footer-meta a:hover { color: rgba(255,255,255,0.5); }
+    .footer-meta-spacer { margin-left: auto; }
+    .footer-visual-wordmark {
+      text-align: center;
+      font-size: clamp(58px, 10.5vw, 150px);
+      font-weight: 700; text-transform: uppercase;
+      letter-spacing: -0.035em; line-height: 0.85;
+      color: var(--white); white-space: nowrap;
+    }
+
+    /* ─── ANIMATIONS ──────────────────────────────────── */
+    .fade-up {
+      opacity: 0; transform: translateY(28px);
+      transition: opacity 0.9s cubic-bezier(0.16,1,0.3,1), transform 0.9s cubic-bezier(0.16,1,0.3,1);
+    }
+    .fade-up.in { opacity: 1; transform: translateY(0); }
+    .fd1 { transition-delay: 0.08s; }
+    .fd2 { transition-delay: 0.18s; }
+    .fd3 { transition-delay: 0.28s; }
+    .fd4 { transition-delay: 0.38s; }
+    .fd5 { transition-delay: 0.48s; }
+
+    /* ─── MOBILE NAV — hidden on desktop ─────────────── */
+    .nav-hamburger { display: none; }
+    .mobile-nav    { display: none; }
+
+    /* ─── MOBILE / RESPONSIVE ────────────────────────── */
+    @media (max-width: 768px) {
+
+      /* Nav: hide desktop links + CTA, show hamburger */
+      .site-nav { padding: 0 1.25rem; }
+      .nav-links { display: none; }
+      .site-nav > .btn-pill { display: none; }
+
+      .nav-hamburger {
+        display: flex; flex-direction: column; justify-content: center;
+        gap: 5px; padding: 0.5rem; width: 40px; height: 40px;
+        background: none; border: none; cursor: pointer; margin-left: auto;
+      }
+      .nav-hamburger span {
+        display: block; height: 1.5px; background: rgba(255,255,255,0.75);
+        border-radius: 2px;
+        transition: transform 0.35s cubic-bezier(0.34,1.56,0.64,1), opacity 0.25s ease;
+        transform-origin: center;
+      }
+      .nav-hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+      .nav-hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+      .nav-hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+      /* Mobile nav overlay */
+      .mobile-nav {
+        display: flex; flex-direction: column; justify-content: center;
+        align-items: flex-start;
+        position: fixed; inset: 0; z-index: 99;
+        background: rgba(7,9,26,0.97);
+        backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+        padding: 6rem 2rem 3rem;
+        opacity: 0; pointer-events: none;
+        transition: opacity 0.35s ease;
+      }
+      .mobile-nav.open { opacity: 1; pointer-events: all; }
+
+      .mobile-nav-links { list-style: none; margin-bottom: 2.5rem; width: 100%; }
+      .mobile-nav-links li { border-bottom: 1px solid rgba(255,255,255,0.06); }
+      .mobile-nav-links a {
+        display: block; padding: 1rem 0;
+        font-size: 1.3rem; font-weight: 500; letter-spacing: -0.01em;
+        color: rgba(255,255,255,0.6); text-decoration: none;
+        transition: color 0.2s ease;
+      }
+      .mobile-nav-links a:hover,
+      .mobile-nav-links a.active { color: #fff; }
+
+      /* Hero */
+      .hero-content { padding: 0 1.25rem; }
+      .hero-sub { font-size: 0.95rem; max-width: 100%; }
+
+      /* Scroll-text — reduce font so lines don't overflow */
+      .scroll-text-section { padding: 5rem 0 3rem; }
+      .scroll-line { font-size: clamp(44px, 12vw, 88px); }
+      .scroll-lines { margin-bottom: 3rem; }
+      .scroll-statement { padding: 0 1.25rem; }
+      .scroll-statement-text { font-size: clamp(1.1rem, 4vw, 1.45rem); }
+
+      /* Bento stats — 2-col layout, auto row heights */
+      .bento-wrap { padding: 4rem 1.25rem; }
+      .bento-grid {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: auto;
+        gap: 8px;
+      }
+      .bc-1 { grid-column: 1 / 3; grid-row: auto; min-height: 200px; }
+      .bc-2 { grid-column: 1 / 3; grid-row: auto; min-height: 160px; }
+      .bc-3 { grid-column: 1;     grid-row: auto; min-height: 140px; }
+      .bc-4 { grid-column: 2;     grid-row: auto; min-height: 140px; }
+      .bento-card { padding: 1.5rem; }
+      .bento-num-xl { font-size: clamp(3.25rem, 11vw, 5rem); }
+      .bento-num-lg { font-size: clamp(2.75rem, 9vw, 4.25rem); }
+      .bento-num-md { font-size: clamp(2.25rem, 7.5vw, 3.5rem); }
+
+      /* Services explore — stack to single column, hide visual */
+      .explore-wrap {
+        grid-template-columns: 1fr;
+        gap: 0;
+        padding: 4rem 1.25rem;
+      }
+      .explore-visual-col { display: none; }
+      .explore-heading { margin-bottom: 1.5rem; }
+
+      /* Quote section */
+      .quote-section { padding: 6rem 1.25rem; }
+
+      /* Footer */
+      .footer-visual { min-height: auto; }
+      .footer-mark-img { height: 280px; }
+      .footer-content { padding: 2rem 1.25rem 0; }
+      .footer-cols {
+        grid-template-columns: 1fr 1fr;
+        gap: 2rem;
+      }
+      .footer-meta { flex-wrap: wrap; gap: 0.6rem; }
+      .footer-meta-spacer { display: none; }
+      .footer-visual-wordmark { white-space: normal; font-size: clamp(32px, 8.5vw, 58px); }
+    }
+
+    /* Extra-small phones — single column footer */
+    @media (max-width: 480px) {
+      .footer-cols { grid-template-columns: 1fr; }
+      .scroll-line { font-size: clamp(36px, 10vw, 64px); }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════ NAV ═══ -->
+<nav class="site-nav">
+  <a href="index.html" class="nav-logo" aria-label="Align Solutions">
+    <img src="Brand_Assets/SVG Logos/Asset 7.svg" alt="Align Solutions" />
+  </a>
+
+  <ul class="nav-links">
+    <li><a href="index.html" class="active">Home</a></li>
+    <li><a href="services.html">Services</a></li>
+    <li><a href="packages.html">Packages</a></li>
+    <li><a href="how-we-work.html">How We Work</a></li>
+    <li><a href="case-studies.html">Case Studies</a></li>
+    <li><a href="sectors.html">Sectors</a></li>
+    <li><a href="about.html">About</a></li>
+  </ul>
+
+  <a href="contact.html" class="btn-pill">
+    Get In Touch
+    <svg width="11" height="11" viewBox="0 0 11 11" fill="none">
+      <path d="M2 9L9 2M9 2H3M9 2V8" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </a>
+
+  <!-- Mobile hamburger — hidden on desktop via CSS -->
+  <button class="nav-hamburger" aria-label="Open menu" aria-expanded="false" id="navHamburger">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- Mobile nav overlay -->
+<div class="mobile-nav" id="mobileNav" aria-hidden="true" role="dialog" aria-label="Site navigation">
+  <ul class="mobile-nav-links">
+    <li><a href="index.html" class="active">Home</a></li>
+    <li><a href="services.html">Services</a></li>
+    <li><a href="packages.html">Packages</a></li>
+    <li><a href="how-we-work.html">How We Work</a></li>
+    <li><a href="case-studies.html">Case Studies</a></li>
+    <li><a href="sectors.html">Sectors</a></li>
+    <li><a href="about.html">About</a></li>
+  </ul>
+  <a href="contact.html" class="btn-pill btn-pill-lg">
+    Get In Touch
+    <svg width="11" height="11" viewBox="0 0 11 11" fill="none">
+      <path d="M2 9L9 2M9 2H3M9 2V8" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </a>
+</div>
+
+
+<!-- ══════════════════════════════════ HERO ZONE ═══ -->
+<!-- dotted-surface lives here — hero only -->
+<div class="hero-scroll-zone">
+
+  <!-- Animated dot grid canvas — sticky, stays in viewport while hero is visible -->
+  <div id="dotted-surface" aria-hidden="true"></div>
+
+<!-- ═══════════════════════════════════════ HERO ══ -->
+<section class="hero">
+  <div class="hero-glow"></div>
+  <div class="hero-noise"></div>
+  <div class="hero-content">
+    <span class="hero-eyebrow fade-up">Align Solutions</span>
+    <h1 class="hero-heading fade-up fd1">
+      <span class="hero-line-1">Bridging Design,</span>
+      <span class="hero-line-2">Maintenance &amp; Reliability</span>
+    </h1>
+    <p class="hero-sub fade-up fd2">
+      Powering smarter, future-ready industrial solutions across the UK and beyond.
+    </p>
+    <a href="services.html" class="btn-grad fade-up fd3">
+      Our Services
+      <svg width="11" height="11" viewBox="0 0 11 11" fill="none">
+        <path d="M2 9L9 2M9 2H3M9 2V8" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </a>
+  </div>
+</section>
+
+</div><!-- /hero-scroll-zone -->
+
+
+<!-- ════════════════════════════ SCROLL-TEXT SECTION ═ -->
+<section class="scroll-text-section">
+  <div class="scroll-lines" id="scrollLines">
+    <div class="scroll-line" id="sl1">We Engineer</div>
+    <div class="scroll-line scroll-line-2" id="sl2">Reliability.</div>
+  </div>
+  <div class="scroll-statement fade-up">
+    <p class="scroll-statement-text">
+      Align Solutions is a specialist engineering firm <span class="grad-text">bridging design, maintenance and reliability</span> to power smarter, future-ready industrial operations.
+    </p>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════ BENTO STATS ══ -->
+<section>
+  <div class="bento-wrap">
+    <span class="bento-eyebrow fade-up">By the numbers</span>
+    <div class="bento-grid">
+
+      <!-- Tall light card -->
+      <div class="bento-card bc-1 fade-up" data-dots="dark">
+        <canvas class="bento-dots"></canvas>
+        <span class="bento-label bento-label-dark">Years of<br>experience</span>
+        <div class="bento-num bento-num-xl bento-num-dark" data-count="20" data-suffix="+">20+</div>
+      </div>
+
+      <!-- Wide dark card -->
+      <div class="bento-card bc-2 fade-up fd1" data-dots="light">
+        <canvas class="bento-dots"></canvas>
+        <span class="bento-label bento-label-light">Projects delivered</span>
+        <div class="bento-num bento-num-lg bento-num-light" data-count="150" data-suffix="+">150+</div>
+      </div>
+
+      <!-- Bottom left small -->
+      <div class="bento-card bc-3 fade-up fd2" data-dots="light">
+        <canvas class="bento-dots"></canvas>
+        <span class="bento-label bento-label-light">Sectors<br>served</span>
+        <div class="bento-num bento-num-md bento-num-light" data-count="6">6</div>
+      </div>
+
+      <!-- Bottom right small -->
+      <div class="bento-card bc-4 fade-up fd3" data-dots="light">
+        <canvas class="bento-dots"></canvas>
+        <span class="bento-label bento-label-light">Client<br>retention</span>
+        <div class="bento-num bento-num-md bento-num-light" data-count="98" data-suffix="%">98%</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════ SERVICES EXPLORE ══ -->
+<div class="explore-outer">
+  <div class="explore-wrap">
+
+    <div>
+      <span class="explore-eyebrow fade-up">Explore</span>
+      <h2 class="explore-heading fade-up fd1">Our Services</h2>
+      <div class="svc-list" role="navigation" aria-label="Services list">
+        <a href="services.html" class="svc-row fade-up">
+          <span class="svc-row-name">Design Engineering</span>
+          <span class="svc-row-ico">
+            <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
+              <path d="M2 8L8 2M8 2H3M8 2V7" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
+        </a>
+        <a href="services.html" class="svc-row fade-up fd1">
+          <span class="svc-row-name">Maintenance Engineering</span>
+          <span class="svc-row-ico">
+            <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
+              <path d="M2 8L8 2M8 2H3M8 2V7" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
+        </a>
+        <a href="services.html" class="svc-row fade-up fd2">
+          <span class="svc-row-name">Reliability Engineering</span>
+          <span class="svc-row-ico">
+            <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
+              <path d="M2 8L8 2M8 2H3M8 2V7" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
+        </a>
+        <a href="services.html" class="svc-row fade-up fd3">
+          <span class="svc-row-name">Asset Management</span>
+          <span class="svc-row-ico">
+            <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
+              <path d="M2 8L8 2M8 2H3M8 2V7" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
+        </a>
+        <a href="services.html" class="svc-row fade-up fd4">
+          <span class="svc-row-name">Technical Consultancy</span>
+          <span class="svc-row-ico">
+            <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
+              <path d="M2 8L8 2M8 2H3M8 2V7" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
+        </a>
+        <a href="services.html" class="svc-row fade-up fd5">
+          <span class="svc-row-name">Project Delivery</span>
+          <span class="svc-row-ico">
+            <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
+              <path d="M2 8L8 2M8 2H3M8 2V7" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
+        </a>
+      </div>
+    </div>
+
+    <div class="explore-visual-col fade-up fd2">
+      <div class="logo-glass-wrap">
+        <!-- Large logomark sitting behind the glass panel -->
+        <img src="Brand_Assets/SVG Logos/Asset 1.svg" class="logo-glass-mark" alt="" aria-hidden="true" />
+        <!-- Frosted glass panel over the right half -->
+        <div class="logo-glass-panel">
+          <span class="logo-glass-label">Engineering Excellence</span>
+          <span class="logo-glass-copy">Design, maintenance<br>and reliability — unified.</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- ═════════════════════════════════════ QUOTE ══════ -->
+<section class="quote-section">
+  <h2 class="quote-text fade-up">
+    Building systems that keep<br>your operations running.
+  </h2>
+</section>
+
+
+<!-- ═══════════════════════════════════ FOOTER ════════ -->
+<footer class="site-footer">
+  <div class="footer-visual">
+
+    <!-- Logomark — full height, animated via CSS filter (no background bleed) -->
+    <div class="footer-mark-wrap">
+      <img src="Brand_Assets/SVG Logos/Asset 1.svg" class="footer-mark-img" alt="" aria-hidden="true" />
+    </div>
+
+    <!-- All content sits on the glass: columns → meta → wordmark -->
+    <div class="footer-content">
+      <div class="footer-inner">
+
+        <div class="footer-cols">
+
+          <!-- Col 1: Location + live clock -->
+          <div class="footer-col">
+            <span class="footer-col-place">UK — Nottingham</span>
+            <span class="footer-col-time" id="footer-time">--:--:--</span>
+            <span class="footer-col-tz">(GMT / BST)</span>
+          </div>
+
+          <!-- Col 2: Services -->
+          <div class="footer-col">
+            <span class="footer-col-heading">Services</span>
+            <a href="services.html">Design Engineering</a>
+            <a href="services.html">Maintenance Engineering</a>
+            <a href="services.html">Reliability Engineering</a>
+            <a href="services.html">Asset Management</a>
+            <a href="services.html">Technical Consultancy</a>
+            <a href="services.html">Project Delivery</a>
+          </div>
+
+          <!-- Col 3: Company -->
+          <div class="footer-col">
+            <span class="footer-col-heading">Company</span>
+            <a href="about.html">About</a>
+            <a href="how-we-work.html">How We Work</a>
+            <a href="case-studies.html">Case Studies</a>
+            <a href="packages.html">Packages</a>
+            <a href="sectors.html">Sectors</a>
+          </div>
+
+          <!-- Col 4: Social -->
+          <div class="footer-col">
+            <span class="footer-col-heading">Social</span>
+            <a href="#">LinkedIn</a>
+            <a href="#">Twitter</a>
+          </div>
+
+          <!-- Col 5: Contact -->
+          <div class="footer-col">
+            <span class="footer-col-heading">Contact</span>
+            <a href="contact.html">Get In Touch</a>
+            <a href="mailto:hello@alignsolutions.co.uk">hello@alignsolutions.co.uk</a>
+            <a href="tel:+441234567890">+44 (0)1234 567 890</a>
+          </div>
+
+        </div><!-- /footer-cols -->
+
+        <!-- Meta / copyright row -->
+        <div class="footer-meta">
+          <span>©2026 Align Solutions Ltd. All rights reserved.</span>
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms &amp; Conditions</a>
+          <span class="footer-meta-spacer"></span>
+          <span>alignsolutions.co.uk</span>
+        </div>
+
+      </div><!-- /footer-inner -->
+
+      <!-- Wordmark — flush to bottom edge -->
+      <div class="footer-visual-wordmark">Align Solutions</div>
+    </div><!-- /footer-content -->
+
+  </div><!-- /footer-visual -->
+</footer>
+
+
+<script>
+// ── Mobile nav hamburger ────────────────────────────
+(function initMobileNav() {
+  const btn = document.getElementById('navHamburger');
+  const nav = document.getElementById('mobileNav');
+  if (!btn || !nav) return;
+
+  function openMenu() {
+    nav.classList.add('open');
+    btn.classList.add('open');
+    btn.setAttribute('aria-expanded', 'true');
+    nav.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeMenu() {
+    nav.classList.remove('open');
+    btn.classList.remove('open');
+    btn.setAttribute('aria-expanded', 'false');
+    nav.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  }
+
+  btn.addEventListener('click', () => nav.classList.contains('open') ? closeMenu() : openMenu());
+
+  // Close on any nav link click
+  nav.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
+
+  // Close on Escape key
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMenu(); });
+})();
+
+// ── Intersection Observer: fade-up ──────────────────
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
+}, { threshold: 0.05, rootMargin: '0px 0px 60px 0px' });
+document.querySelectorAll('.fade-up').forEach(el => io.observe(el));
+
+// Fire hero content immediately on load
+window.addEventListener('load', () => {
+  document.querySelectorAll('.hero .fade-up').forEach((el, i) => {
+    setTimeout(() => el.classList.add('in'), 80 + i * 130);
+  });
+  // Fallback: ensure all elements are visible (handles off-screen sections)
+  setTimeout(() => {
+    document.querySelectorAll('.fade-up').forEach(el => el.classList.add('in'));
+  }, 350);
+});
+
+// ── Live footer clock (UK time) ────────────────────
+function updateFooterClock() {
+  const el = document.getElementById('footer-time');
+  if (!el) return;
+  el.textContent = new Date().toLocaleTimeString('en-GB', {
+    timeZone: 'Europe/London', hour12: false,
+    hour: '2-digit', minute: '2-digit', second: '2-digit'
+  });
+}
+setInterval(updateFooterClock, 1000);
+updateFooterClock();
+
+// ── Scroll-driven gradient position ────────────────
+// Updates --gp on :root from 0% → 100% as user scrolls the page.
+// All .grad-text, .hero-line-2 and .scroll-line read this var.
+function tickGradient() {
+  const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+  const pct = maxScroll > 0 ? (window.scrollY / maxScroll) * 100 : 0;
+  document.documentElement.style.setProperty('--gp', pct.toFixed(2) + '%');
+}
+window.addEventListener('scroll', tickGradient, { passive: true });
+tickGradient(); // set initial value
+
+// ── Scroll-text parallax ────────────────────────────
+const sl1 = document.getElementById('sl1');
+const sl2 = document.getElementById('sl2');
+const scrollLines = document.getElementById('scrollLines');
+
+function tickScrollText() {
+  const rect = scrollLines.getBoundingClientRect();
+  // progress: 0 = section bottom just entered viewport bottom, 1 = section top just exited viewport top
+  const raw = 1 - rect.bottom / (window.innerHeight + rect.height);
+  const p = Math.max(0, Math.min(1, raw));
+  // Line 1 drifts right→left, line 2 left→right as you scroll through
+  sl1.style.transform = `translateX(${6 - p * 14}vw)`;
+  sl2.style.transform = `translateX(${-6 + p * 14}vw)`;
+}
+window.addEventListener('scroll', tickScrollText, { passive: true });
+tickScrollText();
+
+// ── Counter animation ───────────────────────────────
+const counterIO = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (!e.isIntersecting) return;
+    const el = e.target;
+    const target = parseInt(el.dataset.count, 10);
+    const suffix = el.dataset.suffix || '';
+    const dur = 1500;
+    const fps = 1000 / 60;
+    let elapsed = 0;
+    const timer = setInterval(() => {
+      elapsed += fps;
+      const t = Math.min(elapsed / dur, 1);
+      // ease-out cubic
+      const eased = 1 - Math.pow(1 - t, 3);
+      el.textContent = Math.floor(eased * target) + suffix;
+      if (t >= 1) { el.textContent = target + suffix; clearInterval(timer); }
+    }, fps);
+    counterIO.unobserve(el);
+  });
+}, { threshold: 0.5 });
+document.querySelectorAll('[data-count]').forEach(el => counterIO.observe(el));
+
+// ── Dotted surface — floor-grid perspective ─────────
+// A receding horizontal grid of dots, visible only in the
+// bottom third of the hero. Crisp, small dots. Pure 2D canvas.
+(function initDottedSurface() {
+  const container = document.getElementById('dotted-surface');
+  if (!container) return;
+
+  const canvas = document.createElement('canvas');
+  canvas.style.cssText = 'position:sticky;top:0;display:block;';
+  container.appendChild(canvas);
+
+  const ctx = canvas.getContext('2d');
+
+  // Grid dimensions — dense for a fine grid feel
+  const SEP_X = 90;   // horizontal dot spacing (world units)
+  const SEP_Z = 100;  // depth dot spacing (world units)
+  const NX    = 55;   // columns
+  const NZ    = 60;   // rows (depth)
+
+  // Camera sits above a flat ground plane, looking forward along +Z
+  const CAM_Y    = 420;  // height above the grid
+  const CAM_BACK = 600;  // how far behind Z=0 the camera sits
+  const FOV      = 68;   // field of view (degrees)
+  const HORIZON  = 0.58; // horizon line as fraction of screen height (0=top, 1=bottom)
+
+  let W = 0, H = 0, count = 0;
+
+  function resize() {
+    W = canvas.width  = window.innerWidth;
+    H = canvas.height = window.innerHeight;
+  }
+
+  // Project a world-space point (x3, y3, z3) to screen space.
+  // Camera looks along +Z; Y=0 is the ground plane.
+  function project(x3, y3, z3) {
+    const cz = z3 + CAM_BACK; // depth in front of camera
+    if (cz <= 10) return null; // behind or too close
+
+    const fovScale = (H / 2) / Math.tan((FOV * Math.PI / 180) / 2);
+    const cy = y3 - CAM_Y;    // y relative to camera (negative = below eye)
+
+    const sx = (x3  / cz) * fovScale + W / 2;
+    const sy = (-cy / cz) * fovScale + H * HORIZON;
+
+    return { x: sx, y: sy, depth: 1 / cz };
+  }
+
+  function draw() {
+    requestAnimationFrame(draw);
+    ctx.clearRect(0, 0, W, H);
+
+    const pts = [];
+
+    for (let ix = 0; ix < NX; ix++) {
+      for (let iz = 0; iz < NZ; iz++) {
+        const x3 = ix * SEP_X - (NX * SEP_X) / 2;
+        const z3 = iz * SEP_Z; // grid extends forward from camera
+
+        // Gentle wave — small amplitude keeps the surface readable
+        const y3 = Math.sin((ix + count) * 0.45) * 22
+                 + Math.sin((iz + count) * 0.65) * 16;
+
+        const p = project(x3, y3, z3);
+        // Only keep dots inside the canvas bounds
+        if (p && p.x > 0 && p.x < W && p.y > H * 0.45 && p.y < H * 1.05) {
+          pts.push(p);
+        }
+      }
+    }
+
+    // Back-to-front so near (large) dots sit on top of far (small) ones
+    pts.sort((a, b) => a.depth - b.depth);
+
+    for (const p of pts) {
+      // Normalise depth: far ≈ 0, near ≈ 1
+      const t = Math.min(1, p.depth * 3500);
+
+      // Crisp, small dots — 0.6px far to 2.2px near
+      const radius = 0.6 + t * 1.6;
+      // Subtle far, visible near
+      const alpha  = 0.04 + t * 0.52;
+
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, radius, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(136,153,212,${alpha.toFixed(2)})`;
+      ctx.fill();
+    }
+
+    count += 0.05;
+  }
+
+  window.addEventListener('resize', resize, { passive: true });
+  resize();
+  draw();
+})();
+
+// ── Bento dot grid ──────────────────────────────────
+// Each bento card gets a canvas of dots. On mouse move within the card,
+// dots near the cursor swell in radius (proximity repulsion-style).
+// On mouse leave, dots shrink back via spring interpolation.
+(function initBentoDots() {
+  const SPACING   = 22;   // px between dot centres
+  const DOT_REST  = 1.4;  // resting radius px
+  const DOT_MAX   = 5.5;  // max radius px at cursor
+  const INFLUENCE = 80;   // px radius of cursor influence
+  const SPRING    = 0.18; // interpolation factor per frame
+
+  document.querySelectorAll('.bento-card[data-dots]').forEach(card => {
+    const canvas  = card.querySelector('.bento-dots');
+    const isDark  = card.dataset.dots === 'dark';
+    const ctx     = canvas.getContext('2d');
+
+    // Dot colour: light on dark cards, dark on light card
+    const dotColour = isDark
+      ? 'rgba(62,81,163,0.22)'    // cobalt faint on light bg
+      : 'rgba(255,255,255,0.12)'; // white faint on dark bg
+    const dotHover  = isDark
+      ? 'rgba(62,81,163,0.55)'
+      : 'rgba(136,153,212,0.55)';
+
+    let dots  = [];
+    let mouse = { x: -999, y: -999, inside: false };
+    let rafId = null;
+
+    function buildGrid() {
+      const w = canvas.width  = card.clientWidth;
+      const h = canvas.height = card.clientHeight;
+      dots = [];
+      const cols = Math.floor(w / SPACING);
+      const rows = Math.floor(h / SPACING);
+      const offX = (w - (cols - 1) * SPACING) / 2;
+      const offY = (h - (rows - 1) * SPACING) / 2;
+      for (let r = 0; r < rows; r++) {
+        for (let c = 0; c < cols; c++) {
+          dots.push({
+            x: offX + c * SPACING,
+            y: offY + r * SPACING,
+            r: DOT_REST,
+            targetR: DOT_REST,
+          });
+        }
+      }
+    }
+
+    function draw() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      let needsAnim = false;
+      for (const d of dots) {
+        // Update target radius based on cursor proximity
+        const dx   = d.x - mouse.x;
+        const dy   = d.y - mouse.y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        d.targetR  = mouse.inside
+          ? DOT_REST + Math.max(0, (1 - dist / INFLUENCE)) * (DOT_MAX - DOT_REST)
+          : DOT_REST;
+
+        // Spring towards target
+        const diff = d.targetR - d.r;
+        d.r += diff * SPRING;
+        if (Math.abs(diff) > 0.01) needsAnim = true;
+
+        // Draw
+        const t = (d.r - DOT_REST) / (DOT_MAX - DOT_REST); // 0→1
+        ctx.beginPath();
+        ctx.arc(d.x, d.y, d.r, 0, Math.PI * 2);
+        // Interpolate colour using globalAlpha trick
+        ctx.fillStyle = dotColour;
+        ctx.globalAlpha = 1;
+        if (t > 0.01) {
+          ctx.fillStyle = dotHover;
+          ctx.globalAlpha = 0.3 + t * 0.7;
+        }
+        ctx.fill();
+        ctx.globalAlpha = 1;
+      }
+      if (needsAnim || mouse.inside) {
+        rafId = requestAnimationFrame(draw);
+      } else {
+        rafId = null;
+      }
+    }
+
+    function startLoop() {
+      if (!rafId) rafId = requestAnimationFrame(draw);
+    }
+
+    card.addEventListener('mousemove', e => {
+      const rect = canvas.getBoundingClientRect();
+      mouse.x = e.clientX - rect.left;
+      mouse.y = e.clientY - rect.top;
+      mouse.inside = true;
+      startLoop();
+    });
+
+    card.addEventListener('mouseleave', () => {
+      mouse.inside = false;
+      startLoop(); // let dots spring back
+    });
+
+    // Initial render
+    buildGrid();
+    draw();
+
+    // Rebuild on resize
+    new ResizeObserver(() => { buildGrid(); draw(); }).observe(card);
+  });
+})();
+</script>
+</body>
+</html>
