@@ -71,11 +71,24 @@
       font-size: 0.7rem; font-weight: 500; text-transform: uppercase;
       letter-spacing: 0.1em; color: rgba(255,255,255,0.5);
       text-decoration: none;
-      transition: color 0.2s ease;
+      position: relative;
+      padding-bottom: 3px;
+      transition: color 0.25s ease;
     }
-    .nav-links a:hover, .nav-links a.active { color: rgba(255,255,255,0.9); }
+    /* Sliding underline — scales from 0 → 1 on hover, spring easing */
+    .nav-links a::after {
+      content: '';
+      position: absolute; bottom: 0; left: 0;
+      width: 100%; height: 1px;
+      background: linear-gradient(90deg, var(--cobalt-lt), var(--cobalt-pale));
+      transform: scaleX(0);
+      transform-origin: left center;
+      transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    .nav-links a:hover, .nav-links a.active { color: rgba(255,255,255,0.95); }
+    .nav-links a:hover::after, .nav-links a.active::after { transform: scaleX(1); }
 
-    /* Auros-style gradient-border pill button */
+    /* Nav CTA pill button — gradient-border resting, cobalt flood on hover */
     .btn-pill {
       position: relative;
       display: inline-flex; align-items: center; gap: 0.45rem;
@@ -87,8 +100,11 @@
       text-transform: uppercase; letter-spacing: 0.1em;
       text-decoration: none; white-space: nowrap; cursor: pointer;
       border: none;
-      transition: background 0.25s ease, transform 0.2s cubic-bezier(0.34,1.56,0.64,1);
+      overflow: hidden;
+      isolation: isolate;
+      transition: background 0.3s ease, transform 0.25s cubic-bezier(0.34,1.56,0.64,1);
     }
+    /* Gradient border ring — fades out on hover */
     .btn-pill::before {
       content: '';
       position: absolute; inset: 0;
@@ -99,12 +115,30 @@
       -webkit-mask-composite: xor;
       mask-composite: exclude;
       pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+    /* Cobalt flood fill — slides in from left on hover */
+    .btn-pill::after {
+      content: '';
+      position: absolute; inset: 0; z-index: -1;
+      border-radius: 100px;
+      background: linear-gradient(120deg, var(--cobalt-lt) 0%, var(--cobalt) 55%, var(--cobalt-dk) 100%);
+      transform: translateX(-110%);
+      transition: transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1);
     }
     .btn-pill:hover {
-      background: rgba(255,255,255,0.1);
-      transform: translateY(-1px);
+      background: transparent;
+      transform: translateY(-2px);
     }
-    .btn-pill:active { transform: translateY(0); }
+    .btn-pill:hover::before { opacity: 0; }
+    .btn-pill:hover::after  { transform: translateX(0); }
+    .btn-pill:active { transform: translateY(0) scale(0.98); }
+    /* Arrow nudges right on hover */
+    .btn-pill:hover svg {
+      transform: translate(2px, -2px);
+      transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    .btn-pill svg { transition: transform 0.25s ease; }
 
     .btn-pill-lg {
       padding: 0.8rem 1.9rem;
@@ -112,6 +146,9 @@
     }
     .btn-pill-lg::before {
       background: linear-gradient(140deg, rgba(136,153,212,0.9) 0%, rgba(62,81,163,0.5) 45%, rgba(62,81,163,0.1) 100%);
+    }
+    .btn-pill-lg::after {
+      background: linear-gradient(120deg, var(--cobalt-lt) 0%, var(--cobalt) 55%, var(--cobalt-dk) 100%);
     }
 
     /* ─── DOTTED SURFACE ZONE (hero only) ───────────── */
@@ -131,7 +168,7 @@
       top: 0;
       display: block;
     }
-    /* Gradient dissolve: transparent at 55% → full navy at 100%.
+    /* Gradient dissolve: transparent at top → full navy at bottom.
        Fades the dots away before the scroll-text section begins. */
     .hero-scroll-zone::after {
       content: '';
@@ -142,10 +179,10 @@
       z-index: 2;
       pointer-events: none;
     }
-    /* Hero sits above the canvas layer */
+    /* Hero sits above the canvas layer and the dissolve gradient (z-index 2) */
     .hero-scroll-zone > .hero {
       position: relative;
-      z-index: 1;
+      z-index: 3;
     }
 
     /* ─── HERO ────────────────────────────────────────── */
@@ -158,7 +195,7 @@
     /* Cinematic background photo with cobalt treatment */
     .hero-photo {
       position: absolute; inset: 0;
-      background: url('https://placehold.co/1920x1080/0a0d1f/1a1a2e') center/cover no-repeat;
+      background: url('Brand_Assets/Images/pexels-wdtoro-17694269.jpg') center/cover no-repeat;
     }
     .hero-photo-overlay {
       position: absolute; inset: 0;
@@ -367,38 +404,63 @@
     .explore-eyebrow {
       font-size: 0.62rem; font-weight: 700; text-transform: uppercase;
       letter-spacing: 0.22em; color: rgba(255,255,255,0.3);
-      margin-bottom: 1.5rem; display: block;
+      margin-bottom: 1.25rem; display: block;
+    }
+    /* Cobalt rule between eyebrow and heading */
+    .explore-rule {
+      display: block; width: 2rem; height: 2px;
+      background: #3e51a3; margin-bottom: 1.5rem;
     }
     .explore-heading {
-      font-size: clamp(2rem, 3.5vw, 3.25rem);
-      font-weight: 700; line-height: 1.05;
-      letter-spacing: -0.025em; margin-bottom: 3rem;
+      font-size: clamp(2.5rem, 4.5vw, 4.25rem);
+      font-weight: 700; line-height: 1.0;
+      letter-spacing: -0.03em; margin-bottom: 3rem;
     }
     .svc-row {
       display: flex; align-items: center; justify-content: space-between;
-      padding: 1.4rem 0;
+      padding: 1.35rem 0;
       border-top: 1px solid rgba(255,255,255,0.08);
       text-decoration: none; color: white;
-      transition: opacity 0.2s ease;
+      /* Translate right on hover — not dim */
+      transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1),
+                  border-color 0.2s ease;
     }
     .svc-row:last-child { border-bottom: 1px solid rgba(255,255,255,0.08); }
-    .svc-row:hover { opacity: 0.55; }
-    .svc-row-name {
-      font-size: 1.05rem; font-weight: 500; letter-spacing: -0.01em;
+    .svc-row:hover { transform: translateX(6px); }
+    /* Left meta: index + text block */
+    .svc-row-left {
+      display: flex; align-items: center; gap: 1.25rem; flex: 1; min-width: 0;
     }
+    .svc-row-index {
+      font-size: 0.62rem; font-weight: 700; letter-spacing: 0.1em;
+      color: #3e51a3; flex-shrink: 0; width: 1.6rem;
+      transition: color 0.2s ease;
+    }
+    .svc-row-text { display: flex; flex-direction: column; gap: 0.2rem; }
+    .svc-row-name {
+      font-size: 1.15rem; font-weight: 600; letter-spacing: -0.015em;
+      transition: color 0.2s ease;
+    }
+    .svc-row-desc {
+      font-size: 0.75rem; color: rgba(255,255,255,0.35);
+      letter-spacing: 0.01em; font-weight: 400;
+      transition: color 0.2s ease;
+    }
+    .svc-row:hover .svc-row-desc { color: rgba(255,255,255,0.55); }
     .svc-row-ico {
-      width: 28px; height: 28px; border-radius: 50%;
+      width: 30px; height: 30px; border-radius: 50%;
       border: 1px solid rgba(255,255,255,0.2);
       display: flex; align-items: center; justify-content: center;
       flex-shrink: 0; margin-left: 1rem;
-      transition: border-color 0.2s, background 0.2s;
+      transition: border-color 0.25s, background 0.25s, transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
     }
     .svc-row:hover .svc-row-ico {
-      border-color: rgba(255,255,255,0.55);
-      background: rgba(255,255,255,0.07);
+      border-color: #3e51a3;
+      background: rgba(62,81,163,0.25);
+      transform: rotate(45deg);
     }
     .explore-visual-col {
-      display: flex; align-items: flex-start; justify-content: center;
+      display: flex; align-items: flex-start; justify-content: flex-end;
       padding-top: 3rem;
     }
     /* Cinematic photo card in explore section */
@@ -458,38 +520,44 @@
     /* Arrow icon inherits color */
     .btn-grad svg { flex-shrink: 0; }
 
-    /* ─── LOGO + GLASS PANEL ──────────────────────────── */
-    .logo-glass-wrap {
-      position: relative; width: 100%; max-width: 400px;
-      aspect-ratio: 1/1.05; margin-top: 1rem;
+    /* ─── 3D LOGO SCENE ───────────────────────────────── */
+    .logo-3d-scene {
+      width: 100%; max-width: 400px;
+      /* CSS perspective — depth of the 3D space */
+      perspective: 700px;
+      perspective-origin: 50% 45%;
+      cursor: grab;
+      user-select: none; -webkit-user-select: none;
+      touch-action: none;
     }
-    .logo-glass-mark {
-      position: absolute; inset: 0;
-      width: 100%; height: 100%; object-fit: contain;
-      opacity: 0.18;
-      filter: drop-shadow(0 0 48px rgba(62,81,163,0.45));
+    .logo-3d-scene:active { cursor: grabbing; }
+    .logo-3d-obj {
+      transform-style: preserve-3d;
+      will-change: transform;
+      position: relative;
+      /* Height comes from the in-flow front SVG; depth layers are absolute */
     }
-    /* Frosted glass panel covers right ~55% */
-    .logo-glass-panel {
+    .logo-3d-svg {
+      width: 100%; display: block;
+      /* Drop-shadow shifts dynamically via JS to simulate a top-left light source */
+      filter: drop-shadow(0 28px 40px rgba(62,81,163,0.55))
+              drop-shadow(0 0 80px rgba(62,81,163,0.2));
+    }
+    /* Glow disc that sits behind the logo on the Z axis */
+    .logo-3d-glow {
       position: absolute;
-      right: -8%; top: 8%; bottom: 8%;
-      width: 58%;
-      backdrop-filter: blur(28px); -webkit-backdrop-filter: blur(28px);
-      background: rgba(14,19,48,0.28);
-      border-radius: 20px;
-      border: 1px solid rgba(255,255,255,0.08);
-      box-shadow: 0 8px 32px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.06);
-      display: flex; flex-direction: column; justify-content: flex-end;
-      padding: 1.75rem;
+      left: 15%; right: 15%; top: 25%; bottom: 25%;
+      background: radial-gradient(ellipse at center, rgba(62,81,163,0.45) 0%, transparent 70%);
+      border-radius: 50%;
+      filter: blur(28px);
+      transform: translateZ(-80px) scaleY(0.55);
+      pointer-events: none;
     }
-    .logo-glass-label {
-      font-size: 0.6rem; font-weight: 700; text-transform: uppercase;
-      letter-spacing: 0.2em; color: rgba(255,255,255,0.3);
-      display: block; margin-bottom: 0.6rem;
-    }
-    .logo-glass-copy {
-      font-size: 0.9rem; font-weight: 500; line-height: 1.4;
-      color: rgba(255,255,255,0.65); letter-spacing: -0.01em;
+    /* Subtle drag hint below the logo */
+    .logo-3d-hint {
+      display: block; text-align: center; margin-top: 1.5rem;
+      font-size: 0.58rem; font-weight: 700; letter-spacing: 0.2em;
+      text-transform: uppercase; color: rgba(255,255,255,0.18);
     }
 
     /* ─── QUOTE ───────────────────────────────────────── */
@@ -525,15 +593,9 @@
       transform: translateX(-50%);
       z-index: 1; pointer-events: none;
     }
-    /* Subtle cobalt gradient sweep on the mark — tight hue range, no purple */
-    @keyframes markColorFlow {
-      0%   { filter: sepia(1) hue-rotate(207deg) saturate(9)  brightness(1.45); }
-      50%  { filter: sepia(1) hue-rotate(220deg) saturate(11) brightness(1.6);  }
-      100% { filter: sepia(1) hue-rotate(207deg) saturate(9)  brightness(1.45); }
-    }
+    /* Cobalt brand gradient applied directly as SVG fill */
     .footer-mark-img {
       display: block; height: 740px; width: auto; opacity: 0.9;
-      animation: markColorFlow 6s ease-in-out infinite;
     }
     /* Content layer — IS the glass: backdrop + dark bg + top divider line */
     .footer-content {
@@ -858,68 +920,117 @@
 
     <div>
       <span class="explore-eyebrow fade-up">Explore</span>
+      <span class="explore-rule fade-up"></span>
       <h2 class="explore-heading fade-up fd1">Our Services</h2>
       <div class="svc-list" role="navigation" aria-label="Services list">
+
         <a href="services.html" class="svc-row fade-up">
-          <span class="svc-row-name">Design Engineering</span>
+          <span class="svc-row-left">
+            <span class="svc-row-index">01</span>
+            <span class="svc-row-text">
+              <span class="svc-row-name">Design Engineering</span>
+              <span class="svc-row-desc">From concept to working system</span>
+            </span>
+          </span>
           <span class="svc-row-ico">
             <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
               <path d="M2 8L8 2M8 2H3M8 2V7" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
           </span>
         </a>
+
         <a href="services.html" class="svc-row fade-up fd1">
-          <span class="svc-row-name">Maintenance Engineering</span>
+          <span class="svc-row-left">
+            <span class="svc-row-index">02</span>
+            <span class="svc-row-text">
+              <span class="svc-row-name">Maintenance Engineering</span>
+              <span class="svc-row-desc">Keeping critical assets performing</span>
+            </span>
+          </span>
           <span class="svc-row-ico">
             <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
               <path d="M2 8L8 2M8 2H3M8 2V7" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
           </span>
         </a>
+
         <a href="services.html" class="svc-row fade-up fd2">
-          <span class="svc-row-name">Reliability Engineering</span>
+          <span class="svc-row-left">
+            <span class="svc-row-index">03</span>
+            <span class="svc-row-text">
+              <span class="svc-row-name">Reliability Engineering</span>
+              <span class="svc-row-desc">Reducing unplanned downtime at scale</span>
+            </span>
+          </span>
           <span class="svc-row-ico">
             <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
               <path d="M2 8L8 2M8 2H3M8 2V7" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
           </span>
         </a>
+
         <a href="services.html" class="svc-row fade-up fd3">
-          <span class="svc-row-name">Asset Management</span>
+          <span class="svc-row-left">
+            <span class="svc-row-index">04</span>
+            <span class="svc-row-text">
+              <span class="svc-row-name">Asset Management</span>
+              <span class="svc-row-desc">Full lifecycle strategy and oversight</span>
+            </span>
+          </span>
           <span class="svc-row-ico">
             <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
               <path d="M2 8L8 2M8 2H3M8 2V7" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
           </span>
         </a>
+
         <a href="services.html" class="svc-row fade-up fd4">
-          <span class="svc-row-name">Technical Consultancy</span>
+          <span class="svc-row-left">
+            <span class="svc-row-index">05</span>
+            <span class="svc-row-text">
+              <span class="svc-row-name">Technical Consultancy</span>
+              <span class="svc-row-desc">Independent expertise, clear recommendations</span>
+            </span>
+          </span>
           <span class="svc-row-ico">
             <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
               <path d="M2 8L8 2M8 2H3M8 2V7" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
           </span>
         </a>
+
         <a href="services.html" class="svc-row fade-up fd5">
-          <span class="svc-row-name">Project Delivery</span>
+          <span class="svc-row-left">
+            <span class="svc-row-index">06</span>
+            <span class="svc-row-text">
+              <span class="svc-row-name">Project Delivery</span>
+              <span class="svc-row-desc">On time, on spec, on budget</span>
+            </span>
+          </span>
           <span class="svc-row-ico">
             <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
               <path d="M2 8L8 2M8 2H3M8 2V7" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
           </span>
         </a>
+
       </div>
     </div>
 
     <div class="explore-visual-col fade-up fd2">
-      <div class="logo-glass-wrap">
-        <!-- Large logomark sitting behind the glass panel -->
-        <img src="Brand_Assets/SVG Logos/Asset 1.svg" class="logo-glass-mark" alt="" aria-hidden="true" />
-        <!-- Frosted glass panel over the right half -->
-        <div class="logo-glass-panel">
-          <span class="logo-glass-label">Engineering Excellence</span>
-          <span class="logo-glass-copy">Design, maintenance<br>and reliability — unified.</span>
+      <!-- 3D interactive logomark — drag to rotate, auto-spins when idle -->
+      <div class="logo-3d-scene" id="logo3dScene">
+        <div class="logo-3d-obj" id="logo3dObj">
+          <!-- Glow disc behind the logo on the Z axis -->
+          <div class="logo-3d-glow" aria-hidden="true"></div>
+          <!-- Inline SVG so CSS perspective transforms apply directly to the shape -->
+          <svg class="logo-3d-svg" viewBox="0 0 796.86 771.12" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path fill="#ffffff" d="M174.68,529.44l74.42,129.24c-4.98,41.48-29.86,78.46-69.26,97.75-57.63,28.21-127.48,7.88-161.09-46.34-33.47-54.01-21.07-125.34,28.9-164.31,37.39-29.15,85.12-34.34,127.04-16.34Z"/>
+            <path fill="#ffffff" d="M430.17,664.34c-15.43,44.94-45.56,82.81-86.72,106.78l-25.57-43.3L123.62,396.93c44.71-26.78,96.96-33.12,147.33-21.33,25.48,5.96,48.44,16.39,69.21,30.32h.01l101.3,178.49c1.33,26.81-2.23,53.51-11.3,79.92Z"/>
+            <polygon fill="#ffffff" points="796.86 767.96 576.19 768.26 242.35 191.87 353.46 0 796.86 767.96"/>
+          </svg>
         </div>
+        <span class="logo-3d-hint">Drag to rotate</span>
       </div>
     </div>
 
@@ -941,7 +1052,19 @@
 
     <!-- Logomark — full height, animated via CSS filter (no background bleed) -->
     <div class="footer-mark-wrap">
-      <img src="Brand_Assets/SVG Logos/Asset 1.svg" class="footer-mark-img" alt="" aria-hidden="true" />
+      <!-- Inline SVG so gradient fills apply directly to paths — no animation, no filter cycling -->
+      <svg class="footer-mark-img" viewBox="0 0 796.86 771.12" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <defs>
+          <linearGradient id="footerMarkGrad" x1="0" y1="0" x2="796.86" y2="771.12" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stop-color="#8899d4"/>
+            <stop offset="55%" stop-color="#3e51a3"/>
+            <stop offset="100%" stop-color="#2f3d7e"/>
+          </linearGradient>
+        </defs>
+        <path fill="url(#footerMarkGrad)" d="M174.68,529.44l74.42,129.24c-4.98,41.48-29.86,78.46-69.26,97.75-57.63,28.21-127.48,7.88-161.09-46.34-33.47-54.01-21.07-125.34,28.9-164.31,37.39-29.15,85.12-34.34,127.04-16.34Z"/>
+        <path fill="url(#footerMarkGrad)" d="M430.17,664.34c-15.43,44.94-45.56,82.81-86.72,106.78l-25.57-43.3L123.62,396.93c44.71-26.78,96.96-33.12,147.33-21.33,25.48,5.96,48.44,16.39,69.21,30.32h.01l101.3,178.49c1.33,26.81-2.23,53.51-11.3,79.92Z"/>
+        <polygon fill="url(#footerMarkGrad)" points="796.86 767.96 576.19 768.26 242.35 191.87 353.46 0 796.86 767.96"/>
+      </svg>
     </div>
 
     <!-- All content sits on the glass: columns → meta → wordmark -->
@@ -1331,6 +1454,122 @@ document.querySelectorAll('[data-count]').forEach(el => counterIO.observe(el));
     // Rebuild on resize
     new ResizeObserver(() => { buildGrid(); draw(); }).observe(card);
   });
+})();
+
+/* ── 3D Logo — drag-to-rotate with inertia + idle auto-spin ── */
+(function () {
+  const scene = document.getElementById('logo3dScene');
+  const obj   = document.getElementById('logo3dObj');
+  if (!scene || !obj) return;
+
+  const svg = obj.querySelector('.logo-3d-svg');
+
+  /* ── Build extrusion depth layers ──────────────────────
+     18 SVG clones stacked along the Z axis, each 2.5 px
+     further back → 45 px total depth. Colour blends from
+     cobalt (#3e51a3) near the front to dark navy (#07091a)
+     at the back, so the edge reads as a lit extruded solid. */
+  const LAYERS  = 18;
+  const STEP_PX = 2.5; // px between slices
+
+  for (let i = 1; i <= LAYERS; i++) {
+    const layer = svg.cloneNode(true);
+
+    // Strip front-face styles and reposition as absolute overlay
+    layer.classList.remove('logo-3d-svg');
+    layer.removeAttribute('style');
+    layer.style.cssText =
+      'position:absolute;inset:0;width:100%;display:block;filter:none;';
+    layer.style.transform = `translateZ(${-(i * STEP_PX)}px)`;
+
+    // Blend colour: cobalt at front → dark navy at back
+    const t = i / LAYERS; // 0 = near front, 1 = far back
+    const r = Math.round(62  + (7  - 62)  * t);
+    const g = Math.round(81  + (9  - 81)  * t);
+    const b = Math.round(163 + (23 - 163) * t);
+    layer.querySelectorAll('path, polygon').forEach(el => {
+      el.style.fill = `rgb(${r},${g},${b})`;
+    });
+
+    obj.insertBefore(layer, svg);
+  }
+
+  let rotX     = -8;   // vertical tilt in degrees
+  let rotY     = 15;   // horizontal spin in degrees
+  let velX     = 0;    // inertia velocity
+  let velY     = 0;
+  let autoSpin = true; // slow idle spin when not interacting
+  let dragging = false;
+  let lastX    = 0;
+  let lastY    = 0;
+  let resumeTimer = null;
+
+  /* Apply transform and shift the drop-shadow to fake a top-left light source */
+  function apply() {
+    obj.style.transform = `rotateX(${rotX}deg) rotateY(${rotY}deg)`;
+
+    // Shadow moves opposite to rotation angle — makes it feel lit from top-left
+    const sx = Math.sin(rotY * Math.PI / 180) * -20;
+    const sy = Math.sin(rotX * Math.PI / 180) * 14 + 28;
+    svg.style.filter =
+      `drop-shadow(${sx}px ${sy}px 40px rgba(62,81,163,0.62)) ` +
+      `drop-shadow(0 0 80px rgba(62,81,163,0.18))`;
+  }
+
+  /* Animation loop */
+  function tick() {
+    if (!dragging) {
+      if (autoSpin) {
+        rotY += 0.22; // steady idle rotation
+      } else {
+        // Inertia: carry momentum then decay
+        rotX += velX;
+        rotY += velY;
+        velX *= 0.91;
+        velY *= 0.91;
+        // Once velocity is negligible, resume auto-spin
+        if (Math.abs(velX) < 0.04 && Math.abs(velY) < 0.04) autoSpin = true;
+      }
+      // Clamp vertical tilt so logo doesn't flip completely
+      rotX = Math.max(-42, Math.min(42, rotX));
+    }
+    apply();
+    requestAnimationFrame(tick);
+  }
+
+  /* Pointer events — works for mouse and touch */
+  scene.addEventListener('pointerdown', (e) => {
+    dragging  = true;
+    autoSpin  = false;
+    velX = 0; velY = 0;
+    clearTimeout(resumeTimer);
+    lastX = e.clientX;
+    lastY = e.clientY;
+    scene.setPointerCapture(e.pointerId);
+  });
+
+  scene.addEventListener('pointermove', (e) => {
+    if (!dragging) return;
+    const dx = e.clientX - lastX;
+    const dy = e.clientY - lastY;
+    // Sensitivity: horizontal drag → Y rotation, vertical drag → X rotation
+    velY = dx * 0.55;
+    velX = dy * 0.55;
+    rotY += velY;
+    rotX += velX;
+    rotX = Math.max(-42, Math.min(42, rotX));
+    lastX = e.clientX;
+    lastY = e.clientY;
+  });
+
+  scene.addEventListener('pointerup', () => {
+    dragging = false;
+    // Resume auto-spin after inertia settles (~3 s)
+    resumeTimer = setTimeout(() => { autoSpin = true; }, 3000);
+  });
+
+  // Start the loop
+  tick();
 })();
 </script>
 </body>
