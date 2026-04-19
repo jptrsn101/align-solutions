@@ -3,7 +3,23 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Contact — Align Solutions</title>
+  <title>Contact Align Solutions — Engineering Enquiries UK</title>
+  <meta name="description" content="Get in touch with the Align Solutions engineering team. Based in Norwich, UK — working with industrial clients nationally and internationally." />
+  <!-- ─── Canonical ───────────────────────────────────── -->
+  <link rel="canonical" href="https://www.alignsolutions.co.uk/contact.html" />
+  <!-- ─── Open Graph ──────────────────────────────────── -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://www.alignsolutions.co.uk/contact.html" />
+  <meta property="og:title" content="Contact Align Solutions — Engineering Enquiries UK" />
+  <meta property="og:description" content="Get in touch with the Align Solutions engineering team. Based in Norwich, UK — working with industrial clients nationally and internationally." />
+  <meta property="og:image" content="https://www.alignsolutions.co.uk/Brand_Assets/og-image.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <!-- ─── Twitter Card ────────────────────────────────── -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Contact Align Solutions — Engineering Enquiries UK" />
+  <meta name="twitter:description" content="Get in touch with the Align Solutions engineering team. Based in Norwich, UK — working with industrial clients nationally and internationally." />
+  <meta name="twitter:image" content="https://www.alignsolutions.co.uk/Brand_Assets/og-image.jpg" />
   <style>
     /* ─── FONTS ───────────────────────────────────────────── */
     @font-face { font-family: 'NeueHaas'; src: url('Brand_Assets/Neue Haas Font/NeueHaasDisplayThin.ttf') format('truetype'); font-weight: 100; font-style: normal; }
@@ -336,7 +352,7 @@
 <!-- ═══════════════════════════════════ NAV ══════════════ -->
 <nav class="site-nav">
   <a href="index.html" class="nav-logo" aria-label="Align Solutions">
-    <img src="Brand_Assets/SVG Logos/Asset 7.svg" alt="Align Solutions" />
+    <img src="Brand_Assets/SVG Logos/Asset 7.svg" alt="Align Solutions" width="130" height="40" />
   </a>
   <ul class="nav-links">
     <li><a href="index.html">Home</a></li>
@@ -355,6 +371,7 @@
   </a>
 </nav>
 
+<main id="main-content">
 
 <!-- ═══════════════════════════════ PAGE HERO ════════════ -->
 <section class="page-hero">
@@ -375,7 +392,11 @@
 
     <!-- Form column -->
     <div>
-      <form action="#" method="post" novalidate>
+      <!-- FORMSPREE: replace YOUR_FORM_ID after creating a form at formspree.io/new -->
+      <form id="contact-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST" novalidate>
+        <input type="hidden" name="_replyto" value="hello@alignsolutions.co.uk" />
+        <input type="hidden" name="_subject" value="New enquiry — Align Solutions" />
+
         <div class="form-row">
           <div class="form-group">
             <label for="name">Full Name</label>
@@ -417,7 +438,15 @@
           <textarea id="message" name="message" rows="5" placeholder="Tell us about your project, timeline and any key requirements…"></textarea>
         </div>
 
-        <button type="submit" class="btn-grad btn-submit">
+        <!-- Inline status messages -->
+        <p id="form-success" style="display:none; margin-bottom:1rem; font-size:0.85rem; color:#6ee7b7;">
+          Message sent. We'll be in touch shortly.
+        </p>
+        <p id="form-error" style="display:none; margin-bottom:1rem; font-size:0.85rem; color:#fca5a5;">
+          Something went wrong. Please try again or email us directly at <a href="mailto:hello@alignsolutions.co.uk" style="color:inherit; text-decoration:underline;">hello@alignsolutions.co.uk</a>.
+        </p>
+
+        <button type="submit" id="form-submit" class="btn-grad btn-submit">
           Send Message
           <svg width="11" height="11" viewBox="0 0 11 11" fill="none">
             <path d="M2 9L9 2M9 2H3M9 2V8" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -445,7 +474,7 @@
         <span class="info-value">
           Align Solutions Ltd<br>
           Engineering House<br>
-          Nottingham, NG1 1AA
+          Norwich, NG1 1AA
         </span>
       </div>
 
@@ -478,6 +507,8 @@
   <span class="contact-image-strip-label">Electrical Infrastructure — UK</span>
 </div>
 
+</main><!-- /main-content -->
+
 <!-- ═══════════════════════════════════ FOOTER ════════ -->
 <footer class="site-footer">
   <div class="footer-visual">
@@ -499,7 +530,7 @@
       <div class="footer-inner">
         <div class="footer-cols">
           <div class="footer-col">
-            <span class="footer-col-place">UK — Nottingham</span>
+            <span class="footer-col-place">UK — Norwich</span>
             <span class="footer-col-time" id="footer-time">--:--:--</span>
             <span class="footer-col-tz">(GMT / BST)</span>
           </div>
@@ -547,6 +578,55 @@
 
 
 <script>
+// ── Contact form — Formspree async submission ───────────
+(function initContactForm() {
+  const form    = document.getElementById('contact-form');
+  const btn     = document.getElementById('form-submit');
+  const success = document.getElementById('form-success');
+  const error   = document.getElementById('form-error');
+  if (!form) return;
+
+  form.addEventListener('submit', async function(e) {
+    e.preventDefault();
+
+    // Basic client-side required-field check
+    const name  = form.querySelector('[name="name"]');
+    const email = form.querySelector('[name="email"]');
+    if (!name.value.trim() || !email.value.trim()) {
+      name.reportValidity();
+      email.reportValidity();
+      return;
+    }
+
+    btn.disabled = true;
+    btn.textContent = 'Sending…';
+    success.style.display = 'none';
+    error.style.display   = 'none';
+
+    try {
+      const res = await fetch(form.action, {
+        method:  'POST',
+        headers: { 'Accept': 'application/json' },
+        body:    new FormData(form),
+      });
+
+      if (res.ok) {
+        form.reset();
+        success.style.display = 'block';
+        btn.textContent = 'Message Sent';
+      } else {
+        error.style.display = 'block';
+        btn.disabled = false;
+        btn.innerHTML = 'Send Message <svg width="11" height="11" viewBox="0 0 11 11" fill="none"><path d="M2 9L9 2M9 2H3M9 2V8" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+      }
+    } catch (_) {
+      error.style.display = 'block';
+      btn.disabled = false;
+      btn.innerHTML = 'Send Message <svg width="11" height="11" viewBox="0 0 11 11" fill="none"><path d="M2 9L9 2M9 2H3M9 2V8" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+    }
+  });
+})();
+
 // ── Fade-up animations ──────────────────────────────────
 const io = new IntersectionObserver(entries => {
   entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });

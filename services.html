@@ -3,7 +3,23 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Services — Align Solutions</title>
+  <title>Engineering Services — Reliability, Maintenance &amp; Design</title>
+  <meta name="description" content="Six integrated engineering disciplines: reliability engineering, maintenance, design, asset management, HSEQ consultancy and project delivery for heavy industry." />
+  <!-- ─── Canonical ───────────────────────────────────── -->
+  <link rel="canonical" href="https://www.alignsolutions.co.uk/services.html" />
+  <!-- ─── Open Graph ──────────────────────────────────── -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://www.alignsolutions.co.uk/services.html" />
+  <meta property="og:title" content="Engineering Services — Reliability, Maintenance &amp; Design" />
+  <meta property="og:description" content="Six integrated engineering disciplines: reliability engineering, maintenance, design, asset management, HSEQ consultancy and project delivery for heavy industry." />
+  <meta property="og:image" content="https://www.alignsolutions.co.uk/Brand_Assets/og-image.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <!-- ─── Twitter Card ────────────────────────────────── -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Engineering Services — Reliability, Maintenance &amp; Design" />
+  <meta name="twitter:description" content="Six integrated engineering disciplines: reliability engineering, maintenance, design, asset management, HSEQ consultancy and project delivery for heavy industry." />
+  <meta name="twitter:image" content="https://www.alignsolutions.co.uk/Brand_Assets/og-image.jpg" />
   <style>
     /* ─── FONTS ──────────────────────────────────────────── */
     @font-face {
@@ -286,6 +302,458 @@
     }
     .svc-card:hover .svc-card-link { color: var(--cobalt-lt); }
 
+    /* ─── RELIABILITY HERO CARD ─────────────────────────── */
+    /* Full-width featured card for primary service */
+    .svc-card--hero {
+      grid-column: 1 / -1;
+      background: var(--navy-card);
+      border: 1px solid rgba(62,81,163,0.5);
+      border-radius: 20px;
+      padding: 3.5rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: start;
+      position: relative;
+      overflow: hidden;
+      text-decoration: none; color: inherit;
+      transition: border-color 0.3s ease, transform 0.3s cubic-bezier(0.34,1.56,0.64,1);
+      box-shadow: 0 2px 8px rgba(62,81,163,0.15), 0 16px 64px rgba(0,0,0,0.45);
+    }
+    .svc-card--hero::before {
+      content: ''; position: absolute; inset: 0; pointer-events: none; border-radius: 20px;
+      background:
+        radial-gradient(ellipse 80% 70% at 0% 100%, rgba(62,81,163,0.3) 0%, transparent 60%),
+        radial-gradient(ellipse 50% 40% at 100% 0%, rgba(47,61,126,0.15) 0%, transparent 55%);
+    }
+    .svc-card--hero:hover {
+      border-color: rgba(136,153,212,0.7);
+      transform: translateY(-2px);
+    }
+    .svc-hero-badge {
+      display: inline-flex; align-items: center;
+      font-size: 0.56rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.18em; color: var(--cobalt-lt);
+      background: rgba(62,81,163,0.2);
+      border: 1px solid rgba(62,81,163,0.4);
+      border-radius: 100px; padding: 0.25rem 0.7rem;
+      margin-bottom: 1.5rem;
+      width: fit-content;
+    }
+    .svc-hero-name {
+      font-size: clamp(1.6rem, 3vw, 2.5rem);
+      font-weight: 700; letter-spacing: -0.025em; line-height: 1.05;
+      margin-bottom: 1.25rem;
+    }
+    .svc-hero-desc {
+      font-size: 1rem; font-weight: 400; line-height: 1.7;
+      color: rgba(255,255,255,0.55); margin-bottom: 2rem;
+    }
+    .svc-hero-capabilities {
+      list-style: none; display: flex; flex-direction: column; gap: 0.75rem;
+    }
+    .svc-hero-cap {
+      display: flex; align-items: flex-start; gap: 0.7rem;
+      font-size: 0.875rem; color: rgba(255,255,255,0.65); line-height: 1.5;
+    }
+    .svc-hero-cap-check {
+      flex-shrink: 0; margin-top: 0.1rem; color: var(--cobalt-lt);
+    }
+    .svc-hero-tagline {
+      font-size: 1.1rem; font-weight: 500; line-height: 1.5;
+      color: rgba(255,255,255,0.35);
+      font-style: italic;
+      border-left: 2px solid rgba(62,81,163,0.5);
+      padding-left: 1.25rem;
+      margin-bottom: 2rem;
+    }
+    .svc-hero-tagline em { color: rgba(255,255,255,0.7); font-style: normal; }
+    /* Coming soon badge for HSEQ */
+    .svc-coming-soon {
+      font-size: 0.55rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.16em; color: rgba(255,255,255,0.3);
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 100px; padding: 0.2rem 0.6rem;
+      margin-left: 0.6rem; vertical-align: middle;
+    }
+    .svc-card--muted { opacity: 0.6; pointer-events: none; }
+
+    /* ─── WEIBULL GRAPH SECTION ──────────────────────────── */
+    .weibull-section {
+      border-top: 1px solid rgba(255,255,255,0.05);
+    }
+    .weibull-wrap {
+      max-width: 1240px; margin: 0 auto;
+      padding: 7rem 2.5rem;
+    }
+    .weibull-header {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 4rem; align-items: start;
+      margin-bottom: 4rem;
+    }
+    .weibull-heading {
+      font-size: clamp(1.8rem, 3vw, 2.8rem);
+      font-weight: 700; letter-spacing: -0.025em; line-height: 1.1;
+    }
+    .weibull-body {
+      font-size: 1rem; font-weight: 400; line-height: 1.7;
+      color: rgba(255,255,255,0.45);
+      padding-top: 0.5rem;
+    }
+    .weibull-chart-container {
+      position: relative;
+      background: var(--navy-card);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 20px;
+      padding: 3rem;
+      overflow: hidden;
+    }
+    .weibull-chart-container::before {
+      content: ''; position: absolute; inset: 0; pointer-events: none; border-radius: 20px;
+      background: radial-gradient(ellipse 60% 50% at 50% 100%, rgba(62,81,163,0.12) 0%, transparent 65%);
+    }
+    .weibull-canvas-wrap {
+      position: relative; width: 100%;
+    }
+    canvas#weibullChart {
+      display: block; width: 100%; border-radius: 4px; cursor: crosshair;
+    }
+
+    /* ── Tooltip ── */
+    .weibull-tooltip {
+      position: absolute;
+      pointer-events: none;
+      background: rgba(7,9,26,0.92);
+      border: 1px solid rgba(62,81,163,0.45);
+      border-radius: 8px;
+      padding: 0.55rem 0.85rem;
+      font-size: 0.72rem;
+      color: rgba(255,255,255,0.9);
+      line-height: 1.65;
+      white-space: nowrap;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.45), 0 0 0 1px rgba(62,81,163,0.15);
+      opacity: 0;
+      transform: translate(14px, -50%);
+      transition: opacity 0.15s ease;
+      z-index: 10;
+    }
+    .weibull-tooltip.visible { opacity: 1; }
+    .weibull-tooltip-row { display: flex; align-items: center; gap: 0.5rem; }
+    .weibull-tooltip-swatch {
+      width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0;
+    }
+
+    /* ── Controls panel ── */
+    .weibull-controls {
+      margin-top: 2rem;
+      padding-top: 1.75rem;
+      border-top: 1px solid rgba(255,255,255,0.06);
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.25rem 2.5rem;
+    }
+    .weibull-ctrl-row {
+      display: flex; flex-direction: column; gap: 0.6rem;
+    }
+    .weibull-ctrl-header {
+      display: flex; align-items: center; gap: 0.55rem;
+      font-size: 0.72rem; font-weight: 600;
+      letter-spacing: 0.04em; text-transform: uppercase;
+      color: rgba(255,255,255,0.75);
+    }
+    .ctrl-swatch {
+      width: 24px; height: 3px; border-radius: 2px; flex-shrink: 0;
+    }
+    .ctrl-swatch.dashed {
+      background: repeating-linear-gradient(90deg, currentColor 0, currentColor 5px, transparent 5px, transparent 10px);
+    }
+    .ctrl-swatch.dotted {
+      background: repeating-linear-gradient(90deg, currentColor 0, currentColor 3px, transparent 3px, transparent 7px);
+    }
+    .weibull-ctrl-sliders {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem 1.5rem;
+    }
+    .weibull-slider-group {
+      display: flex; flex-direction: column; gap: 0.3rem;
+    }
+    .weibull-slider-label {
+      display: flex; justify-content: space-between; align-items: baseline;
+      font-size: 0.68rem; color: rgba(255,255,255,0.38);
+    }
+    .weibull-slider-label span:last-child {
+      font-weight: 600; color: rgba(255,255,255,0.65); font-variant-numeric: tabular-nums;
+    }
+    input[type="range"].weibull-range {
+      -webkit-appearance: none; appearance: none;
+      width: 100%; height: 3px;
+      background: rgba(255,255,255,0.1);
+      border-radius: 2px; outline: none; cursor: pointer;
+    }
+    input[type="range"].weibull-range::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 14px; height: 14px;
+      border-radius: 50%;
+      background: var(--cobalt);
+      border: 2px solid rgba(255,255,255,0.9);
+      box-shadow: 0 0 0 3px rgba(62,81,163,0.3);
+      cursor: grab;
+      transition: transform 0.15s cubic-bezier(0.34, 1.56, 0.64, 1),
+                  box-shadow 0.15s ease;
+    }
+    input[type="range"].weibull-range::-webkit-slider-thumb:active {
+      cursor: grabbing;
+      transform: scale(1.25);
+      box-shadow: 0 0 0 5px rgba(62,81,163,0.35);
+    }
+    input[type="range"].weibull-range:focus-visible::-webkit-slider-thumb {
+      box-shadow: 0 0 0 4px rgba(62,81,163,0.55);
+    }
+
+    /* ── Legend ── */
+    .weibull-legend {
+      display: flex; flex-wrap: wrap; gap: 1rem 1.75rem;
+      margin-top: 1.75rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+    .weibull-legend-item {
+      display: flex; align-items: center; gap: 0.55rem;
+      font-size: 0.75rem; color: rgba(255,255,255,0.5);
+    }
+    .legend-line {
+      width: 24px; height: 2.5px; border-radius: 2px; flex-shrink: 0;
+    }
+
+    /* ── Caption ── */
+    .weibull-caption {
+      margin-top: 1.5rem;
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.28);
+      line-height: 1.6;
+      font-style: italic;
+      text-align: center;
+    }
+
+    /* ─── REACTIVE → PREDICTIVE JOURNEY ─────────────────── */
+    .journey-section {
+      border-top: 1px solid rgba(255,255,255,0.05);
+      position: relative; overflow: hidden;
+    }
+    .journey-section::before {
+      content: ''; position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+      width: 800px; height: 400px;
+      background: radial-gradient(ellipse at top, rgba(62,81,163,0.08) 0%, transparent 65%);
+      pointer-events: none;
+    }
+    .journey-wrap {
+      max-width: 1240px; margin: 0 auto;
+      padding: 7rem 2.5rem;
+    }
+    .journey-header {
+      text-align: center; margin-bottom: 4rem;
+    }
+    .journey-heading {
+      font-size: clamp(1.8rem, 3vw, 2.8rem);
+      font-weight: 700; letter-spacing: -0.025em; line-height: 1.1;
+      margin-bottom: 0.75rem;
+    }
+    .journey-sub {
+      font-size: 0.95rem; color: rgba(255,255,255,0.4); line-height: 1.6;
+      max-width: 480px; margin: 0 auto;
+    }
+    .journey-stages {
+      display: grid; grid-template-columns: 1fr auto 1fr auto 1fr;
+      gap: 0; align-items: stretch;
+    }
+    .journey-arrow {
+      display: flex; align-items: center; justify-content: center;
+      padding: 0 1rem; color: rgba(62,81,163,0.6);
+    }
+    .journey-stage {
+      background: var(--navy-card);
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,0.05);
+      padding: 2.5rem 2rem;
+      position: relative; overflow: hidden;
+      transition: border-color 0.3s ease;
+    }
+    .journey-stage::before {
+      content: ''; position: absolute; inset: 0; border-radius: 16px;
+      background: radial-gradient(ellipse 80% 60% at 50% 100%, rgba(62,81,163,0.1) 0%, transparent 65%);
+      pointer-events: none;
+    }
+    .journey-stage--current {
+      border-color: rgba(255,255,255,0.1);
+    }
+    .journey-stage--mid {
+      border-color: rgba(62,81,163,0.3);
+    }
+    .journey-stage--mid::before {
+      background: radial-gradient(ellipse 80% 60% at 50% 100%, rgba(62,81,163,0.2) 0%, transparent 65%);
+    }
+    .journey-stage--goal {
+      border-color: rgba(62,81,163,0.55);
+      box-shadow: 0 2px 8px rgba(62,81,163,0.15), 0 12px 48px rgba(0,0,0,0.35);
+    }
+    .journey-stage--goal::before {
+      background:
+        radial-gradient(ellipse 80% 60% at 50% 100%, rgba(62,81,163,0.3) 0%, transparent 60%),
+        radial-gradient(ellipse 50% 40% at 50% 0%, rgba(47,61,126,0.15) 0%, transparent 55%);
+    }
+    .journey-label {
+      font-size: 0.56rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.2em; color: rgba(255,255,255,0.28);
+      display: block; margin-bottom: 1rem;
+    }
+    .journey-label--goal { color: var(--cobalt-lt); }
+    .journey-stage-name {
+      font-size: 1.3rem; font-weight: 700; letter-spacing: -0.02em;
+      margin-bottom: 0.75rem;
+    }
+    .journey-stage-name--goal {
+      background: linear-gradient(90deg, var(--white) 0%, var(--cobalt-lt) 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .journey-stage-desc {
+      font-size: 0.82rem; color: rgba(255,255,255,0.4); line-height: 1.65;
+      margin-bottom: 1.25rem;
+    }
+    .journey-stage-points {
+      list-style: none; display: flex; flex-direction: column; gap: 0.45rem;
+    }
+    .journey-stage-point {
+      font-size: 0.78rem; color: rgba(255,255,255,0.35); display: flex; align-items: flex-start; gap: 0.5rem;
+    }
+    .journey-stage-point::before {
+      content: '—'; color: rgba(62,81,163,0.5); flex-shrink: 0;
+    }
+    .journey-stage--goal .journey-stage-point { color: rgba(255,255,255,0.55); }
+    .journey-stage--goal .journey-stage-point::before { color: var(--cobalt-lt); }
+
+    /* ─── OUTCOMES LIST ──────────────────────────────────── */
+    .outcomes-section {
+      border-top: 1px solid rgba(255,255,255,0.05);
+    }
+    .outcomes-wrap {
+      max-width: 1240px; margin: 0 auto;
+      padding: 7rem 2.5rem;
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 6rem; align-items: center;
+    }
+    .outcomes-heading {
+      font-size: clamp(1.8rem, 3vw, 2.8rem);
+      font-weight: 700; letter-spacing: -0.025em; line-height: 1.1;
+      margin-bottom: 1rem;
+    }
+    .outcomes-sub {
+      font-size: 0.9375rem; color: rgba(255,255,255,0.42); line-height: 1.7;
+    }
+    .outcomes-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 0.85rem 1.5rem;
+    }
+    .outcome-item {
+      display: flex; align-items: flex-start; gap: 0.65rem;
+      font-size: 0.875rem; color: rgba(255,255,255,0.6); line-height: 1.5;
+    }
+    .outcome-check {
+      flex-shrink: 0; margin-top: 0.15rem; color: var(--cobalt-lt);
+    }
+
+    /* ─── RELIATIC PARTNERSHIP ───────────────────────────── */
+    .reliatic-section {
+      border-top: 1px solid rgba(255,255,255,0.05);
+    }
+    .reliatic-wrap {
+      max-width: 1240px; margin: 0 auto;
+      padding: 5rem 2.5rem;
+    }
+    .reliatic-card {
+      background: var(--navy-card);
+      border: 1px solid rgba(62,81,163,0.3);
+      border-radius: 16px;
+      padding: 3rem;
+      display: grid; grid-template-columns: auto 1fr auto;
+      gap: 3rem; align-items: center;
+      position: relative; overflow: hidden;
+    }
+    .reliatic-card::before {
+      content: ''; position: absolute; inset: 0; pointer-events: none; border-radius: 16px;
+      background: radial-gradient(ellipse 60% 60% at 0% 50%, rgba(62,81,163,0.15) 0%, transparent 65%);
+    }
+    .reliatic-badge {
+      position: relative;
+      font-size: 0.58rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.18em; color: var(--cobalt-lt);
+      white-space: nowrap;
+    }
+    .reliatic-body {
+      position: relative;
+    }
+    .reliatic-title {
+      font-size: 1.1rem; font-weight: 700; letter-spacing: -0.015em;
+      margin-bottom: 0.6rem;
+    }
+    .reliatic-desc {
+      font-size: 0.875rem; color: rgba(255,255,255,0.45); line-height: 1.65;
+    }
+    .reliatic-cta {
+      position: relative; flex-shrink: 0;
+    }
+
+    /* ─── 10-STEP PROCESS ────────────────────────────────── */
+    .assessment-section {
+      border-top: 1px solid rgba(255,255,255,0.05);
+    }
+    .assessment-wrap {
+      max-width: 1240px; margin: 0 auto;
+      padding: 7rem 2.5rem;
+    }
+    .assessment-header {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 4rem; align-items: start;
+      margin-bottom: 4rem;
+    }
+    .assessment-heading {
+      font-size: clamp(1.8rem, 3vw, 2.8rem);
+      font-weight: 700; letter-spacing: -0.025em; line-height: 1.1;
+    }
+    .assessment-body {
+      font-size: 1rem; color: rgba(255,255,255,0.45); line-height: 1.7;
+      padding-top: 0.5rem;
+    }
+    .assessment-steps {
+      display: grid; grid-template-columns: repeat(5, 1fr);
+      gap: 8px;
+    }
+    .assessment-step {
+      background: var(--navy-card);
+      border: 1px solid rgba(255,255,255,0.05);
+      border-radius: 12px;
+      padding: 1.5rem 1.25rem;
+      position: relative; overflow: hidden;
+      transition: border-color 0.3s ease;
+    }
+    .assessment-step::before {
+      content: ''; position: absolute; inset: 0; border-radius: 12px;
+      background: radial-gradient(ellipse 80% 70% at 50% 100%, rgba(62,81,163,0.12) 0%, transparent 65%);
+      pointer-events: none;
+    }
+    .assessment-step:hover { border-color: rgba(62,81,163,0.4); }
+    .step-num {
+      font-size: 1.6rem; font-weight: 700; letter-spacing: -0.03em; line-height: 1;
+      color: rgba(62,81,163,0.4); margin-bottom: 0.75rem;
+    }
+    .step-name {
+      font-size: 0.78rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.08em; color: rgba(255,255,255,0.75);
+      margin-bottom: 0.4rem;
+    }
+    .step-desc {
+      font-size: 0.72rem; color: rgba(255,255,255,0.35); line-height: 1.55;
+    }
+
     /* ─── CTA SECTION ────────────────────────────────────── */
     .cta-section {
       border-top: 1px solid rgba(255,255,255,0.05);
@@ -327,6 +795,13 @@
     }
 
     
+    /* ─── SECTORS BAND ─────────────────────────────────── */
+    .sectors-band { max-width: 1240px; margin: 0 auto; padding: 2rem 2.5rem; display: flex; align-items: center; gap: 3rem; }
+    .sectors-label { font-size: 0.58rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.2em; color: rgba(255,255,255,0.28); white-space: nowrap; }
+    .sectors-list { display: flex; flex-wrap: wrap; gap: 0.75rem 1.5rem; align-items: center; }
+    .sector-item { font-size: 0.8rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.08em; color: rgba(255,255,255,0.45); text-decoration: none; transition: color 0.2s ease; }
+    .sector-item:hover { color: rgba(255,255,255,0.9); }
+
     /* ─── SITE FOOTER ─────────────────────────────────── */
     .footer-inner { max-width: 1240px; margin: 0 auto; }
     .footer-cols { display: grid; grid-template-columns: 1.4fr 1fr 1fr 0.75fr 1.1fr; gap: 3rem; padding-bottom: 2.5rem; border-bottom: 1px solid rgba(255,255,255,0.08); }
@@ -362,6 +837,15 @@
     .fd5 { transition-delay: 0.48s; }
 
     /* ─── RESPONSIVE ─────────────────────────────────────── */
+    @media (max-width: 1024px) {
+      .svc-card--hero { grid-template-columns: 1fr; gap: 2.5rem; }
+      .assessment-steps { grid-template-columns: repeat(2, 1fr); }
+      .weibull-header { grid-template-columns: 1fr; gap: 2rem; }
+      .weibull-controls { grid-template-columns: 1fr; }
+      .assessment-header { grid-template-columns: 1fr; gap: 2rem; }
+      .journey-stages { grid-template-columns: 1fr; }
+      .journey-arrow { transform: rotate(90deg); }
+    }
     @media (max-width: 768px) {
       .nav-links { display: none; }
       .intro-wrap { grid-template-columns: 1fr; gap: 2.5rem; padding: 4rem 1.5rem; }
@@ -372,6 +856,12 @@
       footer { padding: 2rem 1.5rem; }
       .footer-bottom-row { padding: 1rem 1.5rem; }
       .sectors-band { padding: 1.5rem; overflow-x: auto; }
+      .weibull-wrap, .journey-wrap, .outcomes-wrap, .assessment-wrap, .reliatic-wrap { padding: 4rem 1.5rem; }
+      .outcomes-wrap { grid-template-columns: 1fr; gap: 2.5rem; }
+      .outcomes-grid { grid-template-columns: 1fr; }
+      .reliatic-card { grid-template-columns: 1fr; gap: 1.5rem; }
+      .assessment-steps { grid-template-columns: repeat(2, 1fr); }
+      .svc-card--hero { padding: 2rem; }
     }
   
     /* ─── GRADIENT-FLOOD BUTTON ────────────────────────── */
@@ -404,7 +894,7 @@
 <!-- ══════════════════════════════════════════ NAV ══ -->
 <nav class="site-nav">
   <a href="index.html" class="nav-logo" aria-label="Align Solutions">
-    <img src="Brand_Assets/SVG Logos/Asset 7.svg" alt="Align Solutions" />
+    <img src="Brand_Assets/SVG Logos/Asset 7.svg" alt="Align Solutions" width="130" height="40" />
   </a>
   <ul class="nav-links">
     <li><a href="index.html">Home</a></li>
@@ -421,6 +911,7 @@
   </a>
 </nav>
 
+<main id="main-content">
 
 <!-- ════════════════════════════════════ PAGE HERO ══ -->
 <section class="page-hero">
@@ -468,20 +959,48 @@
   <div class="services-wrap">
     <div class="services-grid">
 
-      <!-- 01 Design Engineering -->
-      <a href="contact.html" class="svc-card fade-up">
-        <div class="svc-card-top">
-          <span class="svc-num">01</span>
-          <span class="svc-arrow" aria-hidden="true">
-            <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
-              <path d="M2 8L8 2M8 2H3M8 2V7" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </span>
+      <!-- 01 Reliability Engineering — HERO / PRIMARY SERVICE -->
+      <a href="contact.html" class="svc-card--hero fade-up">
+        <div style="position: relative;">
+          <span class="svc-hero-badge">Primary Service</span>
+          <h3 class="svc-hero-name">Reliability<br>Engineering</h3>
+          <p class="svc-hero-tagline"><em>"Your equipment is telling you something — are you listening?"</em></p>
+          <p class="svc-hero-desc">FMEA, RCM, RCA and Weibull life modelling to understand exactly why assets fail and when. We build the evidence base that turns reactive firefighting into controlled, predictable operations.</p>
+          <div class="svc-card-footer" style="border-top: 1px solid rgba(255,255,255,0.06); padding-top: 1.5rem; margin-top: 0;">
+            <span class="svc-card-link">Enquire about this service</span>
+          </div>
         </div>
-        <h3 class="svc-card-name">Design Engineering</h3>
-        <p class="svc-card-desc">From concept through to detailed design. P&amp;IDs, CAD, structural and process engineering delivered to the standard your operation demands.</p>
-        <div class="svc-card-footer">
-          <span class="svc-card-link">Enquire about this service</span>
+        <div style="position: relative;">
+          <ul class="svc-hero-capabilities">
+            <li class="svc-hero-cap">
+              <svg class="svc-hero-cap-check" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2.5 7L5.5 10L11.5 4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              FMEA &amp; RCM — systematic failure mode identification
+            </li>
+            <li class="svc-hero-cap">
+              <svg class="svc-hero-cap-check" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2.5 7L5.5 10L11.5 4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Root cause analysis — find the mechanism, not just the symptom
+            </li>
+            <li class="svc-hero-cap">
+              <svg class="svc-hero-cap-check" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2.5 7L5.5 10L11.5 4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Weibull life modelling — quantify wear patterns and predict failure
+            </li>
+            <li class="svc-hero-cap">
+              <svg class="svc-hero-cap-check" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2.5 7L5.5 10L11.5 4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Monte Carlo simulation — validate operating limits with data
+            </li>
+            <li class="svc-hero-cap">
+              <svg class="svc-hero-cap-check" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2.5 7L5.5 10L11.5 4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Predictive modelling — condition-based maintenance from real data
+            </li>
+            <li class="svc-hero-cap">
+              <svg class="svc-hero-cap-check" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2.5 7L5.5 10L11.5 4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Asset reliability strategy — from analysis to implementation plan
+            </li>
+            <li class="svc-hero-cap">
+              <svg class="svc-hero-cap-check" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2.5 7L5.5 10L11.5 4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Full Systems Assessment — 10-step process from asset register to lifecycle upgrade
+            </li>
+          </ul>
         </div>
       </a>
 
@@ -496,13 +1015,13 @@
           </span>
         </div>
         <h3 class="svc-card-name">Maintenance Engineering</h3>
-        <p class="svc-card-desc">Planned, preventive and corrective maintenance strategies. CMMS integration and support to ensure your assets are maintained to the right standard.</p>
+        <p class="svc-card-desc">Planned, preventive and corrective maintenance strategies. CMMS integration and support to ensure your assets are maintained to the right standard at the right time — including large-scale maintenance project delivery.</p>
         <div class="svc-card-footer">
           <span class="svc-card-link">Enquire about this service</span>
         </div>
       </a>
 
-      <!-- 03 Reliability Engineering -->
+      <!-- 03 Design Engineering -->
       <a href="contact.html" class="svc-card fade-up fd2">
         <div class="svc-card-top">
           <span class="svc-num">03</span>
@@ -512,8 +1031,8 @@
             </svg>
           </span>
         </div>
-        <h3 class="svc-card-name">Reliability Engineering</h3>
-        <p class="svc-card-desc">FMEA, RCM, RCA and asset strategy development to maximise uptime. We find failure modes before they find you.</p>
+        <h3 class="svc-card-name">Design Engineering</h3>
+        <p class="svc-card-desc">From concept through to detailed design. P&amp;IDs, CAD, structural and process engineering delivered to the standard your operation demands.</p>
         <div class="svc-card-footer">
           <span class="svc-card-link">Enquire about this service</span>
         </div>
@@ -536,8 +1055,8 @@
         </div>
       </a>
 
-      <!-- 05 Technical Consultancy -->
-      <a href="contact.html" class="svc-card fade-up fd4">
+      <!-- 05 HSEQ — Coming Soon -->
+      <div class="svc-card svc-card--muted fade-up fd4" aria-disabled="true">
         <div class="svc-card-top">
           <span class="svc-num">05</span>
           <span class="svc-arrow" aria-hidden="true">
@@ -546,12 +1065,12 @@
             </svg>
           </span>
         </div>
-        <h3 class="svc-card-name">Technical Consultancy</h3>
-        <p class="svc-card-desc">Site surveys, technical audits and operational reviews by experienced engineers who have worked in the environments they assess.</p>
+        <h3 class="svc-card-name">HSEQ <span class="svc-coming-soon">Coming Soon</span></h3>
+        <p class="svc-card-desc">Health, Safety, Environment and Quality services for industrial operations. Full compliance support across your asset lifecycle.</p>
         <div class="svc-card-footer">
-          <span class="svc-card-link">Enquire about this service</span>
+          <span class="svc-card-link">In development</span>
         </div>
-      </a>
+      </div>
 
       <!-- 06 Project Delivery -->
       <a href="contact.html" class="svc-card fade-up fd5">
@@ -570,6 +1089,353 @@
         </div>
       </a>
 
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════ WEIBULL GRAPH ═══ -->
+<section class="weibull-section" id="reliability-methodology">
+  <div class="weibull-wrap">
+    <div class="weibull-header fade-up">
+      <div>
+        <span class="eyebrow" style="margin-bottom: 1rem; display: block;">Reliability Methodology</span>
+        <h2 class="weibull-heading">
+          Understanding Failure<br>
+          <span class="grad-text">Through Data</span>
+        </h2>
+      </div>
+      <div>
+        <p class="weibull-body">
+          The Weibull distribution is the foundation of reliability analysis. By fitting failure data to the right model, we identify whether assets are suffering early-life defects, random failures, or wear-out — and respond accordingly. Different failure modes demand different interventions. We find which applies to your assets.
+        </p>
+      </div>
+    </div>
+    <div class="weibull-chart-container fade-up fd1">
+
+      <!-- ── Canvas + tooltip overlay ── -->
+      <div class="weibull-canvas-wrap">
+        <canvas id="weibullChart"
+          aria-label="Interactive Weibull reliability chart — R(t) vs Time (months) for four β values"
+          role="img"></canvas>
+        <div id="weibullTooltip" class="weibull-tooltip" aria-live="polite"></div>
+      </div>
+
+      <!-- ── Interactive controls ── -->
+      <div class="weibull-controls">
+
+        <!-- Curve 0: β = 1.0 dotted blue -->
+        <div class="weibull-ctrl-row">
+          <div class="weibull-ctrl-header">
+            <span class="ctrl-swatch dotted" style="color:#8899d4; background: repeating-linear-gradient(90deg,#8899d4 0,#8899d4 3px,transparent 3px,transparent 7px);"></span>
+            β = 1.0 — Random Failures
+          </div>
+          <div class="weibull-ctrl-sliders">
+            <div class="weibull-slider-group">
+              <div class="weibull-slider-label"><span>Shape β</span><span id="v0b">1.00</span></div>
+              <input type="range" class="weibull-range" id="s0b" min="0.5" max="5" step="0.05" value="1.0" data-curve="0" data-param="beta">
+            </div>
+            <div class="weibull-slider-group">
+              <div class="weibull-slider-label"><span>Char. life η (mo)</span><span id="v0e">36</span></div>
+              <input type="range" class="weibull-range" id="s0e" min="6" max="120" step="1" value="36" data-curve="0" data-param="eta">
+            </div>
+          </div>
+        </div>
+
+        <!-- Curve 1: β = 1.15 solid orange — Pump 1 -->
+        <div class="weibull-ctrl-row">
+          <div class="weibull-ctrl-header">
+            <span class="ctrl-swatch" style="background:#f97316;"></span>
+            Pump 1 — β = 1.15 System-Driven Wear
+          </div>
+          <div class="weibull-ctrl-sliders">
+            <div class="weibull-slider-group">
+              <div class="weibull-slider-label"><span>Shape β</span><span id="v1b">1.15</span></div>
+              <input type="range" class="weibull-range" id="s1b" min="0.5" max="5" step="0.05" value="1.15" data-curve="1" data-param="beta">
+            </div>
+            <div class="weibull-slider-group">
+              <div class="weibull-slider-label"><span>Char. life η (mo)</span><span id="v1e">36</span></div>
+              <input type="range" class="weibull-range" id="s1e" min="6" max="120" step="1" value="36" data-curve="1" data-param="eta">
+            </div>
+          </div>
+        </div>
+
+        <!-- Curve 2: β = 2.1 solid green — Pump 2 -->
+        <div class="weibull-ctrl-row">
+          <div class="weibull-ctrl-header">
+            <span class="ctrl-swatch" style="background:#4ade80;"></span>
+            Pump 2 — β = 2.1 Wear-Out
+          </div>
+          <div class="weibull-ctrl-sliders">
+            <div class="weibull-slider-group">
+              <div class="weibull-slider-label"><span>Shape β</span><span id="v2b">2.10</span></div>
+              <input type="range" class="weibull-range" id="s2b" min="0.5" max="5" step="0.05" value="2.1" data-curve="2" data-param="beta">
+            </div>
+            <div class="weibull-slider-group">
+              <div class="weibull-slider-label"><span>Char. life η (mo)</span><span id="v2e">36</span></div>
+              <input type="range" class="weibull-range" id="s2e" min="6" max="120" step="1" value="36" data-curve="2" data-param="eta">
+            </div>
+          </div>
+        </div>
+
+        <!-- Curve 3: β = 3.0 dashed red -->
+        <div class="weibull-ctrl-row">
+          <div class="weibull-ctrl-header">
+            <span class="ctrl-swatch dashed" style="color:#ef4444; background: repeating-linear-gradient(90deg,#ef4444 0,#ef4444 6px,transparent 6px,transparent 11px);"></span>
+            β = 3.0 — Normal Wear Example
+          </div>
+          <div class="weibull-ctrl-sliders">
+            <div class="weibull-slider-group">
+              <div class="weibull-slider-label"><span>Shape β</span><span id="v3b">3.00</span></div>
+              <input type="range" class="weibull-range" id="s3b" min="0.5" max="5" step="0.05" value="3.0" data-curve="3" data-param="beta">
+            </div>
+            <div class="weibull-slider-group">
+              <div class="weibull-slider-label"><span>Char. life η (mo)</span><span id="v3e">36</span></div>
+              <input type="range" class="weibull-range" id="s3e" min="6" max="120" step="1" value="36" data-curve="3" data-param="eta">
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /weibull-controls -->
+
+      <!-- ── Legend ── -->
+      <div class="weibull-legend">
+        <div class="weibull-legend-item">
+          <div class="legend-line" style="background: repeating-linear-gradient(90deg,#8899d4 0,#8899d4 3px,transparent 3px,transparent 7px);"></div>
+          β = 1.0 — Random failures
+        </div>
+        <div class="weibull-legend-item">
+          <div class="legend-line" style="background:#f97316;"></div>
+          Pump 1 — β = 1.15 System-driven wear
+        </div>
+        <div class="weibull-legend-item">
+          <div class="legend-line" style="background:#4ade80;"></div>
+          Pump 2 — β = 2.1 Wear-out
+        </div>
+        <div class="weibull-legend-item">
+          <div class="legend-line" style="background: repeating-linear-gradient(90deg,#ef4444 0,#ef4444 6px,transparent 6px,transparent 11px);"></div>
+          β = 3.0 — Normal wear example
+        </div>
+      </div>
+
+      <!-- ── Caption ── -->
+      <p class="weibull-caption">
+        Weibull reliability modelling is central to how Align Solutions identifies failure modes and maintenance strategy.
+      </p>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════ REACTIVE → PREDICTIVE JOURNEY ═ -->
+<section class="journey-section">
+  <div class="journey-wrap">
+    <div class="journey-header fade-up">
+      <span class="eyebrow" style="margin-bottom: 1rem; display: block;">The Reliability Journey</span>
+      <h2 class="journey-heading">
+        Where most organisations are.<br>
+        <span class="grad-text">Where we take you.</span>
+      </h2>
+      <p class="journey-sub">Most operations start reactive. The goal is predictive. We map the route and move you through it.</p>
+    </div>
+    <div class="journey-stages fade-up fd1">
+
+      <!-- Stage 1: Reactive -->
+      <div class="journey-stage journey-stage--current">
+        <span class="journey-label">Where Most Are</span>
+        <div class="journey-stage-name">Reactive</div>
+        <p class="journey-stage-desc">Fix it when it breaks. The default state of most industrial operations.</p>
+        <ul class="journey-stage-points">
+          <li class="journey-stage-point">High MTTR</li>
+          <li class="journey-stage-point">Unpredictable costs</li>
+          <li class="journey-stage-point">No failure data captured</li>
+          <li class="journey-stage-point">Maintenance driven by breakdown</li>
+        </ul>
+      </div>
+
+      <!-- Arrow -->
+      <div class="journey-arrow" aria-hidden="true">
+        <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><path d="M6 14h16M16 8l6 6-6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+
+      <!-- Stage 2: Preventive -->
+      <div class="journey-stage journey-stage--mid">
+        <span class="journey-label">Where We Take You First</span>
+        <div class="journey-stage-name">Preventive</div>
+        <p class="journey-stage-desc">Schedule maintenance before failure. Evidence-based intervals, not guesswork.</p>
+        <ul class="journey-stage-points">
+          <li class="journey-stage-point">Reduced unplanned downtime</li>
+          <li class="journey-stage-point">Better spares planning</li>
+          <li class="journey-stage-point">Known and budgeted OPEX</li>
+          <li class="journey-stage-point">Data collection begins</li>
+        </ul>
+      </div>
+
+      <!-- Arrow -->
+      <div class="journey-arrow" aria-hidden="true">
+        <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><path d="M6 14h16M16 8l6 6-6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+
+      <!-- Stage 3: Predictive -->
+      <div class="journey-stage journey-stage--goal">
+        <span class="journey-label journey-label--goal">The Goal</span>
+        <div class="journey-stage-name journey-stage-name--goal">Predictive</div>
+        <p class="journey-stage-desc">Maintenance happens when the data says so. Maximum uptime, minimum intervention.</p>
+        <ul class="journey-stage-points">
+          <li class="journey-stage-point">Condition-based decisions</li>
+          <li class="journey-stage-point">Failure predicted before it occurs</li>
+          <li class="journey-stage-point">No over-maintenance</li>
+          <li class="journey-stage-point">Full asset lifecycle visibility</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════ KEY OUTCOMES ══════ -->
+<section class="outcomes-section">
+  <div class="outcomes-wrap">
+    <div class="fade-up">
+      <span class="eyebrow" style="margin-bottom: 1rem; display: block;">What We Deliver</span>
+      <h2 class="outcomes-heading">
+        Engineering outcomes<br>
+        <span class="grad-text">that last</span>
+      </h2>
+      <p class="outcomes-sub">
+        We don't hand over a report and leave. Every engagement ends with practical, implemented change. These are the outcomes clients carry forward.
+      </p>
+    </div>
+    <ul class="outcomes-grid fade-up fd1">
+      <li class="outcome-item">
+        <svg class="outcome-check" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2.5 7L5.5 10L11.5 4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Reduced unplanned downtime
+      </li>
+      <li class="outcome-item">
+        <svg class="outcome-check" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2.5 7L5.5 10L11.5 4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Predictive, condition-based maintenance
+      </li>
+      <li class="outcome-item">
+        <svg class="outcome-check" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2.5 7L5.5 10L11.5 4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Maintenance man-hours focused on critical tasks
+      </li>
+      <li class="outcome-item">
+        <svg class="outcome-check" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2.5 7L5.5 10L11.5 4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Informed decisions across asset lifecycle and cost
+      </li>
+      <li class="outcome-item">
+        <svg class="outcome-check" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2.5 7L5.5 10L11.5 4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Reduced over-maintenance and unnecessary intervention
+      </li>
+      <li class="outcome-item">
+        <svg class="outcome-check" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2.5 7L5.5 10L11.5 4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Right spare parts, in the right place, at the right time
+      </li>
+      <li class="outcome-item">
+        <svg class="outcome-check" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2.5 7L5.5 10L11.5 4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Positive cultural change toward data-driven operations
+      </li>
+      <li class="outcome-item">
+        <svg class="outcome-check" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2.5 7L5.5 10L11.5 4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Maintenance aligned with operational goals
+      </li>
+    </ul>
+  </div>
+</section>
+
+
+<!-- ══════════════════ FULL SYSTEMS ASSESSMENT ══════ -->
+<section class="assessment-section" id="full-systems-assessment">
+  <div class="assessment-wrap">
+    <div class="assessment-header fade-up">
+      <div>
+        <span class="eyebrow" style="margin-bottom: 1rem; display: block;">Full Systems Assessment</span>
+        <h2 class="assessment-heading">
+          A structured 10-step<br>
+          <span class="grad-text">reliability programme</span>
+        </h2>
+      </div>
+      <div>
+        <p class="assessment-body">
+          Our Full Systems Assessment is the comprehensive entry point for organisations that need to understand their asset base and build a reliability programme from the ground up. Structured. Sequenced. Evidence-led.
+        </p>
+      </div>
+    </div>
+    <div class="assessment-steps fade-up fd1">
+      <div class="assessment-step">
+        <div class="step-num">01</div>
+        <div class="step-name">Asset Register</div>
+        <div class="step-desc">Complete structured asset inventory</div>
+      </div>
+      <div class="assessment-step">
+        <div class="step-num">02</div>
+        <div class="step-name">Criticality</div>
+        <div class="step-desc">Safety &amp; production impact ranking</div>
+      </div>
+      <div class="assessment-step">
+        <div class="step-num">03</div>
+        <div class="step-name">Failure History</div>
+        <div class="step-desc">Quantified historical failure review</div>
+      </div>
+      <div class="assessment-step">
+        <div class="step-num">04</div>
+        <div class="step-name">RE Analysis</div>
+        <div class="step-desc">Weibull, Exponential &amp; Poisson modelling</div>
+      </div>
+      <div class="assessment-step">
+        <div class="step-num">05</div>
+        <div class="step-name">Reliability Scoring</div>
+        <div class="step-desc">Asset risk scoring &amp; prioritisation</div>
+      </div>
+      <div class="assessment-step">
+        <div class="step-num">06</div>
+        <div class="step-name">Spare Parts</div>
+        <div class="step-desc">Stock aligned to actual failure rates</div>
+      </div>
+      <div class="assessment-step">
+        <div class="step-num">07</div>
+        <div class="step-name">HAZID / HAZOP</div>
+        <div class="step-desc">Risk and hazard identification</div>
+      </div>
+      <div class="assessment-step">
+        <div class="step-num">08</div>
+        <div class="step-name">Condition Monitoring</div>
+        <div class="step-desc">Baseline reset &amp; monitoring plan</div>
+      </div>
+      <div class="assessment-step">
+        <div class="step-num">09</div>
+        <div class="step-name">Implementation</div>
+        <div class="step-desc">Corrective actions &amp; rollout</div>
+      </div>
+      <div class="assessment-step">
+        <div class="step-num">10</div>
+        <div class="step-name">Lifecycle Upgrade</div>
+        <div class="step-desc">Long-term asset strategy</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════ RELIATIC PARTNERSHIP ═ -->
+<section class="reliatic-section">
+  <div class="reliatic-wrap">
+    <div class="reliatic-card fade-up">
+      <div class="reliatic-badge">Technology Partner</div>
+      <div class="reliatic-body">
+        <div class="reliatic-title">Reliatic — Digital Reliability Engineer</div>
+        <p class="reliatic-desc">
+          Align Solutions has partnered with Reliatic to deliver a Digital Reliability Engineer. We combine deep reliability expertise with practical, usable software. We don't analyse your data and walk away — we leave you with tools you continue to use long after we're gone.
+        </p>
+      </div>
+      <div class="reliatic-cta">
+        <a href="https://reliatic.com" target="_blank" rel="noopener noreferrer" class="btn-grad">
+          Visit Reliatic
+          <svg width="11" height="11" viewBox="0 0 11 11" fill="none"><path d="M2 9L9 2M9 2H3M9 2V8" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
     </div>
   </div>
 </section>
@@ -608,6 +1474,8 @@
 </div>
 
 
+</main><!-- /main-content -->
+
 <!-- ════════════════════════════════════ FOOTER ═════ -->
 <!-- ═══════════════════════════════════ FOOTER ════════ -->
 <footer class="site-footer">
@@ -630,7 +1498,7 @@
       <div class="footer-inner">
         <div class="footer-cols">
           <div class="footer-col">
-            <span class="footer-col-place">UK — Nottingham</span>
+            <span class="footer-col-place">UK — Norwich</span>
             <span class="footer-col-time" id="footer-time">--:--:--</span>
             <span class="footer-col-tz">(GMT / BST)</span>
           </div>
@@ -694,6 +1562,208 @@ window.addEventListener('load', () => {
     document.querySelectorAll('.fade-up').forEach(el => el.classList.add('in'));
   }, 350);
 });
+
+// ── Interactive Weibull Reliability Chart ───────────────────────────────
+// Plots R(t) = e^(-(t/η)^β) for four configurable curves.
+// Axes: x = Time (months, 0–60), y = Reliability (0.0–1.0)
+// Interactivity: sliders update β and η per curve; tooltip on hover.
+(function initWeibullChart() {
+
+  const canvas  = document.getElementById('weibullChart');
+  const tooltip = document.getElementById('weibullTooltip');
+  if (!canvas || !tooltip) return;
+
+  // ── Curve definitions ──────────────────────────────────────────────
+  // Each curve: beta, eta (months), colour, dash pattern, line width, display label
+  const curves = [
+    { beta: 1.00, eta: 36, color: '#8899d4', dash: [4, 5],    lw: 2,   label: 'β = 1.0 — Random failures'        },
+    { beta: 1.15, eta: 36, color: '#f97316', dash: [],         lw: 2.5, label: 'Pump 1 — β = 1.15 System wear'    },
+    { beta: 2.10, eta: 36, color: '#4ade80', dash: [],         lw: 2.5, label: 'Pump 2 — β = 2.1 Wear-out'        },
+    { beta: 3.00, eta: 36, color: '#ef4444', dash: [9, 5],    lw: 2,   label: 'β = 3.0 — Normal wear example'    },
+  ];
+
+  // ── Layout constants ────────────────────────────────────────────────
+  const T_MAX = 60;   // months
+  const PAD = { l: 62, r: 28, t: 28, b: 54 };
+
+  // ── Weibull reliability function ────────────────────────────────────
+  function R(t, beta, eta) {
+    if (t <= 0) return 1;
+    return Math.exp(-Math.pow(t / eta, beta));
+  }
+
+  // ── Render ──────────────────────────────────────────────────────────
+  function render() {
+    const dpr = window.devicePixelRatio || 1;
+    const W   = canvas.parentElement.clientWidth || 800;
+    const H   = Math.round(W * 0.48);  // ~16:7.7 aspect
+
+    canvas.width        = W * dpr;
+    canvas.height       = H * dpr;
+    canvas.style.width  = W + 'px';
+    canvas.style.height = H + 'px';
+
+    const ctx = canvas.getContext('2d');
+    ctx.scale(dpr, dpr);
+
+    const plotW = W - PAD.l - PAD.r;
+    const plotH = H - PAD.t - PAD.b;
+
+    // ── Grid ──
+    const xTicks = [0, 12, 24, 36, 48, 60];
+    const yTicks = [0, 0.2, 0.4, 0.6, 0.8, 1.0];
+
+    ctx.strokeStyle = 'rgba(255,255,255,0.055)';
+    ctx.lineWidth   = 1;
+    yTicks.forEach(v => {
+      const y = PAD.t + plotH - v * plotH;
+      ctx.beginPath();
+      ctx.moveTo(PAD.l, y);
+      ctx.lineTo(PAD.l + plotW, y);
+      ctx.stroke();
+    });
+    xTicks.forEach(t => {
+      const x = PAD.l + (t / T_MAX) * plotW;
+      ctx.beginPath();
+      ctx.moveTo(x, PAD.t);
+      ctx.lineTo(x, PAD.t + plotH);
+      ctx.stroke();
+    });
+
+    // ── Axes ──
+    ctx.strokeStyle = 'rgba(255,255,255,0.18)';
+    ctx.lineWidth   = 1.5;
+    // X axis
+    ctx.beginPath();
+    ctx.moveTo(PAD.l, PAD.t + plotH);
+    ctx.lineTo(PAD.l + plotW, PAD.t + plotH);
+    ctx.stroke();
+    // Y axis
+    ctx.beginPath();
+    ctx.moveTo(PAD.l, PAD.t);
+    ctx.lineTo(PAD.l, PAD.t + plotH);
+    ctx.stroke();
+
+    // ── Tick labels ──
+    ctx.fillStyle = 'rgba(255,255,255,0.3)';
+    ctx.font      = `${Math.max(10, Math.round(W * 0.013))}px "NeueHaas", system-ui, sans-serif`;
+
+    // X ticks (months)
+    ctx.textAlign = 'center';
+    xTicks.forEach(t => {
+      const x = PAD.l + (t / T_MAX) * plotW;
+      ctx.fillText(t, x, PAD.t + plotH + 18);
+    });
+
+    // Y ticks (reliability)
+    ctx.textAlign = 'right';
+    yTicks.forEach(v => {
+      const y = PAD.t + plotH - v * plotH;
+      ctx.fillText(v.toFixed(1), PAD.l - 10, y + 4);
+    });
+
+    // ── Axis titles ──
+    ctx.fillStyle = 'rgba(255,255,255,0.2)';
+    const tickFontSize = Math.max(10, Math.round(W * 0.013));
+    ctx.font = `${tickFontSize}px "NeueHaas", system-ui, sans-serif`;
+    ctx.textAlign = 'center';
+    ctx.fillText('Time (months)', PAD.l + plotW / 2, H - 8);
+
+    ctx.save();
+    ctx.translate(12, PAD.t + plotH / 2);
+    ctx.rotate(-Math.PI / 2);
+    ctx.fillText('Reliability R(t)', 0, 0);
+    ctx.restore();
+
+    // ── Curves ──
+    const steps = 600;
+    curves.forEach(({ beta, eta, color, dash, lw }) => {
+      ctx.strokeStyle = color;
+      ctx.lineWidth   = lw;
+      ctx.setLineDash(dash);
+      ctx.shadowColor = color;
+      ctx.shadowBlur  = 5;
+
+      ctx.beginPath();
+      for (let i = 0; i <= steps; i++) {
+        const t   = (i / steps) * T_MAX;
+        const rel = R(t, beta, eta);
+        const x   = PAD.l + (t / T_MAX) * plotW;
+        const y   = PAD.t + plotH - rel * plotH;
+        i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+      }
+      ctx.stroke();
+      ctx.shadowBlur = 0;
+      ctx.setLineDash([]);
+    });
+  }
+
+  // ── Tooltip ─────────────────────────────────────────────────────────
+  canvas.addEventListener('mousemove', function(e) {
+    const rect  = canvas.getBoundingClientRect();
+    const mx    = e.clientX - rect.left;
+    const my    = e.clientY - rect.top;
+
+    const W     = canvas.getBoundingClientRect().width;
+    const H     = canvas.getBoundingClientRect().height;
+    const plotW = W - PAD.l - PAD.r;
+    const plotH = H - PAD.t - PAD.b;
+
+    // Outside plot area
+    if (mx < PAD.l || mx > PAD.l + plotW || my < PAD.t || my > PAD.t + plotH) {
+      tooltip.classList.remove('visible');
+      return;
+    }
+
+    const t = ((mx - PAD.l) / plotW) * T_MAX;
+
+    let html = `<div style="font-weight:600;color:rgba(255,255,255,0.55);margin-bottom:0.3rem;">t = ${t.toFixed(1)} mo</div>`;
+    curves.forEach(({ beta, eta, color, label }) => {
+      const rel = R(t, beta, eta);
+      html += `<div class="weibull-tooltip-row">
+        <span class="weibull-tooltip-swatch" style="background:${color};"></span>
+        <span>${label.split('—')[0].trim()}&nbsp;<strong style="color:rgba(255,255,255,0.85);">R = ${(rel * 100).toFixed(1)}%</strong></span>
+      </div>`;
+    });
+
+    tooltip.innerHTML = html;
+    tooltip.classList.add('visible');
+
+    // Position: flip left if too close to right edge
+    const tipW = 230;
+    const leftPos = mx + 14;
+    tooltip.style.left = (leftPos + tipW > W ? mx - tipW - 10 : leftPos) + 'px';
+    tooltip.style.top  = my + 'px';
+  });
+
+  canvas.addEventListener('mouseleave', function() {
+    tooltip.classList.remove('visible');
+  });
+
+  // ── Sliders ──────────────────────────────────────────────────────────
+  // Value display element IDs follow pattern: v{curveIdx}b, v{curveIdx}e
+  document.querySelectorAll('.weibull-range').forEach(function(slider) {
+    const idx   = parseInt(slider.dataset.curve, 10);
+    const param = slider.dataset.param; // 'beta' or 'eta'
+
+    slider.addEventListener('input', function() {
+      const val = parseFloat(slider.value);
+      curves[idx][param] = val;
+
+      // Update display label
+      const displayId = 'v' + idx + (param === 'beta' ? 'b' : 'e');
+      const display   = document.getElementById(displayId);
+      if (display) display.textContent = param === 'beta' ? val.toFixed(2) : val;
+
+      render();
+    });
+  });
+
+  // ── Init & resize ────────────────────────────────────────────────────
+  render();
+  window.addEventListener('resize', render);
+
+})();
 
 // ── Live footer clock ───────────────────────────────
 function updateFooterClock() {

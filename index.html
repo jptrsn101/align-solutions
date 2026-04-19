@@ -3,7 +3,58 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Align Solutions — Engineering Excellence</title>
+  <title>Align Solutions — Reliability &amp; Maintenance Engineering UK</title>
+  <meta name="description" content="Specialist engineering firm bridging design, maintenance and reliability engineering. Smarter industrial operations across the UK and beyond." />
+  <!-- ─── Canonical ───────────────────────────────────── -->
+  <link rel="canonical" href="https://www.alignsolutions.co.uk/" />
+  <!-- ─── Open Graph ──────────────────────────────────── -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://www.alignsolutions.co.uk/" />
+  <meta property="og:title" content="Align Solutions — Reliability &amp; Maintenance Engineering UK" />
+  <meta property="og:description" content="Specialist engineering firm bridging design, maintenance and reliability engineering. Smarter industrial operations across the UK and beyond." />
+  <meta property="og:image" content="https://www.alignsolutions.co.uk/Brand_Assets/og-image.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <!-- ─── Twitter Card ────────────────────────────────── -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Align Solutions — Reliability &amp; Maintenance Engineering UK" />
+  <meta name="twitter:description" content="Specialist engineering firm bridging design, maintenance and reliability engineering. Smarter industrial operations across the UK and beyond." />
+  <meta name="twitter:image" content="https://www.alignsolutions.co.uk/Brand_Assets/og-image.jpg" />
+  <!-- ─── Structured Data ─────────────────────────────── -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Align Solutions",
+    "url": "https://www.alignsolutions.co.uk",
+    "logo": "https://www.alignsolutions.co.uk/Brand_Assets/SVG Logos/Asset 7.svg",
+    "description": "Specialist engineering firm bridging design, maintenance and reliability engineering to power smarter, future-ready industrial operations across the UK and beyond.",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Norwich",
+      "addressCountry": "GB"
+    },
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "telephone": "+44-1234-567890",
+      "email": "hello@alignsolutions.co.uk",
+      "contactType": "customer service"
+    },
+    "sameAs": [],
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "Engineering Services",
+      "itemListElement": [
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Reliability Engineering" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Maintenance Engineering" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Design Engineering" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Asset Management" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "HSEQ Consultancy" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Project Delivery" } }
+      ]
+    }
+  }
+  </script>
   <style>
     @font-face {
       font-family: 'NeueHaas';
@@ -783,7 +834,7 @@
 <!-- ═══════════════════════════════════════ NAV ═══ -->
 <nav class="site-nav">
   <a href="index.html" class="nav-logo" aria-label="Align Solutions">
-    <img src="Brand_Assets/SVG Logos/Asset 7.svg" alt="Align Solutions" />
+    <img src="Brand_Assets/SVG Logos/Asset 7.svg" alt="Align Solutions" width="130" height="40" />
   </a>
 
   <ul class="nav-links">
@@ -828,6 +879,7 @@
   </a>
 </div>
 
+<main id="main-content">
 
 <!-- ══════════════════════════════════ HERO ZONE ═══ -->
 <!-- dotted-surface lives here — hero only -->
@@ -1046,6 +1098,8 @@
 </section>
 
 
+</main><!-- /main-content -->
+
 <!-- ═══════════════════════════════════ FOOTER ════════ -->
 <footer class="site-footer">
   <div class="footer-visual">
@@ -1075,7 +1129,7 @@
 
           <!-- Col 1: Location + live clock -->
           <div class="footer-col">
-            <span class="footer-col-place">UK — Nottingham</span>
+            <span class="footer-col-place">UK — Norwich</span>
             <span class="footer-col-time" id="footer-time">--:--:--</span>
             <span class="footer-col-tz">(GMT / BST)</span>
           </div>
@@ -1209,21 +1263,32 @@ window.addEventListener('scroll', tickGradient, { passive: true });
 tickGradient(); // set initial value
 
 // ── Scroll-text parallax ────────────────────────────
+// Uses lerp on rAF so motion is butter-smooth regardless of scroll event timing.
 const sl1 = document.getElementById('sl1');
 const sl2 = document.getElementById('sl2');
 const scrollLines = document.getElementById('scrollLines');
 
-function tickScrollText() {
+let sl1Current = -50, sl2Current = 50; // start off-screen
+
+function getScrollTextTargets() {
   const rect = scrollLines.getBoundingClientRect();
-  // progress: 0 = section bottom just entered viewport bottom, 1 = section top just exited viewport top
   const raw = 1 - rect.bottom / (window.innerHeight + rect.height);
   const p = Math.max(0, Math.min(1, raw));
-  // Line 1 drifts right→left, line 2 left→right as you scroll through
-  sl1.style.transform = `translateX(${6 - p * 14}vw)`;
-  sl2.style.transform = `translateX(${-6 + p * 14}vw)`;
+  return { t1: -50 + p * 84, t2: 50 - p * 84 };
 }
-window.addEventListener('scroll', tickScrollText, { passive: true });
-tickScrollText();
+
+function lerp(a, b, t) { return a + (b - a) * t; }
+
+function rafScrollText() {
+  const { t1, t2 } = getScrollTextTargets();
+  // 0.1 = smooth lag; increase toward 1 for snappier response
+  sl1Current = lerp(sl1Current, t1, 0.1);
+  sl2Current = lerp(sl2Current, t2, 0.1);
+  sl1.style.transform = `translateX(${sl1Current.toFixed(3)}vw)`;
+  sl2.style.transform = `translateX(${sl2Current.toFixed(3)}vw)`;
+  requestAnimationFrame(rafScrollText);
+}
+requestAnimationFrame(rafScrollText);
 
 // ── Counter animation ───────────────────────────────
 const counterIO = new IntersectionObserver(entries => {
