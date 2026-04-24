@@ -20,6 +20,33 @@
   <meta name="twitter:title" content="Engineering Services — Reliability, Maintenance &amp; Design" />
   <meta name="twitter:description" content="Six integrated engineering disciplines: reliability engineering, maintenance, design, asset management, HSEQ consultancy and project delivery for heavy industry." />
   <meta name="twitter:image" content="https://www.alignsolutions.co.uk/Brand_Assets/og-image.jpg" />
+  <!-- ─── Structured Data ─────────────────────────────── -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": "Engineering Services",
+    "url": "https://www.alignsolutions.co.uk/services.html",
+    "description": "Six integrated engineering disciplines: reliability engineering, maintenance, design, asset management, HSEQ consultancy and project delivery for heavy industry.",
+    "provider": {
+      "@type": "Organization",
+      "name": "Align Solutions",
+      "url": "https://www.alignsolutions.co.uk"
+    },
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "Engineering Services",
+      "itemListElement": [
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Reliability Engineering" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Maintenance Engineering" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Design Engineering" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Asset Management" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "HSEQ Consultancy" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Project Delivery" } }
+      ]
+    }
+  }
+  </script>
   <style>
     /* ─── FONTS ──────────────────────────────────────────── */
     @font-face {
@@ -146,6 +173,8 @@
     .btn-pill svg { transition: transform 0.25s ease; }
     .btn-pill:hover svg { transform: translate(2px, -2px); transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1); }
     .btn-pill-lg { padding: 0.8rem 1.9rem; font-size: 0.78rem; }
+    .nav-hamburger { display: none; }
+    .mobile-nav    { display: none; }
     .btn-pill-lg::before {
       background: linear-gradient(140deg, rgba(136,153,212,0.9) 0%, rgba(62,81,163,0.5) 45%, rgba(62,81,163,0.1) 100%);
     }
@@ -847,14 +876,42 @@
       .journey-arrow { transform: rotate(90deg); }
     }
     @media (max-width: 768px) {
+      .site-nav { padding: 0 1.25rem; }
       .nav-links { display: none; }
+      .site-nav > .btn-pill { display: none; }
+      .nav-hamburger {
+        display: flex; flex-direction: column; justify-content: center;
+        gap: 5px; padding: 0.5rem; width: 40px; height: 40px;
+        background: none; border: none; cursor: pointer; margin-left: auto;
+      }
+      .nav-hamburger span {
+        display: block; height: 1.5px; background: rgba(255,255,255,0.75); border-radius: 2px;
+        transition: transform 0.35s cubic-bezier(0.34,1.56,0.64,1), opacity 0.25s ease;
+        transform-origin: center;
+      }
+      .nav-hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+      .nav-hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+      .nav-hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+      .mobile-nav {
+        display: flex; flex-direction: column; justify-content: center; align-items: flex-start;
+        position: fixed; inset: 0; z-index: 99;
+        background: rgba(7,9,26,0.97); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+        padding: 6rem 2rem 3rem; opacity: 0; pointer-events: none; transition: opacity 0.35s ease;
+      }
+      .mobile-nav.open { opacity: 1; pointer-events: all; }
+      .mobile-nav-links { list-style: none; margin-bottom: 2.5rem; width: 100%; }
+      .mobile-nav-links li { border-bottom: 1px solid rgba(255,255,255,0.06); }
+      .mobile-nav-links a {
+        display: block; padding: 1rem 0; font-size: 1.3rem; font-weight: 500;
+        letter-spacing: -0.01em; color: rgba(255,255,255,0.6); text-decoration: none;
+        transition: color 0.2s ease;
+      }
+      .mobile-nav-links a:hover, .mobile-nav-links a.active { color: #fff; }
       .intro-wrap { grid-template-columns: 1fr; gap: 2.5rem; padding: 4rem 1.5rem; }
       .services-grid { grid-template-columns: 1fr; }
       .services-wrap { padding: 4rem 1.5rem 6rem; }
       .page-hero { padding: 0 1.5rem 4rem; padding-top: 68px; }
       .cta-card { padding: 3.5rem 2rem; }
-      footer { padding: 2rem 1.5rem; }
-      .footer-bottom-row { padding: 1rem 1.5rem; }
       .sectors-band { padding: 1.5rem; overflow-x: auto; }
       .weibull-wrap, .journey-wrap, .outcomes-wrap, .assessment-wrap, .reliatic-wrap { padding: 4rem 1.5rem; }
       .outcomes-wrap { grid-template-columns: 1fr; gap: 2.5rem; }
@@ -862,6 +919,18 @@
       .reliatic-card { grid-template-columns: 1fr; gap: 1.5rem; }
       .assessment-steps { grid-template-columns: repeat(2, 1fr); }
       .svc-card--hero { padding: 2rem; }
+      .footer-visual { min-height: auto; }
+      .footer-mark-img { height: 260px; }
+      .footer-content { padding: 2rem 1.25rem 0; }
+      .footer-cols { grid-template-columns: 1fr 1fr; gap: 1.75rem 2rem; }
+      .footer-cols .footer-col:first-child {
+        grid-column: 1 / -1; display: flex; align-items: baseline; gap: 1.25rem;
+        padding-bottom: 1rem; border-bottom: 1px solid rgba(255,255,255,0.05);
+      }
+      .footer-cols .footer-col:first-child .footer-col-tz { display: none; }
+      .footer-meta { flex-wrap: wrap; gap: 0.6rem; }
+      .footer-meta-spacer { display: none; }
+      .footer-visual-wordmark { white-space: normal; font-size: clamp(32px, 8.5vw, 58px); }
     }
   
     /* ─── GRADIENT-FLOOD BUTTON ────────────────────────── */
@@ -909,7 +978,28 @@
     Get In Touch
     <svg width="11" height="11" viewBox="0 0 11 11" fill="none"><path d="M2 9L9 2M9 2H3M9 2V8" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
   </a>
+  <button class="nav-hamburger" aria-label="Open menu" aria-expanded="false" id="navHamburger">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
+
+<div class="mobile-nav" id="mobileNav" aria-hidden="true" role="dialog" aria-label="Site navigation">
+  <ul class="mobile-nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="services.html" class="active">Services</a></li>
+    <li><a href="packages.html">Packages</a></li>
+    <li><a href="how-we-work.html">How We Work</a></li>
+    <li><a href="case-studies.html">Case Studies</a></li>
+    <li><a href="sectors.html">Sectors</a></li>
+    <li><a href="about.html">About</a></li>
+  </ul>
+  <a href="contact.html" class="btn-pill btn-pill-lg">
+    Get In Touch
+    <svg width="11" height="11" viewBox="0 0 11 11" fill="none">
+      <path d="M2 9L9 2M9 2H3M9 2V8" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </a>
+</div>
 
 <main id="main-content">
 
@@ -1776,6 +1866,26 @@ function updateFooterClock() {
 }
 setInterval(updateFooterClock, 1000);
 updateFooterClock();
+
+// ── Mobile nav hamburger ────────────────────────────
+(function initMobileNav() {
+  const btn = document.getElementById('navHamburger');
+  const nav = document.getElementById('mobileNav');
+  if (!btn || !nav) return;
+  function openMenu() {
+    nav.classList.add('open'); btn.classList.add('open');
+    btn.setAttribute('aria-expanded', 'true'); nav.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeMenu() {
+    nav.classList.remove('open'); btn.classList.remove('open');
+    btn.setAttribute('aria-expanded', 'false'); nav.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  }
+  btn.addEventListener('click', () => nav.classList.contains('open') ? closeMenu() : openMenu());
+  nav.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMenu(); });
+})();
 </script>
 </body>
 </html>

@@ -220,14 +220,29 @@
       display: block;
     }
     /* Gradient dissolve: transparent at top → full navy at bottom.
-       Fades the dots away before the scroll-text section begins. */
+       Tall gradient ensures a smooth seamless blend into the scroll-text section. */
     .hero-scroll-zone::after {
       content: '';
       position: absolute;
       bottom: 0; left: 0; right: 0;
-      height: 45%;
-      background: linear-gradient(to bottom, transparent 0%, var(--navy) 100%);
+      height: 70%;
+      background: linear-gradient(to bottom,
+        transparent 0%,
+        rgba(7,9,26,0.15) 25%,
+        rgba(7,9,26,0.55) 55%,
+        var(--navy) 85%,
+        var(--navy) 100%);
       z-index: 2;
+      pointer-events: none;
+    }
+    /* Also feather the very top of the scroll-text section so it melts in */
+    .scroll-text-section::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 8rem;
+      background: linear-gradient(to bottom, var(--navy) 0%, transparent 100%);
+      z-index: 1;
       pointer-events: none;
     }
     /* Hero sits above the canvas layer and the dissolve gradient (z-index 2) */
@@ -770,13 +785,35 @@
       .mobile-nav-links a:hover,
       .mobile-nav-links a.active { color: #fff; }
 
-      /* Hero */
-      .hero-content { padding: 0 1.25rem; }
-      .hero-sub { font-size: 0.95rem; max-width: 100%; }
+      /* Hero — left-aligned, fills the viewport on mobile */
+      .hero {
+        align-items: flex-end;
+        justify-content: flex-start;
+        text-align: left;
+        padding-bottom: 5rem;
+        min-height: 100svh;
+      }
+      .hero-content {
+        padding: 0 1.5rem;
+        max-width: 100%;
+        width: 100%;
+      }
+      .hero-eyebrow { margin-bottom: 1.25rem; }
+      .hero-heading {
+        font-size: clamp(2.75rem, 14vw, 6.5rem);
+        margin-bottom: 1.25rem;
+        line-height: 1.0;
+      }
+      .hero-sub {
+        font-size: 0.95rem;
+        max-width: 100%;
+        margin: 0 0 2rem;
+        text-align: left;
+      }
 
-      /* Scroll-text — reduce font so lines don't overflow */
+      /* Scroll-text — larger and more impactful on mobile */
       .scroll-text-section { padding: 5rem 0 3rem; }
-      .scroll-line { font-size: clamp(44px, 12vw, 88px); }
+      .scroll-line { font-size: clamp(52px, 16vw, 88px); }
       .scroll-lines { margin-bottom: 3rem; }
       .scroll-statement { padding: 0 1.25rem; }
       .scroll-statement-text { font-size: clamp(1.1rem, 4vw, 1.45rem); }
@@ -809,23 +846,31 @@
       /* Quote section */
       .quote-section { padding: 6rem 1.25rem; }
 
-      /* Footer */
+      /* Footer — tighter, better organised on mobile */
       .footer-visual { min-height: auto; }
-      .footer-mark-img { height: 280px; }
+      .footer-mark-img { height: 260px; }
       .footer-content { padding: 2rem 1.25rem 0; }
       .footer-cols {
         grid-template-columns: 1fr 1fr;
-        gap: 2rem;
+        gap: 1.75rem 2rem;
       }
+      /* Location spans full width, displayed as inline strip */
+      .footer-cols .footer-col:first-child {
+        grid-column: 1 / -1;
+        display: flex; align-items: baseline; gap: 1.25rem;
+        padding-bottom: 1rem;
+        border-bottom: 1px solid rgba(255,255,255,0.05);
+      }
+      .footer-cols .footer-col:first-child .footer-col-tz { display: none; }
       .footer-meta { flex-wrap: wrap; gap: 0.6rem; }
       .footer-meta-spacer { display: none; }
       .footer-visual-wordmark { white-space: normal; font-size: clamp(32px, 8.5vw, 58px); }
     }
 
-    /* Extra-small phones — single column footer */
+    /* Extra-small phones */
     @media (max-width: 480px) {
-      .footer-cols { grid-template-columns: 1fr; }
-      .scroll-line { font-size: clamp(36px, 10vw, 64px); }
+      .scroll-line { font-size: clamp(44px, 13vw, 64px); }
+      .footer-cols { grid-template-columns: 1fr 1fr; }
     }
   </style>
 </head>
