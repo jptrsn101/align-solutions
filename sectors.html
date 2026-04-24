@@ -383,6 +383,7 @@
       .page-hero { padding-left: 1.5rem; padding-right: 1.5rem; }
       .sector-intro { grid-template-columns: 1fr; gap: 2rem; padding: 3rem 1.5rem; }
       .sector-band { grid-template-columns: 1fr; gap: 1.5rem; padding: 3rem 1.5rem; }
+      .sector-stats { gap: 1.5rem; }
       .footer-visual { min-height: auto; }
       .footer-mark-img { height: 260px; }
       .footer-content { padding: 2rem 1.25rem 0; }
@@ -396,7 +397,13 @@
       .footer-meta-spacer { display: none; }
       .footer-visual-wordmark { white-space: normal; font-size: clamp(32px, 8.5vw, 58px); }
     }
-  
+    @media (max-width: 480px) {
+      .sector-stats { gap: 1rem; flex-direction: column; }
+      .sector-intro { padding: 2.5rem 1.25rem; }
+      .sector-band { padding: 2rem 1.25rem; }
+      .footer-cols { grid-template-columns: 1fr; }
+    }
+
     /* ─── GRADIENT-FLOOD BUTTON ────────────────────────── */
     .btn-grad {
       position: relative; display: inline-flex; align-items: center; gap: 0.55rem;

@@ -438,6 +438,8 @@
       .page-hero { padding-left: 1.5rem; padding-right: 1.5rem; }
       .cases-grid { grid-template-columns: 1fr; }
       .filter-section, .cases-section { padding-left: 1.5rem; padding-right: 1.5rem; }
+      /* Fix card-photo bleed — negative margins overflow narrow viewports */
+      .card-photo { width: 100%; margin: 0 0 1.5rem; border-radius: 8px 8px 0 0; }
       .sectors-band { padding: 1.5rem; }
       .footer-visual { min-height: auto; }
       .footer-mark-img { height: 260px; }
@@ -452,7 +454,11 @@
       .footer-meta-spacer { display: none; }
       .footer-visual-wordmark { white-space: normal; font-size: clamp(32px, 8.5vw, 58px); }
     }
-  
+    @media (max-width: 480px) {
+      .filter-row { gap: 0.4rem; }
+      .footer-cols { grid-template-columns: 1fr; }
+    }
+
     /* ─── GRADIENT-FLOOD BUTTON ────────────────────────── */
     .btn-grad {
       position: relative; display: inline-flex; align-items: center; gap: 0.55rem;

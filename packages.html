@@ -484,7 +484,14 @@
       .footer-meta-spacer { display: none; }
       .footer-visual-wordmark { white-space: normal; font-size: clamp(32px, 8.5vw, 58px); }
     }
-  
+    @media (max-width: 480px) {
+      .packages-wrap { padding: 3rem 1.25rem 4rem; }
+      .packages-intro { padding: 2.5rem 1.25rem; }
+      .not-sure-wrap { padding: 3rem 1.25rem; }
+      .pkg-price { font-size: 1.75rem; }
+      .footer-cols { grid-template-columns: 1fr; }
+    }
+
     /* ─── GRADIENT-FLOOD BUTTON ────────────────────────── */
     .btn-grad {
       position: relative; display: inline-flex; align-items: center; gap: 0.55rem;
