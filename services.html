@@ -914,6 +914,12 @@
       .cta-card { padding: 3.5rem 2rem; }
       .sectors-band { padding: 1.5rem; overflow-x: auto; }
       .weibull-wrap, .journey-wrap, .outcomes-wrap, .assessment-wrap, .reliatic-wrap { padding: 4rem 1.5rem; }
+      /* Chart: flush canvas edge-to-edge, pad inner controls/legend instead */
+      .weibull-chart-container { padding: 0; border-radius: 12px; }
+      .weibull-canvas-wrap { border-radius: 0; }
+      .weibull-controls { padding: 1.5rem; margin-top: 0; border-top: 1px solid rgba(255,255,255,0.06); }
+      .weibull-legend { padding: 0 1.5rem 1.25rem; margin-top: 0; border-top: 1px solid rgba(255,255,255,0.06); padding-top: 1.25rem; }
+      .weibull-caption { padding: 0 1.5rem 1.5rem; margin-top: 0; }
       .outcomes-wrap { grid-template-columns: 1fr; gap: 2.5rem; }
       .outcomes-grid { grid-template-columns: 1fr; }
       .reliatic-card { grid-template-columns: 1fr; gap: 1.5rem; }
@@ -1686,7 +1692,7 @@ window.addEventListener('load', () => {
   function render() {
     const dpr = window.devicePixelRatio || 1;
     const W   = canvas.parentElement.clientWidth || 800;
-    const H   = Math.round(W * 0.48);  // ~16:7.7 aspect
+    const H   = Math.round(W * (window.innerWidth <= 768 ? 0.68 : 0.48));
 
     canvas.width        = W * dpr;
     canvas.height       = H * dpr;
