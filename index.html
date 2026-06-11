@@ -626,6 +626,77 @@
       text-transform: uppercase; color: rgba(255,255,255,0.18);
     }
 
+    /* ─── PARTNERSHIP ────────────────────────────────── */
+    .partnership-section {
+      padding: 8rem 2rem;
+      border-top: 1px solid rgba(255,255,255,0.05);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .partnership-section::before {
+      content: ''; position: absolute; inset: 0; pointer-events: none;
+      background: radial-gradient(ellipse 55% 65% at 50% 50%, rgba(62,81,163,0.12) 0%, transparent 65%);
+    }
+    .partnership-inner {
+      max-width: 760px; margin: 0 auto;
+      display: flex; flex-direction: column; align-items: center;
+      gap: 0; position: relative; z-index: 1;
+    }
+    .partnership-eyebrow {
+      font-size: 0.62rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.22em; color: rgba(255,255,255,0.28);
+      display: block; margin-bottom: 1.75rem;
+    }
+    /* Horizontal lockup: line | logo | line */
+    .partnership-lockup {
+      display: flex; align-items: center; gap: 2.5rem;
+      width: 100%; margin-bottom: 2.25rem;
+    }
+    .partnership-line {
+      flex: 1; height: 1px;
+      background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.1) 60%, rgba(62,81,163,0.3) 100%);
+    }
+    .partnership-line:last-child {
+      background: linear-gradient(270deg, transparent 0%, rgba(255,255,255,0.1) 60%, rgba(62,81,163,0.3) 100%);
+    }
+    .partnership-logo-wrap {
+      position: relative; flex-shrink: 0;
+      width: 120px; height: 120px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.07);
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 2px 8px rgba(62,81,163,0.1), 0 12px 40px rgba(0,0,0,0.45);
+      transition: transform 0.4s cubic-bezier(0.34,1.56,0.64,1),
+                  border-color 0.35s ease,
+                  box-shadow 0.35s ease;
+    }
+    .partnership-logo-wrap:hover {
+      transform: scale(1.06);
+      border-color: rgba(62,81,163,0.35);
+      box-shadow: 0 2px 8px rgba(62,81,163,0.2), 0 20px 60px rgba(0,0,0,0.5);
+    }
+    /* Ambient glow disc behind the logo */
+    .partnership-glow {
+      position: absolute; inset: -20px; border-radius: 50%;
+      background: radial-gradient(ellipse at center, rgba(255,205,0,0.07) 0%, transparent 65%);
+      pointer-events: none; z-index: -1;
+    }
+    .partnership-logo {
+      width: 68px; height: auto; display: block;
+    }
+    .partnership-name {
+      font-size: 0.6rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.18em; color: rgba(255,255,255,0.22);
+      display: block; margin-bottom: 0.75rem;
+    }
+    .partnership-desc {
+      font-size: 0.975rem; font-weight: 400; line-height: 1.65;
+      color: rgba(255,255,255,0.38);
+      max-width: 440px; margin: 0 auto;
+    }
+
     /* ─── QUOTE ───────────────────────────────────────── */
     .quote-section {
       padding: 11rem 2rem;
@@ -842,6 +913,12 @@
       }
       .explore-visual-col { display: none; }
       .explore-heading { margin-bottom: 1.5rem; }
+
+      /* Partnership */
+      .partnership-section { padding: 5rem 1.25rem; }
+      .partnership-lockup { gap: 1.5rem; }
+      .partnership-logo-wrap { width: 100px; height: 100px; }
+      .partnership-logo { width: 56px; }
 
       /* Quote section */
       .quote-section { padding: 6rem 1.25rem; }
@@ -1133,6 +1210,30 @@
 
   </div>
 </div>
+
+
+<!-- ═══════════════════════════════ PARTNERSHIP ═══════ -->
+<section class="partnership-section">
+  <div class="partnership-inner">
+
+    <span class="partnership-eyebrow fade-up">Strategic Partnership</span>
+
+    <div class="partnership-lockup fade-up fd1">
+      <div class="partnership-line" aria-hidden="true"></div>
+      <div class="partnership-logo-wrap">
+        <img src="Brand_Assets/SVG Logos/shell-logo.svg" alt="Shell" class="partnership-logo" width="68" height="63">
+        <span class="partnership-glow" aria-hidden="true"></span>
+      </div>
+      <div class="partnership-line" aria-hidden="true"></div>
+    </div>
+
+    <span class="partnership-name fade-up fd2">Shell</span>
+    <p class="partnership-desc fade-up fd3">
+      Delivering reliability and maintenance engineering support for Shell's downstream operations — keeping critical assets running.
+    </p>
+
+  </div>
+</section>
 
 
 <!-- ═════════════════════════════════════ QUOTE ══════ -->
