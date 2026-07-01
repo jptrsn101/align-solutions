@@ -3,21 +3,21 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Align Solutions — Reliability &amp; Maintenance Engineering UK</title>
+  <title>Align Solutions, Reliability &amp; Maintenance Engineering UK</title>
   <meta name="description" content="Specialist engineering firm bridging design, maintenance and reliability engineering. Smarter industrial operations across the UK and beyond." />
   <!-- ─── Canonical ───────────────────────────────────── -->
   <link rel="canonical" href="https://www.alignsolutions.co.uk/" />
   <!-- ─── Open Graph ──────────────────────────────────── -->
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://www.alignsolutions.co.uk/" />
-  <meta property="og:title" content="Align Solutions — Reliability &amp; Maintenance Engineering UK" />
+  <meta property="og:title" content="Align Solutions, Reliability &amp; Maintenance Engineering UK" />
   <meta property="og:description" content="Specialist engineering firm bridging design, maintenance and reliability engineering. Smarter industrial operations across the UK and beyond." />
   <meta property="og:image" content="https://www.alignsolutions.co.uk/Brand_Assets/og-image.jpg" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
   <!-- ─── Twitter Card ────────────────────────────────── -->
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Align Solutions — Reliability &amp; Maintenance Engineering UK" />
+  <meta name="twitter:title" content="Align Solutions, Reliability &amp; Maintenance Engineering UK" />
   <meta name="twitter:description" content="Specialist engineering firm bridging design, maintenance and reliability engineering. Smarter industrial operations across the UK and beyond." />
   <meta name="twitter:image" content="https://www.alignsolutions.co.uk/Brand_Assets/og-image.jpg" />
   <!-- ─── Structured Data ─────────────────────────────── -->
@@ -126,7 +126,7 @@
       padding-bottom: 3px;
       transition: color 0.25s ease;
     }
-    /* Sliding underline — scales from 0 → 1 on hover, spring easing */
+    /* Sliding underline, scales from 0 → 1 on hover, spring easing */
     .nav-links a::after {
       content: '';
       position: absolute; bottom: 0; left: 0;
@@ -139,7 +139,7 @@
     .nav-links a:hover, .nav-links a.active { color: rgba(255,255,255,0.95); }
     .nav-links a:hover::after, .nav-links a.active::after { transform: scaleX(1); }
 
-    /* Nav CTA pill button — gradient-border resting, cobalt flood on hover */
+    /* Nav CTA pill button, gradient-border resting, cobalt flood on hover */
     .btn-pill {
       position: relative;
       display: inline-flex; align-items: center; gap: 0.45rem;
@@ -155,7 +155,7 @@
       isolation: isolate;
       transition: background 0.3s ease, transform 0.25s cubic-bezier(0.34,1.56,0.64,1);
     }
-    /* Gradient border ring — fades out on hover */
+    /* Gradient border ring, fades out on hover */
     .btn-pill::before {
       content: '';
       position: absolute; inset: 0;
@@ -168,7 +168,7 @@
       pointer-events: none;
       transition: opacity 0.3s ease;
     }
-    /* Cobalt flood fill — slides in from left on hover */
+    /* Cobalt flood fill, slides in from left on hover */
     .btn-pill::after {
       content: '';
       position: absolute; inset: 0; z-index: -1;
@@ -345,7 +345,7 @@
       white-space: nowrap;
       will-change: transform;
       user-select: none;
-      padding-bottom: 0.18em; /* room for descenders — clipped by background-clip:text at line-height 0.9 */
+      padding-bottom: 0.18em; /* room for descenders, clipped by background-clip:text at line-height 0.9 */
       /* Gradient replaces flat colour */
       background: linear-gradient(
         90deg,
@@ -487,7 +487,7 @@
       padding: 1.35rem 0;
       border-top: 1px solid rgba(255,255,255,0.08);
       text-decoration: none; color: white;
-      /* Translate right on hover — not dim */
+      /* Translate right on hover, not dim */
       transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1),
                   border-color 0.2s ease;
     }
@@ -589,7 +589,7 @@
     /* ─── 3D LOGO SCENE ───────────────────────────────── */
     .logo-3d-scene {
       width: 100%; max-width: 400px;
-      /* CSS perspective — depth of the 3D space */
+      /* CSS perspective, depth of the 3D space */
       perspective: 700px;
       perspective-origin: 50% 45%;
       cursor: grab;
@@ -660,31 +660,36 @@
     .partnership-line:last-child {
       background: linear-gradient(270deg, transparent 0%, rgba(255,255,255,0.1) 60%, rgba(62,81,163,0.3) 100%);
     }
-    .partnership-logo-wrap {
+    /* Two-brand supplier lockup */
+    .partnership-brands {
       position: relative; flex-shrink: 0;
-      width: 120px; height: 120px;
-      border-radius: 50%;
+      display: flex; align-items: center; gap: 1rem;
+    }
+    .partnership-chip {
+      position: relative;
+      display: inline-flex; align-items: center; justify-content: center;
+      height: 92px; padding: 0 1.75rem;
       background: rgba(255,255,255,0.03);
       border: 1px solid rgba(255,255,255,0.07);
-      display: flex; align-items: center; justify-content: center;
+      border-radius: 16px;
       box-shadow: 0 2px 8px rgba(62,81,163,0.1), 0 12px 40px rgba(0,0,0,0.45);
       transition: transform 0.4s cubic-bezier(0.34,1.56,0.64,1),
                   border-color 0.35s ease,
                   box-shadow 0.35s ease;
     }
-    .partnership-logo-wrap:hover {
-      transform: scale(1.06);
+    .partnership-chip:hover {
+      transform: translateY(-3px);
       border-color: rgba(62,81,163,0.35);
       box-shadow: 0 2px 8px rgba(62,81,163,0.2), 0 20px 60px rgba(0,0,0,0.5);
     }
-    /* Ambient glow disc behind the logo */
+    .partnership-chip img { display: block; width: auto; }
+    .partnership-chip.is-shell img { height: 52px; }
+    .partnership-chip.is-castrol img { height: 26px; }
+    /* Ambient cobalt glow behind the brand chips */
     .partnership-glow {
-      position: absolute; inset: -20px; border-radius: 50%;
-      background: radial-gradient(ellipse at center, rgba(255,205,0,0.07) 0%, transparent 65%);
+      position: absolute; inset: -28px -12px; border-radius: 40px;
+      background: radial-gradient(ellipse at center, rgba(62,81,163,0.14) 0%, transparent 70%);
       pointer-events: none; z-index: -1;
-    }
-    .partnership-logo {
-      width: 68px; height: auto; display: block;
     }
     .partnership-name {
       font-size: 0.6rem; font-weight: 700; text-transform: uppercase;
@@ -694,8 +699,22 @@
     .partnership-desc {
       font-size: 0.975rem; font-weight: 400; line-height: 1.65;
       color: rgba(255,255,255,0.38);
-      max-width: 440px; margin: 0 auto;
+      max-width: 480px; margin: 0 auto;
     }
+    /* Click-through to the services lubricants section */
+    .partnership-cta {
+      margin-top: 1.75rem;
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.14em;
+      color: rgba(255,255,255,0.5); text-decoration: none;
+      transition: color 0.25s ease;
+    }
+    .partnership-cta:hover { color: var(--cobalt-lt); }
+    .partnership-cta svg {
+      flex-shrink: 0;
+      transition: transform 0.25s cubic-bezier(0.34,1.56,0.64,1);
+    }
+    .partnership-cta:hover svg { transform: translate(2px, -2px); }
 
     /* ─── QUOTE ───────────────────────────────────────── */
     .quote-section {
@@ -718,13 +737,13 @@
       background: var(--navy);
       border-top: 1px solid rgba(255,255,255,0.06);
     }
-    /* Full-height visual section — mark + glass + content all stacked */
+    /* Full-height visual section, mark + glass + content all stacked */
     .footer-visual {
       position: relative; min-height: 780px; overflow: hidden;
       background: var(--navy);
       display: flex; flex-direction: column; justify-content: flex-end;
     }
-    /* Mark sits at top, centred — no blend modes that could taint the navy bg */
+    /* Mark sits at top, centred, no blend modes that could taint the navy bg */
     .footer-mark-wrap {
       position: absolute; top: 0; left: 50%;
       transform: translateX(-50%);
@@ -734,7 +753,7 @@
     .footer-mark-img {
       display: block; height: 740px; width: auto; opacity: 0.9;
     }
-    /* Content layer — IS the glass: backdrop + dark bg + top divider line */
+    /* Content layer, IS the glass: backdrop + dark bg + top divider line */
     .footer-content {
       position: relative; z-index: 3; padding: 2.5rem 2.5rem 0;
       backdrop-filter: blur(22px); -webkit-backdrop-filter: blur(22px);
@@ -805,7 +824,7 @@
     .fd4 { transition-delay: 0.38s; }
     .fd5 { transition-delay: 0.48s; }
 
-    /* ─── MOBILE NAV — hidden on desktop ─────────────── */
+    /* ─── MOBILE NAV, hidden on desktop ─────────────── */
     .nav-hamburger { display: none; }
     .mobile-nav    { display: none; }
 
@@ -856,7 +875,7 @@
       .mobile-nav-links a:hover,
       .mobile-nav-links a.active { color: #fff; }
 
-      /* Hero — left-aligned, fills the viewport on mobile */
+      /* Hero, left-aligned, fills the viewport on mobile */
       .hero {
         align-items: flex-end;
         justify-content: flex-start;
@@ -882,14 +901,14 @@
         text-align: left;
       }
 
-      /* Scroll-text — larger and more impactful on mobile */
+      /* Scroll-text, larger and more impactful on mobile */
       .scroll-text-section { padding: 5rem 0 3rem; }
       .scroll-line { font-size: clamp(52px, 16vw, 88px); }
       .scroll-lines { margin-bottom: 3rem; }
       .scroll-statement { padding: 0 1.25rem; }
       .scroll-statement-text { font-size: clamp(1.1rem, 4vw, 1.45rem); }
 
-      /* Bento stats — 2-col layout, auto row heights */
+      /* Bento stats, 2-col layout, auto row heights */
       .bento-wrap { padding: 4rem 1.25rem; }
       .bento-grid {
         grid-template-columns: 1fr 1fr;
@@ -905,7 +924,7 @@
       .bento-num-lg { font-size: clamp(2.75rem, 9vw, 4.25rem); }
       .bento-num-md { font-size: clamp(2.25rem, 7.5vw, 3.5rem); }
 
-      /* Services explore — stack to single column, hide visual */
+      /* Services explore, stack to single column, hide visual */
       .explore-wrap {
         grid-template-columns: 1fr;
         gap: 0;
@@ -916,14 +935,16 @@
 
       /* Partnership */
       .partnership-section { padding: 5rem 1.25rem; }
-      .partnership-lockup { gap: 1.5rem; }
-      .partnership-logo-wrap { width: 100px; height: 100px; }
-      .partnership-logo { width: 56px; }
+      .partnership-lockup { gap: 1rem; }
+      .partnership-brands { gap: 0.6rem; }
+      .partnership-chip { height: 70px; padding: 0 1rem; }
+      .partnership-chip.is-shell img { height: 38px; }
+      .partnership-chip.is-castrol img { height: 19px; }
 
       /* Quote section */
       .quote-section { padding: 6rem 1.25rem; }
 
-      /* Footer — tighter, better organised on mobile */
+      /* Footer, tighter, better organised on mobile */
       .footer-visual { min-height: auto; }
       .footer-mark-img { height: 260px; }
       .footer-content { padding: 2rem 1.25rem 0; }
@@ -976,7 +997,7 @@
     </svg>
   </a>
 
-  <!-- Mobile hamburger — hidden on desktop via CSS -->
+  <!-- Mobile hamburger, hidden on desktop via CSS -->
   <button class="nav-hamburger" aria-label="Open menu" aria-expanded="false" id="navHamburger">
     <span></span><span></span><span></span>
   </button>
@@ -1004,10 +1025,10 @@
 <main id="main-content">
 
 <!-- ══════════════════════════════════ HERO ZONE ═══ -->
-<!-- dotted-surface lives here — hero only -->
+<!-- dotted-surface lives here, hero only -->
 <div class="hero-scroll-zone">
 
-  <!-- Animated dot grid canvas — sticky, stays in viewport while hero is visible -->
+  <!-- Animated dot grid canvas, sticky, stays in viewport while hero is visible -->
   <div id="dotted-surface" aria-hidden="true"></div>
 
 <!-- ═══════════════════════════════════════ HERO ══ -->
@@ -1192,7 +1213,7 @@
     </div>
 
     <div class="explore-visual-col fade-up fd2">
-      <!-- 3D interactive logomark — drag to rotate, auto-spins when idle -->
+      <!-- 3D interactive logomark, drag to rotate, auto-spins when idle -->
       <div class="logo-3d-scene" id="logo3dScene">
         <div class="logo-3d-obj" id="logo3dObj">
           <!-- Glow disc behind the logo on the Z axis -->
@@ -1220,17 +1241,22 @@
 
     <div class="partnership-lockup fade-up fd1">
       <div class="partnership-line" aria-hidden="true"></div>
-      <div class="partnership-logo-wrap">
-        <img src="Brand_Assets/SVG Logos/shell-logo.svg" alt="Shell" class="partnership-logo" width="68" height="63">
+      <div class="partnership-brands">
         <span class="partnership-glow" aria-hidden="true"></span>
+        <span class="partnership-chip is-shell"><img src="Brand_Assets/SVG Logos/shell-logo.svg" alt="Shell" /></span>
+        <span class="partnership-chip is-castrol"><img src="Brand_Assets/SVG Logos/castrol-logo.svg" alt="Castrol" /></span>
       </div>
       <div class="partnership-line" aria-hidden="true"></div>
     </div>
 
-    <span class="partnership-name fade-up fd2">Shell</span>
+    <span class="partnership-name fade-up fd2">Shell &amp; Castrol</span>
     <p class="partnership-desc fade-up fd3">
-      Delivering reliability and maintenance engineering support for Shell's downstream operations — keeping critical assets running.
+      Authorised supplier of premium Shell and Castrol lubricants, plus Shell LubeAnalyst oil analysis, product supply backed by reliability engineering, across oil &amp; gas, maritime and renewables.
     </p>
+    <a href="services.html#lubricants" class="partnership-cta fade-up fd3">
+      Lubricant supply &amp; oil analysis
+      <svg width="11" height="11" viewBox="0 0 11 11" fill="none"><path d="M2 9L9 2M9 2H3M9 2V8" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
 
   </div>
 </section>
@@ -1250,9 +1276,9 @@
 <footer class="site-footer">
   <div class="footer-visual">
 
-    <!-- Logomark — full height, animated via CSS filter (no background bleed) -->
+    <!-- Logomark, full height, animated via CSS filter (no background bleed) -->
     <div class="footer-mark-wrap">
-      <!-- Inline SVG so gradient fills apply directly to paths — no animation, no filter cycling -->
+      <!-- Inline SVG so gradient fills apply directly to paths, no animation, no filter cycling -->
       <svg class="footer-mark-img" viewBox="0 0 796.86 771.12" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
         <defs>
           <linearGradient id="footerMarkGrad" x1="0" y1="0" x2="796.86" y2="771.12" gradientUnits="userSpaceOnUse">
@@ -1275,7 +1301,7 @@
 
           <!-- Col 1: Location + live clock -->
           <div class="footer-col">
-            <span class="footer-col-place">UK — Norwich</span>
+            <span class="footer-col-place">Norwich, UK</span>
             <span class="footer-col-time" id="footer-time">--:--:--</span>
             <span class="footer-col-tz">(GMT / BST)</span>
           </div>
@@ -1329,7 +1355,7 @@
 
       </div><!-- /footer-inner -->
 
-      <!-- Wordmark — flush to bottom edge -->
+      <!-- Wordmark, flush to bottom edge -->
       <div class="footer-visual-wordmark">Align Solutions</div>
     </div><!-- /footer-content -->
 
@@ -1459,7 +1485,7 @@ const counterIO = new IntersectionObserver(entries => {
 }, { threshold: 0.5 });
 document.querySelectorAll('[data-count]').forEach(el => counterIO.observe(el));
 
-// ── Dotted surface — floor-grid perspective ─────────
+// ── Dotted surface, floor-grid perspective ─────────
 // A receding horizontal grid of dots, visible only in the
 // bottom third of the hero. Crisp, small dots. Pure 2D canvas.
 (function initDottedSurface() {
@@ -1472,7 +1498,7 @@ document.querySelectorAll('[data-count]').forEach(el => counterIO.observe(el));
 
   const ctx = canvas.getContext('2d');
 
-  // Grid dimensions — dense for a fine grid feel
+  // Grid dimensions, dense for a fine grid feel
   const SEP_X = 90;   // horizontal dot spacing (world units)
   const SEP_Z = 100;  // depth dot spacing (world units)
   const NX    = 55;   // columns
@@ -1517,7 +1543,7 @@ document.querySelectorAll('[data-count]').forEach(el => counterIO.observe(el));
         const x3 = ix * SEP_X - (NX * SEP_X) / 2;
         const z3 = iz * SEP_Z; // grid extends forward from camera
 
-        // Gentle wave — small amplitude keeps the surface readable
+        // Gentle wave, small amplitude keeps the surface readable
         const y3 = Math.sin((ix + count) * 0.45) * 22
                  + Math.sin((iz + count) * 0.65) * 16;
 
@@ -1536,7 +1562,7 @@ document.querySelectorAll('[data-count]').forEach(el => counterIO.observe(el));
       // Normalise depth: far ≈ 0, near ≈ 1
       const t = Math.min(1, p.depth * 3500);
 
-      // Crisp, small dots — 0.6px far to 2.2px near
+      // Crisp, small dots, 0.6px far to 2.2px near
       const radius = 0.6 + t * 1.6;
       // Subtle far, visible near
       const alpha  = 0.04 + t * 0.52;
@@ -1667,7 +1693,7 @@ document.querySelectorAll('[data-count]').forEach(el => counterIO.observe(el));
   });
 })();
 
-/* ── 3D Logo — drag-to-rotate with inertia + idle auto-spin ── */
+/* ── 3D Logo, drag-to-rotate with inertia + idle auto-spin ── */
 (function () {
   const scene = document.getElementById('logo3dScene');
   const obj   = document.getElementById('logo3dObj');
@@ -1719,7 +1745,7 @@ document.querySelectorAll('[data-count]').forEach(el => counterIO.observe(el));
   function apply() {
     obj.style.transform = `rotateX(${rotX}deg) rotateY(${rotY}deg)`;
 
-    // Shadow moves opposite to rotation angle — makes it feel lit from top-left
+    // Shadow moves opposite to rotation angle, makes it feel lit from top-left
     const sx = Math.sin(rotY * Math.PI / 180) * -20;
     const sy = Math.sin(rotX * Math.PI / 180) * 14 + 28;
     svg.style.filter =
@@ -1748,7 +1774,7 @@ document.querySelectorAll('[data-count]').forEach(el => counterIO.observe(el));
     requestAnimationFrame(tick);
   }
 
-  /* Pointer events — works for mouse and touch */
+  /* Pointer events, works for mouse and touch */
   scene.addEventListener('pointerdown', (e) => {
     dragging  = true;
     autoSpin  = false;

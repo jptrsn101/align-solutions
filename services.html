@@ -3,21 +3,21 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Engineering Services — Reliability, Maintenance &amp; Design</title>
+  <title>Engineering Services, Reliability, Maintenance &amp; Design</title>
   <meta name="description" content="Six integrated engineering disciplines: reliability engineering, maintenance, design, asset management, HSEQ consultancy and project delivery for heavy industry." />
   <!-- ─── Canonical ───────────────────────────────────── -->
   <link rel="canonical" href="https://www.alignsolutions.co.uk/services.html" />
   <!-- ─── Open Graph ──────────────────────────────────── -->
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://www.alignsolutions.co.uk/services.html" />
-  <meta property="og:title" content="Engineering Services — Reliability, Maintenance &amp; Design" />
+  <meta property="og:title" content="Engineering Services, Reliability, Maintenance &amp; Design" />
   <meta property="og:description" content="Six integrated engineering disciplines: reliability engineering, maintenance, design, asset management, HSEQ consultancy and project delivery for heavy industry." />
   <meta property="og:image" content="https://www.alignsolutions.co.uk/Brand_Assets/og-image.jpg" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
   <!-- ─── Twitter Card ────────────────────────────────── -->
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Engineering Services — Reliability, Maintenance &amp; Design" />
+  <meta name="twitter:title" content="Engineering Services, Reliability, Maintenance &amp; Design" />
   <meta name="twitter:description" content="Six integrated engineering disciplines: reliability engineering, maintenance, design, asset management, HSEQ consultancy and project delivery for heavy industry." />
   <meta name="twitter:image" content="https://www.alignsolutions.co.uk/Brand_Assets/og-image.jpg" />
   <!-- ─── Structured Data ─────────────────────────────── -->
@@ -118,7 +118,7 @@
       padding-bottom: 3px;
       transition: color 0.25s ease;
     }
-    /* Sliding underline — scales from 0 → 1 on hover, spring easing */
+    /* Sliding underline, scales from 0 → 1 on hover, spring easing */
     .nav-links a::after {
       content: '';
       position: absolute; bottom: 0; left: 0;
@@ -131,7 +131,7 @@
     .nav-links a:hover, .nav-links a.active { color: rgba(255,255,255,0.95); }
     .nav-links a:hover::after, .nav-links a.active::after { transform: scaleX(1); }
 
-        /* Nav CTA pill button — gradient-border resting, cobalt flood on hover */
+        /* Nav CTA pill button, gradient-border resting, cobalt flood on hover */
     .btn-pill {
       position: relative;
       display: inline-flex; align-items: center; gap: 0.45rem;
@@ -147,7 +147,7 @@
       isolation: isolate;
       transition: background 0.3s ease, transform 0.25s cubic-bezier(0.34,1.56,0.64,1);
     }
-    /* Gradient border ring — fades out on hover */
+    /* Gradient border ring, fades out on hover */
     .btn-pill::before {
       content: '';
       position: absolute; inset: 0; border-radius: 100px; padding: 1px;
@@ -156,7 +156,7 @@
       -webkit-mask-composite: xor; mask-composite: exclude; pointer-events: none;
       transition: opacity 0.3s ease;
     }
-    /* Cobalt flood fill — slides in from left on hover */
+    /* Cobalt flood fill, slides in from left on hover */
     .btn-pill::after {
       content: '';
       position: absolute; inset: 0; z-index: -1;
@@ -656,7 +656,7 @@
       font-size: 0.78rem; color: rgba(255,255,255,0.35); display: flex; align-items: flex-start; gap: 0.5rem;
     }
     .journey-stage-point::before {
-      content: '—'; color: rgba(62,81,163,0.5); flex-shrink: 0;
+      content: '–'; color: rgba(62,81,163,0.5); flex-shrink: 0;
     }
     .journey-stage--goal .journey-stage-point { color: rgba(255,255,255,0.55); }
     .journey-stage--goal .journey-stage-point::before { color: var(--cobalt-lt); }
@@ -969,6 +969,160 @@
     .btn-grad svg { flex-shrink: 0; }
     .btn-submit { width: 100%; justify-content: center; background: rgba(62,81,163,0.18); }
     .btn-submit:hover { background: transparent; }
+
+    /* ─── LUBRICANTS SUPPLY & OIL ANALYSIS ───────────────── */
+    .lubricants-section {
+      position: relative; overflow: hidden;
+      border-top: 1px solid rgba(255,255,255,0.05);
+    }
+    /* Ambient cobalt wash, top-right */
+    .lubricants-section::before {
+      content: ''; position: absolute; inset: 0; pointer-events: none;
+      background: radial-gradient(ellipse 55% 45% at 82% 0%, rgba(62,81,163,0.10) 0%, transparent 60%);
+    }
+    .lub-wrap {
+      position: relative; z-index: 1;
+      max-width: 1240px; margin: 0 auto;
+      padding: 7rem 2.5rem;
+    }
+    /* Header: heading left, lead + co-brand lockup right */
+    .lub-header {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 4rem; align-items: start; margin-bottom: 3.5rem;
+    }
+    .lub-heading {
+      font-size: clamp(2rem, 3.5vw, 3.2rem);
+      font-weight: 700; line-height: 1.05; letter-spacing: -0.03em;
+    }
+    .lub-lead p { font-size: 1.0625rem; line-height: 1.7; color: rgba(255,255,255,0.5); }
+    .lub-lead strong { color: rgba(255,255,255,0.82); font-weight: 500; }
+    /* Co-brand proof lockup */
+    .lub-brands { margin-top: 2rem; }
+    .lub-brands-label, .lub-industries-label {
+      display: block;
+      font-size: 0.58rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.18em; color: rgba(255,255,255,0.32);
+      margin-bottom: 1rem;
+    }
+    .lub-brand-row { display: flex; align-items: center; flex-wrap: wrap; gap: 0.85rem; }
+    .lub-brand-chip {
+      display: inline-flex; align-items: center; justify-content: center;
+      height: 76px; padding: 0 1.6rem;
+      background: rgba(255,255,255,0.035);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(62,81,163,0.10), 0 10px 32px rgba(0,0,0,0.35);
+      transition: border-color 0.3s ease, transform 0.4s cubic-bezier(0.34,1.56,0.64,1);
+    }
+    .lub-brand-chip:hover { border-color: rgba(62,81,163,0.4); transform: translateY(-2px); }
+    .lub-brand-chip img { display: block; width: auto; }
+    .lub-brand-chip.is-shell img { height: 44px; }
+    .lub-brand-chip.is-castrol img { height: 22px; }
+    .lub-brand-more { font-size: 0.8rem; color: rgba(255,255,255,0.35); }
+    /* Positioning thesis */
+    .lub-thesis {
+      max-width: 940px; margin: 0 0 4rem;
+      padding: 0.25rem 0 0.25rem 2rem;
+      border-left: 2px solid var(--cobalt);
+    }
+    .lub-thesis-quote {
+      font-size: clamp(1.4rem, 2.4vw, 2.05rem);
+      font-weight: 700; line-height: 1.2; letter-spacing: -0.02em;
+      color: #fff; margin-bottom: 1rem;
+    }
+    .lub-thesis-support { font-size: 1rem; line-height: 1.7; color: rgba(255,255,255,0.5); }
+    /* Capability cards */
+    .lub-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 10px; }
+    .lub-card, .lub-feature {
+      position: relative; overflow: hidden;
+      background: var(--navy-card);
+      border: 1px solid rgba(255,255,255,0.04);
+      border-radius: 16px;
+      transition: border-color 0.3s ease, transform 0.3s cubic-bezier(0.34,1.56,0.64,1);
+    }
+    .lub-card::before, .lub-feature::before {
+      content: ''; position: absolute; inset: 0; pointer-events: none; border-radius: 16px;
+      background: radial-gradient(ellipse 70% 60% at 100% 100%, rgba(62,81,163,0.13) 0%, transparent 60%);
+    }
+    .lub-card:hover, .lub-feature:hover { border-color: rgba(62,81,163,0.5); transform: translateY(-2px); }
+    .lub-card { padding: 2.5rem; display: flex; flex-direction: column; gap: 0.9rem; }
+    .lub-card-tag {
+      position: relative;
+      font-size: 0.58rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.18em; color: var(--cobalt-lt);
+    }
+    .lub-card-title {
+      position: relative;
+      font-size: 1.2rem; font-weight: 700; letter-spacing: -0.015em; line-height: 1.15;
+    }
+    .lub-card-desc { position: relative; font-size: 0.9rem; line-height: 1.7; color: rgba(255,255,255,0.45); }
+    .lub-card-desc strong { color: rgba(255,255,255,0.8); font-weight: 500; }
+    /* Featured card, lubricants → reliability */
+    .lub-feature {
+      display: grid; grid-template-columns: 1.55fr 1fr; gap: 2.75rem;
+      padding: 2.75rem; align-items: center;
+    }
+    .lub-feature-main { position: relative; }
+    .lub-feature-title {
+      font-size: clamp(1.3rem, 2vw, 1.7rem); font-weight: 700;
+      letter-spacing: -0.02em; line-height: 1.15; margin: 0.7rem 0 1rem;
+    }
+    .lub-feature-desc { font-size: 0.95rem; line-height: 1.75; color: rgba(255,255,255,0.5); }
+    .lub-feature-desc strong { color: rgba(255,255,255,0.82); font-weight: 500; }
+    /* Oil-analysis data → reliability decisions */
+    .lub-feature-flow { position: relative; display: flex; flex-direction: column; gap: 0.75rem; }
+    .lub-flow-source {
+      font-size: 0.8rem; font-weight: 600; color: #fff; text-align: center;
+      padding: 0.85rem 1rem;
+      background: rgba(62,81,163,0.18); border: 1px solid rgba(62,81,163,0.45);
+      border-radius: 10px;
+    }
+    .lub-flow-arrow {
+      font-size: 0.55rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.16em;
+      color: var(--cobalt-lt); text-align: center;
+    }
+    .lub-flow-out { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+    .lub-flow-out li {
+      position: relative;
+      font-size: 0.78rem; font-weight: 500; color: rgba(255,255,255,0.72);
+      padding: 0.75rem 1rem 0.75rem 2.1rem;
+      background: rgba(255,255,255,0.025);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 10px;
+    }
+    .lub-flow-out li::before {
+      content: ''; position: absolute; left: 1rem; top: 50%; transform: translateY(-50%);
+      width: 6px; height: 6px; border-radius: 50%; background: var(--cobalt-lt);
+    }
+    /* Industries + CTA foot */
+    .lub-foot {
+      margin-top: 3.5rem; padding-top: 2.5rem;
+      border-top: 1px solid rgba(255,255,255,0.06);
+      display: flex; align-items: flex-end; justify-content: space-between;
+      gap: 2rem; flex-wrap: wrap;
+    }
+    .lub-industries-label { margin-bottom: 0.85rem; }
+    .lub-industries-list { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+    .lub-industries-list span {
+      font-size: 0.8rem; color: rgba(255,255,255,0.62);
+      padding: 0.5rem 1rem;
+      border: 1px solid rgba(255,255,255,0.1); border-radius: 100px;
+    }
+    @media (max-width: 768px) {
+      .lub-wrap { padding: 4rem 1.5rem; }
+      .lub-header { grid-template-columns: 1fr; gap: 2rem; margin-bottom: 2.5rem; }
+      .lub-grid { grid-template-columns: 1fr; }
+      .lub-feature { grid-template-columns: 1fr; gap: 2rem; padding: 2rem; }
+      .lub-thesis { margin-bottom: 3rem; padding-left: 1.5rem; }
+      .lub-card { padding: 2rem; }
+      .lub-foot { flex-direction: column; align-items: flex-start; gap: 1.75rem; }
+    }
+    @media (max-width: 480px) {
+      .lub-wrap { padding: 3rem 1.25rem; }
+      .lub-brand-chip { height: 64px; padding: 0 1.2rem; }
+      .lub-brand-chip.is-shell img { height: 38px; }
+      .lub-brand-chip.is-castrol img { height: 19px; }
+    }
   </style>
 </head>
 <body>
@@ -1047,7 +1201,7 @@
     </div>
     <div class="fade-up fd1">
       <p class="intro-body">
-        Most engineering firms hand off between specialisms. We don't. Align brings <strong>design, maintenance, reliability, asset management, consultancy and project delivery</strong> under one roof — so there are no gaps between disciplines, no lost context and no diluted responsibility.
+        Most engineering firms hand off between specialisms. We don't. Align brings <strong>design, maintenance, reliability, asset management, consultancy and project delivery</strong> under one roof, so there are no gaps between disciplines, no lost context and no diluted responsibility.
       </p>
       <p class="intro-body" style="margin-top: 1.25rem;">
         Whether you need a single service or the full complement, every engagement is led by engineers with direct experience in your sector. That means faster mobilisation, sharper recommendations and outcomes you can measure.
@@ -1062,12 +1216,12 @@
   <div class="services-wrap">
     <div class="services-grid">
 
-      <!-- 01 Reliability Engineering — HERO / PRIMARY SERVICE -->
+      <!-- 01 Reliability Engineering, HERO / PRIMARY SERVICE -->
       <a href="contact.html" class="svc-card--hero fade-up">
         <div style="position: relative;">
           <span class="svc-hero-badge">Primary Service</span>
           <h3 class="svc-hero-name">Reliability<br>Engineering</h3>
-          <p class="svc-hero-tagline"><em>"Your equipment is telling you something — are you listening?"</em></p>
+          <p class="svc-hero-tagline"><em>"Your equipment is telling you something. Are you listening?"</em></p>
           <p class="svc-hero-desc">FMEA, RCM, RCA and Weibull life modelling to understand exactly why assets fail and when. We build the evidence base that turns reactive firefighting into controlled, predictable operations.</p>
           <div class="svc-card-footer" style="border-top: 1px solid rgba(255,255,255,0.06); padding-top: 1.5rem; margin-top: 0;">
             <span class="svc-card-link">Enquire about this service</span>
@@ -1077,31 +1231,31 @@
           <ul class="svc-hero-capabilities">
             <li class="svc-hero-cap">
               <svg class="svc-hero-cap-check" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2.5 7L5.5 10L11.5 4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              FMEA &amp; RCM — systematic failure mode identification
+              FMEA &amp; RCM, systematic failure mode identification
             </li>
             <li class="svc-hero-cap">
               <svg class="svc-hero-cap-check" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2.5 7L5.5 10L11.5 4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              Root cause analysis — find the mechanism, not just the symptom
+              Root cause analysis, find the mechanism, not just the symptom
             </li>
             <li class="svc-hero-cap">
               <svg class="svc-hero-cap-check" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2.5 7L5.5 10L11.5 4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              Weibull life modelling — quantify wear patterns and predict failure
+              Weibull life modelling, quantify wear patterns and predict failure
             </li>
             <li class="svc-hero-cap">
               <svg class="svc-hero-cap-check" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2.5 7L5.5 10L11.5 4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              Monte Carlo simulation — validate operating limits with data
+              Monte Carlo simulation, validate operating limits with data
             </li>
             <li class="svc-hero-cap">
               <svg class="svc-hero-cap-check" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2.5 7L5.5 10L11.5 4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              Predictive modelling — condition-based maintenance from real data
+              Predictive modelling, condition-based maintenance from real data
             </li>
             <li class="svc-hero-cap">
               <svg class="svc-hero-cap-check" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2.5 7L5.5 10L11.5 4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              Asset reliability strategy — from analysis to implementation plan
+              Asset reliability strategy, from analysis to implementation plan
             </li>
             <li class="svc-hero-cap">
               <svg class="svc-hero-cap-check" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2.5 7L5.5 10L11.5 4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              Full Systems Assessment — 10-step process from asset register to lifecycle upgrade
+              Full Systems Assessment, 10-step process from asset register to lifecycle upgrade
             </li>
           </ul>
         </div>
@@ -1118,7 +1272,7 @@
           </span>
         </div>
         <h3 class="svc-card-name">Maintenance Engineering</h3>
-        <p class="svc-card-desc">Planned, preventive and corrective maintenance strategies. CMMS integration and support to ensure your assets are maintained to the right standard at the right time — including large-scale maintenance project delivery.</p>
+        <p class="svc-card-desc">Planned, preventive and corrective maintenance strategies. CMMS integration and support to ensure your assets are maintained to the right standard at the right time, including large-scale maintenance project delivery.</p>
         <div class="svc-card-footer">
           <span class="svc-card-link">Enquire about this service</span>
         </div>
@@ -1158,7 +1312,7 @@
         </div>
       </a>
 
-      <!-- 05 HSEQ — Coming Soon -->
+      <!-- 05 HSEQ, Coming Soon -->
       <div class="svc-card svc-card--muted fade-up fd4" aria-disabled="true">
         <div class="svc-card-top">
           <span class="svc-num">05</span>
@@ -1197,6 +1351,94 @@
 </section>
 
 
+<!-- ═══════════════ LUBRICANTS SUPPLY & OIL ANALYSIS ═══ -->
+<section class="lubricants-section" id="lubricants">
+  <div class="lub-wrap">
+
+    <!-- Header: heading + lead + authorised-supplier lockup -->
+    <div class="lub-header">
+      <div>
+        <span class="eyebrow fade-up">Authorised Lubricant Supplier</span>
+        <h2 class="lub-heading fade-up fd1">
+          Lubricants Supply<br><span class="grad-text">&amp; Oil Analysis</span>
+        </h2>
+      </div>
+      <div class="fade-up fd1">
+        <div class="lub-lead">
+          <p>Align Solutions is an <strong>authorised supplier of premium lubricants</strong> from Shell, Castrol and a range of other major industrial brands, expert specification, advice and supply across oil &amp; gas, maritime and renewables.</p>
+        </div>
+        <!-- Co-brand proof -->
+        <div class="lub-brands">
+          <span class="lub-brands-label">Authorised supplier of</span>
+          <div class="lub-brand-row">
+            <span class="lub-brand-chip is-shell"><img src="Brand_Assets/SVG Logos/shell-logo.svg" alt="Shell" /></span>
+            <span class="lub-brand-chip is-castrol"><img src="Brand_Assets/SVG Logos/castrol-logo.svg" alt="Castrol" /></span>
+            <span class="lub-brand-more">+ other major industrial brands</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Positioning thesis -->
+    <div class="lub-thesis fade-up">
+      <p class="lub-thesis-quote">Lubricant selection is an engineering decision, not a procurement one.</p>
+      <p class="lub-thesis-support">The wrong product, or an undetected oil condition issue, accelerates wear, reduces asset availability and drives unnecessary maintenance cost. Our reliability engineering background means we advise on lubricants with the same rigour we apply to maintenance strategy.</p>
+    </div>
+
+    <!-- Two capability cards -->
+    <div class="lub-grid">
+      <article class="lub-card fade-up">
+        <span class="lub-card-tag">Supply</span>
+        <h3 class="lub-card-title">Shell Lubricants &amp; Shell Panolin</h3>
+        <p class="lub-card-desc">We supply the full Shell lubricants range, including <strong>Shell Panolin</strong>, high-performance synthetic and biodegradable lubricants for demanding and environmentally sensitive applications, widely specified offshore and across marine, wind energy and oil &amp; gas environments.</p>
+      </article>
+      <article class="lub-card fade-up fd1">
+        <span class="lub-card-tag">Oil Analysis</span>
+        <h3 class="lub-card-title">Shell LubeAnalyst</h3>
+        <p class="lub-card-desc">Track lubricant degradation, detect early-stage wear, optimise drain intervals and build the trend data that supports maintenance strategy. Results are interpreted by our engineers against your asset history, <strong>not reviewed in isolation</strong>.</p>
+      </article>
+    </div>
+
+    <!-- Featured: linking lubricants to reliability engineering -->
+    <article class="lub-feature fade-up">
+      <div class="lub-feature-main">
+        <span class="lub-card-tag">Where the value is</span>
+        <h3 class="lub-feature-title">Linking lubricants to reliability engineering</h3>
+        <p class="lub-feature-desc">We connect lubricant performance and oil-analysis data to your wider reliability and maintenance strategy. Combined with asset lifecycle management, Weibull analysis and maintenance optimisation, we move clients beyond simple oil changes toward a fully integrated, data-driven approach to asset reliability. <strong>Engineering-led advice, not product sales.</strong></p>
+      </div>
+      <!-- How oil-analysis data feeds reliability decisions -->
+      <div class="lub-feature-flow" aria-label="How oil analysis data feeds reliability decisions">
+        <span class="lub-flow-source">LubeAnalyst wear-metal trends</span>
+        <span class="lub-flow-arrow" aria-hidden="true">feeds into</span>
+        <ul class="lub-flow-out">
+          <li>FMEA updates</li>
+          <li>RCM reviews</li>
+          <li>Refined PM intervals</li>
+        </ul>
+      </div>
+    </article>
+
+    <!-- Industries + CTA -->
+    <div class="lub-foot fade-up">
+      <div class="lub-industries">
+        <span class="lub-industries-label">Industries we serve</span>
+        <div class="lub-industries-list">
+          <span>Oil &amp; Gas</span>
+          <span>Maritime</span>
+          <span>Renewables</span>
+          <span>General Industrial</span>
+        </div>
+      </div>
+      <a href="contact.html" class="btn-grad">
+        Discuss Lubricant Supply
+        <svg width="11" height="11" viewBox="0 0 11 11" fill="none"><path d="M2 9L9 2M9 2H3M9 2V8" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+
+  </div>
+</section>
+
+
 <!-- ═══════════════════════════════ WEIBULL GRAPH ═══ -->
 <section class="weibull-section" id="reliability-methodology">
   <div class="weibull-wrap">
@@ -1210,7 +1452,7 @@
       </div>
       <div>
         <p class="weibull-body">
-          The Weibull distribution is the foundation of reliability analysis. By fitting failure data to the right model, we identify whether assets are suffering early-life defects, random failures, or wear-out — and respond accordingly. Different failure modes demand different interventions. We find which applies to your assets.
+          The Weibull distribution is the foundation of reliability analysis. By fitting failure data to the right model, we identify whether assets are suffering early-life defects, random failures, or wear-out, and respond accordingly. Different failure modes demand different interventions. We find which applies to your assets.
         </p>
       </div>
     </div>
@@ -1219,7 +1461,7 @@
       <!-- ── Canvas + tooltip overlay ── -->
       <div class="weibull-canvas-wrap">
         <canvas id="weibullChart"
-          aria-label="Interactive Weibull reliability chart — R(t) vs Time (months) for four β values"
+          aria-label="Interactive Weibull reliability chart, R(t) vs Time (months) for four β values"
           role="img"></canvas>
         <div id="weibullTooltip" class="weibull-tooltip" aria-live="polite"></div>
       </div>
@@ -1231,7 +1473,7 @@
         <div class="weibull-ctrl-row">
           <div class="weibull-ctrl-header">
             <span class="ctrl-swatch dotted" style="color:#8899d4; background: repeating-linear-gradient(90deg,#8899d4 0,#8899d4 3px,transparent 3px,transparent 7px);"></span>
-            β = 1.0 — Random Failures
+            β = 1.0, Random Failures
           </div>
           <div class="weibull-ctrl-sliders">
             <div class="weibull-slider-group">
@@ -1245,11 +1487,11 @@
           </div>
         </div>
 
-        <!-- Curve 1: β = 1.15 solid orange — Pump 1 -->
+        <!-- Curve 1: β = 1.15 solid orange, Pump 1 -->
         <div class="weibull-ctrl-row">
           <div class="weibull-ctrl-header">
             <span class="ctrl-swatch" style="background:#f97316;"></span>
-            Pump 1 — β = 1.15 System-Driven Wear
+            Pump 1, β = 1.15 System-Driven Wear
           </div>
           <div class="weibull-ctrl-sliders">
             <div class="weibull-slider-group">
@@ -1263,11 +1505,11 @@
           </div>
         </div>
 
-        <!-- Curve 2: β = 2.1 solid green — Pump 2 -->
+        <!-- Curve 2: β = 2.1 solid green, Pump 2 -->
         <div class="weibull-ctrl-row">
           <div class="weibull-ctrl-header">
             <span class="ctrl-swatch" style="background:#4ade80;"></span>
-            Pump 2 — β = 2.1 Wear-Out
+            Pump 2, β = 2.1 Wear-Out
           </div>
           <div class="weibull-ctrl-sliders">
             <div class="weibull-slider-group">
@@ -1285,7 +1527,7 @@
         <div class="weibull-ctrl-row">
           <div class="weibull-ctrl-header">
             <span class="ctrl-swatch dashed" style="color:#ef4444; background: repeating-linear-gradient(90deg,#ef4444 0,#ef4444 6px,transparent 6px,transparent 11px);"></span>
-            β = 3.0 — Normal Wear Example
+            β = 3.0, Normal Wear Example
           </div>
           <div class="weibull-ctrl-sliders">
             <div class="weibull-slider-group">
@@ -1305,19 +1547,19 @@
       <div class="weibull-legend">
         <div class="weibull-legend-item">
           <div class="legend-line" style="background: repeating-linear-gradient(90deg,#8899d4 0,#8899d4 3px,transparent 3px,transparent 7px);"></div>
-          β = 1.0 — Random failures
+          β = 1.0, Random failures
         </div>
         <div class="weibull-legend-item">
           <div class="legend-line" style="background:#f97316;"></div>
-          Pump 1 — β = 1.15 System-driven wear
+          Pump 1, β = 1.15 System-driven wear
         </div>
         <div class="weibull-legend-item">
           <div class="legend-line" style="background:#4ade80;"></div>
-          Pump 2 — β = 2.1 Wear-out
+          Pump 2, β = 2.1 Wear-out
         </div>
         <div class="weibull-legend-item">
           <div class="legend-line" style="background: repeating-linear-gradient(90deg,#ef4444 0,#ef4444 6px,transparent 6px,transparent 11px);"></div>
-          β = 3.0 — Normal wear example
+          β = 3.0, Normal wear example
         </div>
       </div>
 
@@ -1528,9 +1770,9 @@
     <div class="reliatic-card fade-up">
       <div class="reliatic-badge">Technology Partner</div>
       <div class="reliatic-body">
-        <div class="reliatic-title">Reliatic — Digital Reliability Engineer</div>
+        <div class="reliatic-title">Reliatic, Digital Reliability Engineer</div>
         <p class="reliatic-desc">
-          Align Solutions has partnered with Reliatic to deliver a Digital Reliability Engineer. We combine deep reliability expertise with practical, usable software. We don't analyse your data and walk away — we leave you with tools you continue to use long after we're gone.
+          Align Solutions has partnered with Reliatic to deliver a Digital Reliability Engineer. We combine deep reliability expertise with practical, usable software. We don't analyse your data and walk away. We leave you with tools you continue to use long after we're gone.
         </p>
       </div>
       <div class="reliatic-cta">
@@ -1601,7 +1843,7 @@
       <div class="footer-inner">
         <div class="footer-cols">
           <div class="footer-col">
-            <span class="footer-col-place">UK — Norwich</span>
+            <span class="footer-col-place">Norwich, UK</span>
             <span class="footer-col-time" id="footer-time">--:--:--</span>
             <span class="footer-col-tz">(GMT / BST)</span>
           </div>
@@ -1679,10 +1921,10 @@ window.addEventListener('load', () => {
   // ── Curve definitions ──────────────────────────────────────────────
   // Each curve: beta, eta (months), colour, dash pattern, line width, display label
   const curves = [
-    { beta: 1.00, eta: 36, color: '#8899d4', dash: [4, 5],    lw: 2,   label: 'β = 1.0 — Random failures'        },
-    { beta: 1.15, eta: 36, color: '#f97316', dash: [],         lw: 2.5, label: 'Pump 1 — β = 1.15 System wear'    },
-    { beta: 2.10, eta: 36, color: '#4ade80', dash: [],         lw: 2.5, label: 'Pump 2 — β = 2.1 Wear-out'        },
-    { beta: 3.00, eta: 36, color: '#ef4444', dash: [9, 5],    lw: 2,   label: 'β = 3.0 — Normal wear example'    },
+    { beta: 1.00, eta: 36, color: '#8899d4', dash: [4, 5],    lw: 2,   label: 'β = 1.0, Random failures'        },
+    { beta: 1.15, eta: 36, color: '#f97316', dash: [],         lw: 2.5, label: 'Pump 1, β = 1.15 System wear'    },
+    { beta: 2.10, eta: 36, color: '#4ade80', dash: [],         lw: 2.5, label: 'Pump 2, β = 2.1 Wear-out'        },
+    { beta: 3.00, eta: 36, color: '#ef4444', dash: [9, 5],    lw: 2,   label: 'β = 3.0, Normal wear example'    },
   ];
 
   // ── Layout constants ────────────────────────────────────────────────
@@ -1825,7 +2067,7 @@ window.addEventListener('load', () => {
       const rel = R(t, beta, eta);
       html += `<div class="weibull-tooltip-row">
         <span class="weibull-tooltip-swatch" style="background:${color};"></span>
-        <span>${label.split('—')[0].trim()}&nbsp;<strong style="color:rgba(255,255,255,0.85);">R = ${(rel * 100).toFixed(1)}%</strong></span>
+        <span>${label.split(',')[0].trim()}&nbsp;<strong style="color:rgba(255,255,255,0.85);">R = ${(rel * 100).toFixed(1)}%</strong></span>
       </div>`;
     });
 

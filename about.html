@@ -3,21 +3,21 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>About Align Solutions — Engineering Expertise &amp; Team</title>
+  <title>About Align Solutions, Engineering Expertise &amp; Team</title>
   <meta name="description" content="Meet the team behind Align Solutions. Over 20 years of hands-on industrial engineering expertise across reliability, maintenance and design disciplines." />
   <!-- ─── Canonical ───────────────────────────────────── -->
   <link rel="canonical" href="https://www.alignsolutions.co.uk/about.html" />
   <!-- ─── Open Graph ──────────────────────────────────── -->
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://www.alignsolutions.co.uk/about.html" />
-  <meta property="og:title" content="About Align Solutions — Engineering Expertise &amp; Team" />
+  <meta property="og:title" content="About Align Solutions, Engineering Expertise &amp; Team" />
   <meta property="og:description" content="Meet the team behind Align Solutions. Over 20 years of hands-on industrial engineering expertise across reliability, maintenance and design disciplines." />
   <meta property="og:image" content="https://www.alignsolutions.co.uk/Brand_Assets/og-image.jpg" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
   <!-- ─── Twitter Card ────────────────────────────────── -->
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="About Align Solutions — Engineering Expertise &amp; Team" />
+  <meta name="twitter:title" content="About Align Solutions, Engineering Expertise &amp; Team" />
   <meta name="twitter:description" content="Meet the team behind Align Solutions. Over 20 years of hands-on industrial engineering expertise across reliability, maintenance and design disciplines." />
   <meta name="twitter:image" content="https://www.alignsolutions.co.uk/Brand_Assets/og-image.jpg" />
   <!-- ─── Structured Data ─────────────────────────────── -->
@@ -91,7 +91,7 @@
       padding-bottom: 3px;
       transition: color 0.25s ease;
     }
-    /* Sliding underline — scales from 0 → 1 on hover, spring easing */
+    /* Sliding underline, scales from 0 → 1 on hover, spring easing */
     .nav-links a::after {
       content: '';
       position: absolute; bottom: 0; left: 0;
@@ -104,7 +104,7 @@
     .nav-links a:hover, .nav-links a.active { color: rgba(255,255,255,0.95); }
     .nav-links a:hover::after, .nav-links a.active::after { transform: scaleX(1); }
 
-        /* Nav CTA pill button — gradient-border resting, cobalt flood on hover */
+        /* Nav CTA pill button, gradient-border resting, cobalt flood on hover */
     .btn-pill {
       position: relative;
       display: inline-flex; align-items: center; gap: 0.45rem;
@@ -120,7 +120,7 @@
       isolation: isolate;
       transition: background 0.3s ease, transform 0.25s cubic-bezier(0.34,1.56,0.64,1);
     }
-    /* Gradient border ring — fades out on hover */
+    /* Gradient border ring, fades out on hover */
     .btn-pill::before {
       content: '';
       position: absolute; inset: 0; border-radius: 100px; padding: 1px;
@@ -129,7 +129,7 @@
       -webkit-mask-composite: xor; mask-composite: exclude; pointer-events: none;
       transition: opacity 0.3s ease;
     }
-    /* Cobalt flood fill — slides in from left on hover */
+    /* Cobalt flood fill, slides in from left on hover */
     .btn-pill::after {
       content: '';
       position: absolute; inset: 0; z-index: -1;
@@ -147,7 +147,7 @@
     .btn-pill:hover svg { transform: translate(2px, -2px); transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1); }
     .btn-pill-lg { padding: 0.8rem 1.9rem; font-size: 0.78rem; }
 
-    /* ─── MOBILE NAV — hidden on desktop ─────────────────── */
+    /* ─── MOBILE NAV, hidden on desktop ─────────────────── */
     .nav-hamburger { display: none; }
     .mobile-nav    { display: none; }
 
@@ -325,6 +325,111 @@
       color: rgba(255,255,255,0.4);
     }
 
+    /* ─── FOUNDER STATEMENT ───────────────────────────────── */
+    .founder-section {
+      padding: 7rem 2.5rem;
+      max-width: 1240px; margin: 0 auto;
+      border-top: 1px solid rgba(255,255,255,0.05);
+      display: grid; grid-template-columns: 480px 1fr; gap: 4.5rem;
+      align-items: start;
+      overflow-x: clip; /* hard-clip glow bleed / phantom horizontal scroll on mobile */
+    }
+    /* Portrait stage: Mark's cutout floats on a cobalt spotlight, chest fading to dark */
+    .founder-visual { position: relative; }
+    .founder-stage { position: relative; }
+    .founder-glow {
+      position: absolute; z-index: 0; pointer-events: none;
+      left: 0; right: 0; top: -3%; height: 98%;
+      background: radial-gradient(ellipse 80% 66% at 50% 40%, rgba(62,81,163,0.5) 0%, rgba(62,81,163,0.16) 45%, transparent 72%);
+    }
+    .founder-photo {
+      position: relative; z-index: 1;
+      display: block; width: 100%; height: auto;
+      -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 64%, rgba(0,0,0,0.1) 90%, transparent 100%);
+              mask-image: linear-gradient(to bottom, #000 0%, #000 64%, rgba(0,0,0,0.1) 90%, transparent 100%);
+    }
+    /* Name staged across the faded lower edge */
+    .founder-plate {
+      position: relative; z-index: 2; margin-top: -1.5rem;
+      display: flex; flex-direction: column; gap: 0.55rem;
+    }
+    .founder-name {
+      font-size: clamp(2.25rem, 3.6vw, 3.25rem); font-weight: 700;
+      letter-spacing: -0.03em; line-height: 0.92;
+      background: linear-gradient(90deg, #fff 0%, var(--cobalt-lt) 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    .founder-title {
+      font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.16em;
+      color: var(--cobalt-lt);
+    }
+    .founder-creds {
+      margin-top: 0.9rem; list-style: none;
+      display: flex; flex-wrap: wrap; gap: 0.4rem;
+    }
+    .founder-creds li {
+      font-size: 0.66rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em;
+      color: rgba(255,255,255,0.6);
+      padding: 0.35rem 0.7rem;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.08); border-radius: 100px;
+    }
+    .founder-loc {
+      margin-top: 0.4rem;
+      font-size: 0.72rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.14em;
+      color: rgba(255,255,255,0.3);
+    }
+    .founder-eyebrow { display: block; margin-bottom: 1.5rem; }
+    .founder-story { max-width: 640px; }
+    .founder-story > p {
+      font-size: 1.0625rem; line-height: 1.75; color: rgba(255,255,255,0.5); margin-bottom: 1.5rem;
+    }
+    .founder-story > p:last-child { margin-bottom: 0; }
+    .founder-story .founder-lead {
+      font-size: clamp(1.25rem, 1.8vw, 1.5rem); line-height: 1.55; color: var(--white);
+      letter-spacing: -0.01em; margin-bottom: 2rem;
+    }
+    .founder-story .founder-emphasis {
+      font-size: 1.35rem; font-weight: 700; color: var(--white); letter-spacing: -0.01em;
+      padding-left: 1.25rem; border-left: 2px solid var(--cobalt); margin: 2rem 0;
+    }
+    .founder-story a {
+      color: var(--cobalt-lt); text-decoration: none;
+      border-bottom: 1px solid rgba(136,153,212,0.4);
+      transition: border-color 0.25s ease;
+    }
+    .founder-story a:hover { border-color: var(--cobalt-lt); }
+
+    /* ─── SECTORS BAND ────────────────────────────────────── */
+    .about-sectors {
+      max-width: 1240px; margin: 0 auto;
+      padding: 4rem 2.5rem;
+      border-top: 1px solid rgba(255,255,255,0.05);
+      display: flex; align-items: center; gap: 2.5rem; flex-wrap: wrap;
+    }
+    .about-sectors-label {
+      font-size: 0.62rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.22em; color: rgba(255,255,255,0.3); flex-shrink: 0;
+    }
+    .about-sectors-list { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+    .about-sectors-list span {
+      font-size: 0.82rem; color: rgba(255,255,255,0.6);
+      padding: 0.5rem 1.1rem;
+      border: 1px solid rgba(255,255,255,0.1); border-radius: 100px;
+      transition: border-color 0.25s ease, color 0.25s ease;
+    }
+    .about-sectors-list span:hover { border-color: rgba(62,81,163,0.5); color: var(--white); }
+
+    @media (max-width: 1024px) {
+      .founder-section { grid-template-columns: 1fr; gap: 3rem; }
+      .founder-visual { max-width: 430px; margin: 0 auto; }
+    }
+    @media (max-width: 768px) {
+      .founder-section { padding: 4rem 1.5rem; gap: 2.5rem; }
+      .about-sectors { padding: 3rem 1.5rem; gap: 1.25rem; }
+      .founder-story .founder-emphasis { font-size: 1.2rem; }
+    }
+
     /* ─── TEAM SECTION ────────────────────────────────────── */
     .team-section {
       padding: 6rem 2.5rem;
@@ -409,7 +514,7 @@
     .cta-section::before {
       content: '';
       position: absolute; top: 0; left: 50%; transform: translateX(-50%);
-      width: 600px; height: 300px;
+      width: min(600px, 100%); height: 300px;
       background: radial-gradient(ellipse at top, rgba(62,81,163,0.12) 0%, transparent 70%);
       pointer-events: none;
     }
@@ -578,18 +683,42 @@
     <div class="hero-inner">
       <span class="eyebrow hero-eyebrow fade-up">About</span>
       <h1 class="hero-h1 fade-up fd1">
-        Built on Engineering,<br />
-        <span class="grad-text">Driven by Precision</span>
+        Built by engineers<br />
+        <span class="grad-text">who've done the work.</span>
       </h1>
     </div>
   </section>
 
-  <!-- ─── MISSION STATEMENT ────────────────────────────────── -->
-  <section class="mission-section">
-    <p class="mission-text fade-up">
-      Align Solutions was founded on a simple idea: engineering firms shouldn't have to choose between design expertise, maintenance capability and reliability knowledge.
-      <strong>We bring all three together</strong> — under one roof, on every project, without compromise.
-    </p>
+  <!-- ─── FOUNDER STATEMENT ─────────────────────────────────── -->
+  <section class="founder-section">
+    <div class="founder-visual fade-up">
+      <figure class="founder-stage">
+        <span class="founder-glow" aria-hidden="true"></span>
+        <img class="founder-photo" src="Brand_Assets/markbestheadshot.png"
+             alt="Mark Pitt, Founder and Managing Director of Align Solutions"
+             width="2160" height="2160" loading="lazy" decoding="async" />
+      </figure>
+      <div class="founder-plate">
+        <span class="founder-name">Mark Pitt</span>
+        <span class="founder-title">Founder &amp; Managing Director</span>
+        <ul class="founder-creds">
+          <li>Chartered Manager</li>
+          <li>FInstLM</li>
+          <li>HND Engineering</li>
+          <li>CompEx</li>
+        </ul>
+        <span class="founder-loc">Norwich, UK</span>
+      </div>
+    </div>
+    <div class="founder-story fade-up fd1">
+      <span class="eyebrow founder-eyebrow">From the Founder</span>
+      <p class="founder-lead">I spent over 20 years working offshore in Oil &amp; Gas, starting as a mechanic on the Norwegian Continental Shelf and finishing as an Engineering Manager, leading multidisciplinary teams across some of the industry's most demanding operations.</p>
+      <p>I set up Align Solutions because I kept seeing the same thing. Companies bringing in consultants who'd deliver a report, present the findings, and leave. Nobody sticking around to make sure it actually worked. Nobody who understood the full picture, reliability, maintenance, design and asset management, as one connected problem.</p>
+      <p class="founder-emphasis">That's what we do differently.</p>
+      <p>We're a specialist engineering consultancy covering six disciplines: Reliability Engineering, Maintenance Engineering, Design Engineering, Asset Management, Technical Consultancy and Project Delivery. One team. One relationship. No handoffs between specialists who don't talk to each other.</p>
+      <p>The work is practical. FMEA, RCM, Weibull analysis, root cause analysis, maintenance strategy, asset lifecycle management, applied by engineers who've done this work in the field, not just studied it.</p>
+      <p>We're also a technology partner of <a href="https://reliatic.com" target="_blank" rel="noopener noreferrer">Reliatic</a>, which means clients leave with a working system, not a PDF.</p>
+    </div>
   </section>
 
   <!-- ─── STATS ROW ─────────────────────────────────────────── -->
@@ -597,7 +726,7 @@
     <div class="stats-row fade-up">
       <div class="stat-block">
         <span class="stat-num" data-target="20">20+</span>
-        <span class="stat-desc">Years of experience</span>
+        <span class="stat-desc">Years in the field</span>
       </div>
       <div class="stat-block">
         <span class="stat-num" data-target="150">150+</span>
@@ -605,11 +734,11 @@
       </div>
       <div class="stat-block">
         <span class="stat-num" data-target="6">6</span>
-        <span class="stat-desc">Sectors served</span>
+        <span class="stat-desc">Disciplines, one team</span>
       </div>
       <div class="stat-block">
         <span class="stat-num" data-target="98">98%</span>
-        <span class="stat-desc">Client retention rate</span>
+        <span class="stat-desc">Clients retained</span>
       </div>
     </div>
   </div>
@@ -617,43 +746,56 @@
   <!-- ─── VALUES SECTION ───────────────────────────────────── -->
   <section class="values-section">
     <div class="values-left">
-      <span class="eyebrow values-eyebrow fade-up">Our Values</span>
+      <span class="eyebrow values-eyebrow fade-up">How We Work</span>
       <h2 class="values-heading fade-up fd1">
-        The principles that<br />guide everything<br /><span class="grad-text">we do.</span>
+        One team.<br />One relationship.<br /><span class="grad-text">No handoffs.</span>
       </h2>
     </div>
     <div class="values-list">
       <div class="value-row fade-up">
         <span class="value-num">01</span>
         <div class="value-content">
-          <span class="value-name">Precision</span>
-          <p class="value-desc">We don't cut corners. Every deliverable is engineered to the right standard, documented clearly and delivered without compromise.</p>
+          <span class="value-name">No handoffs</span>
+          <p class="value-desc">Reliability, maintenance, design and asset management handled by one team, not passed between specialists who don't talk to each other.</p>
         </div>
       </div>
       <div class="value-row fade-up fd1">
         <span class="value-num">02</span>
         <div class="value-content">
-          <span class="value-name">Integration</span>
-          <p class="value-desc">We believe the best engineering happens when design, maintenance and reliability work as one. Our team is built this way by design.</p>
+          <span class="value-name">We stay till it works</span>
+          <p class="value-desc">We don't deliver a report and leave. We stick around to make sure the fix actually holds on your assets.</p>
         </div>
       </div>
       <div class="value-row fade-up fd2">
         <span class="value-num">03</span>
         <div class="value-content">
-          <span class="value-name">Ownership</span>
-          <p class="value-desc">We take full accountability for our work. If something isn't right, we fix it. No excuses, no passing the buck.</p>
+          <span class="value-name">Field-proven</span>
+          <p class="value-desc">FMEA, RCM, Weibull and root cause analysis, applied by engineers who've done this work offshore, not just studied it.</p>
         </div>
       </div>
       <div class="value-row fade-up fd3">
         <span class="value-num">04</span>
         <div class="value-content">
-          <span class="value-name">Partnership</span>
-          <p class="value-desc">We're not a transactional firm. We build long-term relationships with clients who want an engineering partner, not just a supplier.</p>
+          <span class="value-name">One relationship</span>
+          <p class="value-desc">One team, one point of contact. We build long-term partnerships, not one-off transactions.</p>
         </div>
       </div>
     </div>
   </section>
 
+
+  <!-- ─── SECTORS BAND ─────────────────────────────────────── -->
+  <div class="about-sectors fade-up">
+    <span class="about-sectors-label">Sectors we work across</span>
+    <div class="about-sectors-list">
+      <span>Oil &amp; Gas</span>
+      <span>Manufacturing</span>
+      <span>Water &amp; Utilities</span>
+      <span>Power &amp; Energy</span>
+      <span>Pharmaceutical</span>
+      <span>Marine</span>
+    </div>
+  </div>
 
   <!-- ─── CTA SECTION ───────────────────────────────────────── -->
   <section class="cta-section">
@@ -694,7 +836,7 @@
       <div class="footer-inner">
         <div class="footer-cols">
           <div class="footer-col">
-            <span class="footer-col-place">UK — Norwich</span>
+            <span class="footer-col-place">Norwich, UK</span>
             <span class="footer-col-time" id="footer-time">--:--:--</span>
             <span class="footer-col-tz">(GMT / BST)</span>
           </div>
