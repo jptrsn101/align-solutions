@@ -25,17 +25,32 @@ const MIME = {
 };
 
 const server = http.createServer((req, res) => {
-  let urlPath = decodeURIComponent(req.url.split('?')[0]);
+  // Malformed percent-encoding throws; answer 400 instead of crashing the process
+  let urlPath;
+  try {
+    urlPath = decodeURIComponent(req.url.split('?')[0]);
+  } catch {
+    res.writeHead(400, { 'Content-Type': 'text/plain' });
+    res.end('400 Bad Request');
+    return;
+  }
   if (urlPath === '/') urlPath = '/index.html';
 
-  const filePath = path.join(__dirname, urlPath);
+  // Resolve, then confine to the project root so ../ traversal cannot escape it
+  const filePath = path.resolve(__dirname, '.' + path.posix.normalize('/' + urlPath));
+  if (!filePath.startsWith(__dirname + path.sep)) {
+    res.writeHead(404, { 'Content-Type': 'text/plain' });
+    res.end('404 Not Found');
+    return;
+  }
+
   const ext = path.extname(filePath).toLowerCase();
   const contentType = MIME[ext] || 'application/octet-stream';
 
   fs.readFile(filePath, (err, data) => {
     if (err) {
       res.writeHead(404, { 'Content-Type': 'text/plain' });
-      res.end('404 Not Found: ' + urlPath);
+      res.end('404 Not Found');
       return;
     }
     res.writeHead(200, { 'Content-Type': contentType });
@@ -43,6 +58,7 @@ const server = http.createServer((req, res) => {
   });
 });
 
-server.listen(PORT, () => {
+// Loopback only: the dev server must never be reachable from the local network
+server.listen(PORT, '127.0.0.1', () => {
   console.log(`Align Solutions dev server running at http://localhost:${PORT}`);
 });

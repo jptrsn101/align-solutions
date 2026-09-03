@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Terms &amp; Conditions | Align Solutions</title>
+  <meta name="description" content="Terms and conditions for using the Align Solutions website." />
+  <!-- ─── Canonical ───────────────────────────────────── -->
+  <link rel="canonical" href="https://www.alignsolutions.co.uk/terms.html" />
+  <!-- ─── Open Graph ──────────────────────────────────── -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://www.alignsolutions.co.uk/terms.html" />
+  <meta property="og:title" content="Terms &amp; Conditions | Align Solutions" />
+  <meta property="og:description" content="Terms and conditions for using the Align Solutions website." />
+  <meta property="og:image" content="https://www.alignsolutions.co.uk/Brand_Assets/og-image.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Align Solutions wordmark, white on cobalt" />
+  <meta property="og:site_name" content="Align Solutions" />
+  <meta property="og:locale" content="en_GB" />
+  <!-- ─── Icons ───────────────────────────────────────── -->
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <link rel="icon" href="favicon-32.png" type="image/png" sizes="32x32" />
+  <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+  <!-- ─── Preloads: brand fonts ───────────────────────── -->
+  <link rel="preload" href="assets/fonts/NeueHaasDisplayMediu.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="assets/fonts/NeueHaasDisplayBold.woff2" as="font" type="font/woff2" crossorigin />
+  <style>
+    /* ─── FONTS ───────────────────────────────────────── */
+    /* Three weights only: Roman for nothing below Medium, Medium for copy,
+       Bold for headings. The Thin cut is not loaded anywhere on the site. */
+    @font-face {
+      font-family: 'NeueHaas';
+      src: url('assets/fonts/NeueHaasDisplayRoman.woff2') format('woff2');
+      font-weight: 400; font-style: normal; font-display: swap;
+    }
+    @font-face {
+      font-family: 'NeueHaas';
+      src: url('assets/fonts/NeueHaasDisplayMediu.woff2') format('woff2');
+      font-weight: 500; font-style: normal; font-display: swap;
+    }
+    @font-face {
+      font-family: 'NeueHaas';
+      src: url('assets/fonts/NeueHaasDisplayBold.woff2') format('woff2');
+      font-weight: 700; font-style: normal; font-display: swap;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    /* ─── DESIGN TOKENS ───────────────────────────────── */
+    /* Cobalt is the sheet, white is the ink, navy is the second colour used
+       for depth: the nav, the frosted panels, the footer. No gradients. */
+    :root {
+      --cobalt:     #3e51a3;  /* base surface, every section */
+      --cobalt-dk:  #2f3d7e;  /* pressed states only */
+      --navy:       #1b2456;  /* secondary: depth, panels, the footer mark */
+      --white:      #ffffff;
+      --plate:      #e2e3e7;  /* light rules on white cards */
+      --grey20:     #434344;  /* location pill body, from the social templates */
+      --grey60:     #9c9c9c;
+      --w90: rgba(255,255,255,0.9);
+      --w75: rgba(255,255,255,0.75);
+      --w60: rgba(255,255,255,0.6);
+      --w40: rgba(255,255,255,0.4);
+      --w22: rgba(255,255,255,0.22);
+      --w12: rgba(255,255,255,0.12);
+      --w07: rgba(255,255,255,0.07);
+      /* Frosted glass: navy-tinted translucent fill, blur, hairline edge */
+      --glass-bg:        rgba(27,36,86,0.34);
+      --glass-bg-strong: rgba(27,36,86,0.5);
+      --glass-border:    rgba(255,255,255,0.14);
+      --glass-blur:      blur(18px);
+      --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+      --ease-out:    cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    body {
+      font-family: 'NeueHaas', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      font-weight: 500;
+      font-synthesis: none; /* Bold (700) is the heaviest cut on the site; never let the browser fake a heavier one */
+      background: var(--cobalt);
+      color: var(--white);
+      letter-spacing: -0.01em;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+    ::selection { background: var(--white); color: var(--cobalt); }
+    /* Shared keyboard focus ring for every interactive element */
+    a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible, select:focus-visible {
+      outline: 2px solid var(--white); outline-offset: 3px;
+    }
+
+    /* ─── GLASS ───────────────────────────────────────── */
+    /* One frosted surface for cards, chips, panels and overlays */
+    .glass {
+      background: var(--glass-bg);
+      -webkit-backdrop-filter: var(--glass-blur); backdrop-filter: var(--glass-blur);
+      border: 1px solid var(--glass-border);
+      border-radius: 20px;
+    }
+
+    /* ─── NAV ─────────────────────────────────────────── */
+    /* Frosted navy bar: darker than the sheet, blurs whatever scrolls under it */
+    .site-nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      height: 68px;
+      display: flex; align-items: center;
+      padding: 0 2.5rem;
+      background: rgba(27,36,86,0.55);
+      -webkit-backdrop-filter: blur(20px); backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--glass-border);
+    }
+    .nav-logo { flex-shrink: 0; }
+    .nav-logo img { height: 40px; width: auto; display: block; }
+    .site-nav > .btn-pill { margin-left: auto; }
+    .nav-links {
+      position: absolute; left: 50%; transform: translateX(-50%);
+      display: flex; align-items: center; gap: 2.25rem; list-style: none;
+    }
+    .nav-links a {
+      font-size: 0.7rem; font-weight: 500; text-transform: uppercase;
+      letter-spacing: 0.1em; color: var(--w60);
+      text-decoration: none;
+      position: relative;
+      padding-bottom: 3px;
+      transition: color 0.25s ease;
+    }
+    /* Sliding underline, scales from 0 to 1 on hover, spring easing */
+    .nav-links a::after {
+      content: '';
+      position: absolute; bottom: 0; left: 0;
+      width: 100%; height: 1px;
+      background: var(--white);
+      transform: scaleX(0);
+      transform-origin: left center;
+      transition: transform 0.35s var(--ease-spring);
+    }
+    .nav-links a:hover, .nav-links a.active { color: var(--white); }
+    .nav-links a:hover::after, .nav-links a.active::after { transform: scaleX(1); }
+
+    /* ─── BUTTONS ─────────────────────────────────────── */
+    /* Two flat pills. Rest: hairline white outline. Hover: white floods in
+       from the left and the label flips to cobalt. */
+    .btn-pill, .btn-flood {
+      position: relative;
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      border-radius: 100px;
+      border: 1px solid var(--w40);
+      background: transparent;
+      color: var(--white);
+      font-family: inherit; font-weight: 500;
+      text-transform: uppercase; letter-spacing: 0.1em;
+      text-decoration: none; white-space: nowrap; cursor: pointer;
+      overflow: hidden;
+      isolation: isolate;
+      transition: color 0.3s ease, border-color 0.3s ease, transform 0.25s var(--ease-spring);
+    }
+    .btn-pill    { padding: 0.55rem 1.3rem; font-size: 0.7rem; }
+    .btn-flood   { padding: 0.8rem 1.7rem; font-size: 0.75rem; }
+    .btn-pill-lg { padding: 0.8rem 1.9rem; font-size: 0.78rem; }
+    /* White flood fill, slides in from the left on hover */
+    .btn-pill::after, .btn-flood::after {
+      content: '';
+      position: absolute; inset: 0; z-index: -1;
+      border-radius: 100px;
+      background: var(--white);
+      transform: translateX(-110%);
+      transition: transform 0.45s var(--ease-spring);
+    }
+    .btn-pill:hover, .btn-flood:hover {
+      color: var(--cobalt); border-color: var(--white);
+      transform: translateY(-2px);
+    }
+    .btn-pill:hover::after, .btn-flood:hover::after { transform: translateX(0); }
+    .btn-pill:active, .btn-flood:active { transform: translateY(0) scale(0.98); }
+    /* Arrow nudges up-right on hover */
+    .btn-pill svg, .btn-flood svg { flex-shrink: 0; transition: transform 0.25s var(--ease-spring); }
+    .btn-pill:hover svg, .btn-flood:hover svg { transform: translate(2px, -2px); }
+
+    /* ─── SMALL LABELS + EMPHASIS ─────────────────────── */
+    .eyebrow {
+      font-size: 0.66rem; font-weight: 500; text-transform: uppercase;
+      letter-spacing: 0.12em; color: var(--w60); display: block;
+    }
+    /* Emphasis is weight, not colour */
+    .em-text { font-weight: 700; color: var(--white); }
+
+    /* ─── PAGE HERO ───────────────────────────────────── */
+    /* Photograph first with the mark laid over it, then the headline on the
+       flat cobalt sheet: the social template's stacked layout. Pages without
+       a photograph drop the band and start with the headline. */
+    .page-hero { padding-top: 68px; }
+    .hero-inner { max-width: 1240px; margin: 0 auto; padding: 4.5rem 2.5rem 5rem; }
+    .page-hero--flat .hero-inner { padding-top: 6.5rem; }
+    .hero-eyebrow { margin-bottom: 1.5rem; }
+    .hero-h1 {
+      font-size: clamp(2.8rem, 6.6vw, 6.6rem);
+      font-weight: 700; line-height: 0.92;
+      letter-spacing: -0.04em;
+      max-width: 14ch;
+    }
+    .hero-sub {
+      margin-top: 1.75rem;
+      font-size: 1.1rem; font-weight: 500; line-height: 1.4;
+      letter-spacing: -0.01em; color: var(--w75);
+      max-width: 46ch;
+    }
+
+    /* ─── MARK BAND ───────────────────────────────────── */
+    /* Full-bleed photograph with the white logomark laid over it in
+       difference blend: inside the mark the photo inverts, the treatment
+       from the social templates. isolation keeps the blend inside the band,
+       so where there is no photo the mark simply reads white on cobalt. */
+    .mark-band {
+      position: relative; overflow: hidden; isolation: isolate;
+      height: clamp(320px, 52vh, 580px);
+      /* Mark crop: oversized and pushed past the edges; pages override */
+      --mark-w: 116%; --mark-x: -10%; --mark-y: -75%;
+    }
+    .mark-band-photo {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover; display: block;
+    }
+    /* The reusable blend treatment for any logo on photography */
+    .blend-mark, .blend-logo {
+      mix-blend-mode: difference;
+      pointer-events: none;
+    }
+    .blend-mark {
+      position: absolute; left: var(--mark-x); top: var(--mark-y);
+      width: var(--mark-w); height: auto;
+    }
+    /* Non-white logos become a white silhouette first, then invert the photo */
+    .blend-logo { filter: brightness(0) invert(1); }
+    /* Scroll-linked reveal (home): JS runs --reveal 0 to 1 as the band scrolls
+       in, so the sheet is solid cobalt on load and the photo rises in behind
+       the mark. Without JS the photo is simply visible. */
+    .mark-band[data-reveal] .mark-band-photo {
+      opacity: var(--reveal, 1);
+      transform: scale(calc(1.14 - 0.14 * var(--reveal, 1)));
+      clip-path: inset(0 0 calc((1 - var(--reveal, 1)) * 100%) 0);
+      will-change: transform, opacity;
+    }
+
+    /* Location pill, the social templates' map pin */
+    .pin-pill {
+      position: absolute; right: 2.5rem; bottom: 2.5rem; z-index: 2;
+      display: inline-flex; align-items: center; gap: 0.9rem;
+      padding: 0.45rem 1.35rem 0.45rem 0.45rem;
+      background: var(--grey20); color: var(--white);
+      border-radius: 100px;
+      font-size: 0.92rem; font-weight: 500; letter-spacing: -0.01em;
+    }
+    .pin-pill-ico {
+      width: 40px; height: 40px; border-radius: 50%; flex-shrink: 0;
+      background: var(--cobalt);
+      display: flex; align-items: center; justify-content: center;
+    }
+
+    /* ─── PARTNER BRAND LOGOS ─────────────────────── */
+    /* Shell and Castrol sit straight on the sheet, no container: the logo is
+       the element, its colours untouched. On photography add .brand-chip--blend
+       so the logo gets the same difference treatment as the mark. */
+    .brand-chip {
+      display: inline-flex; align-items: center; justify-content: center;
+      height: 96px; padding: 0 0.5rem;
+    }
+    .brand-chip img { display: block; width: auto; }
+    .brand-chip.is-shell img { height: 84px; }
+    .brand-chip.is-castrol img { height: 40px; }
+    .brand-chip--blend img { filter: brightness(0) invert(1); mix-blend-mode: difference; }
+
+    /* ─── LEGAL CONTENT ───────────────────────────────── */
+    /* One reading column, left-aligned with the headline, under a hairline.
+       No cards: the copy sits straight on the sheet. */
+    .legal-section {
+      max-width: 1240px; margin: 0 auto;
+      padding: 4rem 2.5rem 8rem;
+      border-top: 1px solid var(--w12);
+    }
+    .legal-wrap { max-width: 760px; }
+    .legal-wrap h2 {
+      font-size: 1.5rem; font-weight: 700;
+      letter-spacing: -0.03em; line-height: 1.1;
+      color: var(--white);
+      margin: 3rem 0 1rem;
+    }
+    .legal-wrap p, .legal-wrap li {
+      font-size: 1rem; font-weight: 500; line-height: 1.5;
+      color: var(--w75);
+    }
+    .legal-wrap p { margin-bottom: 1rem; }
+    /* Lists read as hairline-divided rows rather than bullets */
+    .legal-wrap ul { list-style: none; margin-bottom: 1.5rem; }
+    .legal-wrap li { padding: 0.75rem 0; border-top: 1px solid var(--w12); }
+    .legal-wrap li:last-child { border-bottom: 1px solid var(--w12); }
+    /* Links: white with a faint underline that fills in on hover */
+    .legal-wrap a {
+      color: var(--white);
+      text-decoration: underline; text-decoration-thickness: 1px;
+      text-decoration-color: var(--w40); text-underline-offset: 0.2em;
+      transition: text-decoration-color 0.2s ease;
+    }
+    .legal-wrap a:hover { text-decoration-color: var(--white); }
+
+    /* ─── PAGE RESPONSIVE ─────────────────────────────── */
+    @media (max-width: 768px) {
+      .legal-section { padding: 2.5rem 1.5rem 5rem; }
+      .legal-wrap h2 { font-size: 1.3rem; margin-top: 2.5rem; }
+    }
+
+    /* ─── CTA ─────────────────────────────────────────── */
+    .cta-section {
+      padding: 7rem 2.5rem;
+      text-align: center;
+      border-top: 1px solid var(--w12);
+    }
+    .cta-label {
+      font-size: 0.66rem; font-weight: 500; text-transform: uppercase;
+      letter-spacing: 0.12em; color: var(--w60);
+      display: block; margin-bottom: 1.25rem;
+    }
+    /* Medium first line, Bold second: weight carries the emphasis */
+    .cta-heading {
+      font-size: clamp(2.4rem, 4.5vw, 4.25rem);
+      font-weight: 500; letter-spacing: -0.035em;
+      line-height: 0.95; margin-bottom: 1.25rem;
+    }
+    .cta-sub {
+      font-size: 1rem; color: var(--w75); letter-spacing: -0.01em;
+      line-height: 1.4; max-width: 440px; margin: 0 auto 2.5rem;
+    }
+
+    /* ─── SITE FOOTER ────────────────────────────────── */
+    .site-footer { border-top: 1px solid var(--w12); }
+    /* Full-height visual section: the navy mark sits at the top, the frosted
+       panel rises over its lower half, the wordmark closes the page */
+    .footer-visual {
+      position: relative; min-height: 780px; overflow: hidden;
+      display: flex; flex-direction: column; justify-content: flex-end;
+    }
+    .footer-mark-wrap {
+      position: absolute; top: 0; left: 50%;
+      transform: translateX(-50%);
+      z-index: 1; pointer-events: none;
+    }
+    .footer-mark-img { display: block; height: 740px; width: auto; color: var(--navy); }
+    /* Content layer IS the glass: frosted navy over the mark */
+    .footer-content {
+      position: relative; z-index: 3; padding: 2.5rem 2.5rem 0;
+      background: var(--glass-bg-strong);
+      -webkit-backdrop-filter: blur(22px); backdrop-filter: blur(22px);
+      border-top: 1px solid var(--glass-border);
+    }
+    .footer-inner { max-width: 1240px; margin: 0 auto; }
+    .footer-cols {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr 1fr 1.1fr;
+      gap: 3rem;
+      padding-bottom: 2.5rem;
+      border-bottom: 1px solid var(--w12);
+    }
+    .footer-col-place {
+      font-size: 1rem; font-weight: 700; letter-spacing: -0.01em; color: var(--white);
+      display: block; margin-bottom: 0.35rem;
+    }
+    .footer-col-time {
+      font-size: 0.85rem; color: var(--w60);
+      display: block; margin-bottom: 0.15rem;
+      font-variant-numeric: tabular-nums; letter-spacing: 0.03em;
+    }
+    .footer-col-tz { font-size: 0.72rem; color: var(--w40); display: block; }
+    .footer-col-heading {
+      font-size: 0.66rem; font-weight: 500; text-transform: uppercase;
+      letter-spacing: 0.12em; color: var(--w60);
+      display: block; margin-bottom: 1.25rem;
+    }
+    .footer-col a {
+      display: block; font-size: 0.9rem; font-weight: 500;
+      color: var(--w75); text-decoration: none;
+      padding: 0.4rem 0;
+      transition: color 0.2s ease;
+    }
+    .footer-col a:hover { color: var(--white); }
+    .footer-meta {
+      display: flex; align-items: center; gap: 2rem;
+      padding: 1.5rem 0;
+      font-size: 0.75rem; letter-spacing: 0;
+      color: var(--w40);
+    }
+    .footer-meta a {
+      color: var(--w40); text-decoration: none; transition: color 0.2s ease;
+      display: inline-block; padding: 0.6rem 0;
+    }
+    .footer-meta a:hover { color: var(--white); }
+    .footer-meta-spacer { margin-left: auto; }
+    .footer-visual-wordmark {
+      text-align: center;
+      font-size: clamp(58px, 10.5vw, 150px);
+      font-weight: 700; text-transform: uppercase;
+      letter-spacing: -0.04em; line-height: 0.85;
+      color: var(--white); white-space: nowrap;
+    }
+
+    /* ─── ANIMATIONS ──────────────────────────────────── */
+    .fade-up {
+      opacity: 0; transform: translateY(28px);
+      transition: opacity 0.9s var(--ease-out), transform 0.9s var(--ease-out);
+    }
+    .fade-up.in { opacity: 1; transform: translateY(0); }
+    .fd1 { transition-delay: 0.08s; }
+    .fd2 { transition-delay: 0.18s; }
+    .fd3 { transition-delay: 0.28s; }
+    .fd4 { transition-delay: 0.38s; }
+    .fd5 { transition-delay: 0.48s; }
+
+    /* ─── MOBILE NAV, hidden on desktop ─────────────── */
+    .nav-hamburger { display: none; }
+    .mobile-nav    { display: none; }
+
+    /* ─── SHARED RESPONSIVE ──────────────────────────── */
+    @media (max-width: 768px) {
+      /* Nav: hide desktop links, keep a compact CTA, show hamburger */
+      .site-nav { padding: 0 1.25rem; }
+      .nav-links { display: none; }
+      .site-nav > .btn-pill { padding: 0.55rem 0.95rem; font-size: 0.72rem; margin-left: auto; }
+      .nav-hamburger {
+        display: flex; flex-direction: column; justify-content: center;
+        gap: 5px; padding: 0.5rem; width: 44px; height: 44px;
+        background: none; border: none; cursor: pointer; margin-left: 0.75rem;
+      }
+      .nav-hamburger span {
+        display: block; height: 1.5px; background: var(--white);
+        border-radius: 2px;
+        transition: transform 0.35s var(--ease-spring), opacity 0.25s ease;
+        transform-origin: center;
+      }
+      .nav-hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+      .nav-hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+      .nav-hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+      /* Mobile nav overlay: frosted navy sheet */
+      .mobile-nav {
+        display: flex; flex-direction: column; justify-content: center;
+        align-items: flex-start;
+        position: fixed; inset: 0; z-index: 99;
+        background: rgba(27,36,86,0.86);
+        -webkit-backdrop-filter: blur(24px); backdrop-filter: blur(24px);
+        padding: 6rem 2rem 3rem;
+        opacity: 0; pointer-events: none;
+        /* visibility keeps closed-menu links out of the tab order */
+        visibility: hidden;
+        transition: opacity 0.35s ease, visibility 0s linear 0.35s;
+      }
+      .mobile-nav.open { opacity: 1; pointer-events: all; visibility: visible; transition: opacity 0.35s ease, visibility 0s; }
+      .mobile-nav-links { list-style: none; margin-bottom: 2.5rem; width: 100%; }
+      .mobile-nav-links li { border-bottom: 1px solid var(--w12); }
+      .mobile-nav-links a {
+        display: block; padding: 1rem 0;
+        font-size: 1.5rem; font-weight: 700; letter-spacing: -0.03em;
+        color: var(--w75); text-decoration: none;
+        transition: color 0.2s ease;
+      }
+      .mobile-nav-links a:hover,
+      .mobile-nav-links a.active { color: var(--white); }
+
+      /* Page hero */
+      .hero-inner { padding: 3rem 1.5rem 3.5rem; }
+      .page-hero--flat .hero-inner { padding-top: 4.5rem; }
+      .hero-h1 { font-size: clamp(2.5rem, 12vw, 4.5rem); max-width: none; }
+      .hero-sub { font-size: 1rem; margin-top: 1.25rem; }
+
+      /* Mark band: mark scaled harder so it still crops on a narrow screen */
+      .mark-band { height: clamp(260px, 70vw, 420px); --mark-w: 160%; --mark-x: -30%; --mark-y: -70%; }
+      .pin-pill { right: 1.25rem; bottom: 1.25rem; font-size: 0.85rem; gap: 0.7rem; }
+      .pin-pill-ico { width: 34px; height: 34px; }
+
+      /* Partner chips */
+      .brand-chip { height: 72px; padding: 0 0.35rem; }
+      .brand-chip.is-shell img { height: 64px; }
+      .brand-chip.is-castrol img { height: 30px; }
+
+      /* CTA */
+      .cta-section { padding: 5rem 1.5rem; }
+
+      /* Footer, tighter, better organised on mobile */
+      .footer-visual { min-height: auto; }
+      .footer-mark-img { height: 260px; }
+      .footer-content { padding: 2rem 1.25rem 0; }
+      .footer-cols { grid-template-columns: 1fr 1fr; gap: 1.75rem 2rem; }
+      /* Location spans full width, displayed as inline strip */
+      .footer-cols .footer-col:first-child {
+        grid-column: 1 / -1;
+        display: flex; align-items: baseline; gap: 1.25rem;
+        padding-bottom: 1rem;
+        border-bottom: 1px solid var(--w12);
+      }
+      .footer-cols .footer-col:first-child .footer-col-tz { display: none; }
+      .footer-meta { flex-wrap: wrap; gap: 0.6rem; }
+      .footer-meta-spacer { display: none; }
+      .footer-visual-wordmark { white-space: normal; font-size: clamp(32px, 8.5vw, 58px); }
+    }
+
+    /* ─── REDUCED MOTION ─────────────────────────────── */
+    /* Last in the sheet so it wins the cascade over every rule above.
+       !important is required here: this accessibility override must beat
+       every specific transition/animation rule. */
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .fade-up { opacity: 1; transform: none; transition: none; }
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+  </style>
+  <noscript><style>.fade-up { opacity: 1; transform: none; }</style></noscript>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════ NAV ═══ -->
+<nav class="site-nav">
+  <a href="index.html" class="nav-logo" aria-label="Align Solutions">
+    <img src="Brand_Assets/SVG Logos/logo-lockup-white.svg" alt="Align Solutions" width="130" height="40" />
+  </a>
+
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="services.html">Services</a></li>
+    <li><a href="packages.html">Packages</a></li>
+    <li><a href="how-we-work.html">How We Work</a></li>
+    <li><a href="case-studies.html">Case Studies</a></li>
+    <li><a href="sectors.html">Sectors</a></li>
+    <li><a href="about.html">About</a></li>
+  </ul>
+
+  <a href="contact.html" class="btn-pill">
+    Get In Touch
+    <svg width="11" height="11" viewBox="0 0 11 11" fill="none">
+      <path d="M2 9L9 2M9 2H3M9 2V8" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </a>
+
+  <!-- Mobile hamburger, hidden on desktop via CSS -->
+  <button class="nav-hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="mobileNav" id="navHamburger">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- Mobile nav overlay -->
+<div class="mobile-nav" id="mobileNav" aria-hidden="true" role="dialog" aria-label="Site navigation">
+  <ul class="mobile-nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="services.html">Services</a></li>
+    <li><a href="packages.html">Packages</a></li>
+    <li><a href="how-we-work.html">How We Work</a></li>
+    <li><a href="case-studies.html">Case Studies</a></li>
+    <li><a href="sectors.html">Sectors</a></li>
+    <li><a href="about.html">About</a></li>
+  </ul>
+  <a href="contact.html" class="btn-pill btn-pill-lg">
+    Get In Touch
+    <svg width="11" height="11" viewBox="0 0 11 11" fill="none">
+      <path d="M2 9L9 2M9 2H3M9 2V8" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </a>
+</div>
+
+<main id="main-content">
+
+<!-- ═══════════════════════════════ PAGE HERO ════════════ -->
+<section class="page-hero page-hero--flat">
+  <div class="hero-inner">
+    <span class="eyebrow hero-eyebrow fade-up">Legal</span>
+    <h1 class="hero-h1 fade-up fd1">Terms &amp; conditions</h1>
+    <p class="hero-sub fade-up fd2">Last updated: July 2026</p>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════ LEGAL CONTENT ════════ -->
+<section class="legal-section">
+  <div class="legal-wrap fade-up fd3">
+    <p>These terms govern your use of the Align Solutions Ltd website. By using the site you accept them. They apply to the website only; engineering services are delivered under separate written engagement terms.</p>
+
+    <h2>Who we are</h2>
+    <p>Align Solutions Ltd is an engineering firm based in Norwich, United Kingdom, specialising in design, maintenance and reliability engineering. Contact: <a href="mailto:hello@alignsolutions.co.uk">hello@alignsolutions.co.uk</a>.</p>
+
+    <h2>Use of this website</h2>
+    <p>You may browse the site and use its content for your own information. You must not misuse the site, attempt to gain unauthorised access to it, or use it in a way that breaks the law.</p>
+
+    <h2>Content and intellectual property</h2>
+    <p>The content of this site, including text, images, layout and the Align Solutions name and mark, belongs to Align Solutions Ltd unless stated otherwise. You may not reproduce it commercially without our written permission.</p>
+    <p>Shell and Castrol names and logos are trademarks of their respective owners, shown here in connection with our role as an authorised lubricants supplier. Photography includes licensed stock imagery.</p>
+
+    <h2>No engineering advice</h2>
+    <p>Content on this site is general information, not engineering advice for a specific asset, system or situation. Engineering decisions should only be made on the basis of a formal engagement in which we assess your specific circumstances.</p>
+
+    <h2>Accuracy and availability</h2>
+    <p>We work to keep the site accurate and available but provide it "as is". We do not guarantee it will be uninterrupted, error-free or current at all times, and we may change or withdraw content without notice.</p>
+
+    <h2>Liability</h2>
+    <p>To the extent the law allows, Align Solutions Ltd is not liable for loss or damage arising from use of this website or reliance on its content. Nothing in these terms limits liability that cannot be limited under UK law, including for death or personal injury caused by negligence.</p>
+
+    <h2>Third-party links and services</h2>
+    <p>The site links to third-party websites and uses FormSubmit to process contact form submissions. We are not responsible for third-party content or services; your use of them is at your own risk and subject to their own terms.</p>
+
+    <h2>Privacy</h2>
+    <p>How we handle personal data submitted through this site is set out in our <a href="privacy.html">Privacy Policy</a>.</p>
+
+    <h2>Governing law</h2>
+    <p>These terms are governed by the law of England and Wales, and the courts of England and Wales have exclusive jurisdiction over any dispute relating to them.</p>
+
+    <h2>Changes</h2>
+    <p>We may update these terms from time to time. The date at the top shows when they last changed.</p>
+  </div>
+</section>
+
+</main><!-- /main-content -->
+
+<!-- ═══════════════════════════════════ FOOTER ════════ -->
+<footer class="site-footer">
+  <div class="footer-visual">
+    <div class="footer-mark-wrap">
+      <svg class="footer-mark-img" viewBox="0 0 796.86 771.12" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path fill="currentColor" d="M174.68,529.44l74.42,129.24c-4.98,41.48-29.86,78.46-69.26,97.75-57.63,28.21-127.48,7.88-161.09-46.34-33.47-54.01-21.07-125.34,28.9-164.31,37.39-29.15,85.12-34.34,127.04-16.34Z"/>
+        <path fill="currentColor" d="M430.17,664.34c-15.43,44.94-45.56,82.81-86.72,106.78l-25.57-43.3L123.62,396.93c44.71-26.78,96.96-33.12,147.33-21.33,25.48,5.96,48.44,16.39,69.21,30.32h.01l101.3,178.49c1.33,26.81-2.23,53.51-11.3,79.92Z"/>
+        <polygon fill="currentColor" points="796.86 767.96 576.19 768.26 242.35 191.87 353.46 0 796.86 767.96"/>
+      </svg>
+    </div>
+    <div class="footer-content">
+      <div class="footer-inner">
+        <div class="footer-cols">
+          <div class="footer-col">
+            <span class="footer-col-place">Norwich, UK</span>
+            <span class="footer-col-time" id="footer-time">--:--:--</span>
+            <span class="footer-col-tz">(GMT / BST)</span>
+          </div>
+          <div class="footer-col">
+            <span class="footer-col-heading">Services</span>
+            <a href="services.html#reliability">Reliability Engineering</a>
+            <a href="services.html#maintenance">Maintenance Engineering</a>
+            <a href="services.html#design">Design Engineering</a>
+            <a href="services.html#asset-management">Asset Management</a>
+            <a href="lubricants.html">Lubricants &amp; Oil Analysis</a>
+            <a href="services.html#project-delivery">Project Delivery</a>
+          </div>
+          <div class="footer-col">
+            <span class="footer-col-heading">Company</span>
+            <a href="about.html">About</a>
+            <a href="how-we-work.html">How We Work</a>
+            <a href="case-studies.html">Case Studies</a>
+            <a href="packages.html">Packages</a>
+            <a href="sectors.html">Sectors</a>
+          </div>
+          <div class="footer-col">
+            <span class="footer-col-heading">Contact</span>
+            <a href="contact.html">Get In Touch</a>
+            <a href="mailto:hello@alignsolutions.co.uk">hello@alignsolutions.co.uk</a>
+          </div>
+        </div>
+        <div class="footer-meta">
+          <span>©2026 Align Solutions Ltd. All rights reserved.</span>
+          <a href="privacy.html">Privacy Policy</a>
+          <a href="terms.html">Terms &amp; Conditions</a>
+          <span class="footer-meta-spacer"></span>
+          <span>alignsolutions.co.uk</span>
+        </div>
+      </div>
+      <div class="footer-visual-wordmark">Align Solutions</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+// ── Mobile nav hamburger: toggle, focus management, focus trap ──
+(function initMobileNav() {
+  const btn = document.getElementById('navHamburger');
+  const nav = document.getElementById('mobileNav');
+  if (!btn || !nav) return;
+  function openMenu() {
+    nav.classList.add('open'); btn.classList.add('open');
+    btn.setAttribute('aria-expanded', 'true');
+    btn.setAttribute('aria-label', 'Close menu');
+    nav.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+    const first = nav.querySelector('a');
+    if (first) first.focus();
+  }
+  function closeMenu() {
+    if (!nav.classList.contains('open')) return;
+    nav.classList.remove('open'); btn.classList.remove('open');
+    btn.setAttribute('aria-expanded', 'false');
+    btn.setAttribute('aria-label', 'Open menu');
+    nav.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+    btn.focus();
+  }
+  btn.addEventListener('click', () => nav.classList.contains('open') ? closeMenu() : openMenu());
+  nav.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') closeMenu();
+    // Keep Tab cycling between the toggle and the menu links while open
+    if (e.key === 'Tab' && nav.classList.contains('open')) {
+      const links = nav.querySelectorAll('a');
+      const last = links[links.length - 1];
+      if (e.shiftKey && document.activeElement === btn) { e.preventDefault(); last.focus(); }
+      else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); btn.focus(); }
+    }
+  });
+})();
+
+// ── Fade-up animations ──────────────────────────────────
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
+}, { threshold: 0.05, rootMargin: '0px 0px 60px 0px' });
+document.querySelectorAll('.fade-up').forEach(el => io.observe(el));
+
+window.addEventListener('load', () => {
+  document.querySelectorAll('.page-hero .fade-up').forEach((el, i) => {
+    setTimeout(() => el.classList.add('in'), 80 + i * 130);
+  });
+  setTimeout(() => {
+    document.querySelectorAll('.fade-up').forEach(el => el.classList.add('in'));
+  }, 350);
+});
+
+// ── Live footer clock (UK time) ─────────────────────────
+function updateFooterClock() {
+  const el = document.getElementById('footer-time');
+  if (!el) return;
+  el.textContent = new Date().toLocaleTimeString('en-GB', {
+    timeZone: 'Europe/London', hour12: false,
+    hour: '2-digit', minute: '2-digit', second: '2-digit'
+  });
+}
+setInterval(updateFooterClock, 1000);
+updateFooterClock();
+</script>
+</body>
+</html>

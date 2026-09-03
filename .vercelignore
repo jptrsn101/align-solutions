@@ -1,0 +1,15 @@
+# Keep dev tooling, source assets and notes out of the deployment.
+# Pages only reference Brand_Assets/SVG Logos/, og-image.jpg and logo-512.png.
+CLAUDE.md
+serve.mjs
+screenshot.mjs
+package.json
+package-lock.json
+node_modules
+inspiration
+temporary screenshots
+.DS_Store
+Brand_Assets/Images
+Brand_Assets/Neue Haas Font
+Brand_Assets/BrandGuidelines.pdf
+Brand_Assets/markbestheadshot.png
