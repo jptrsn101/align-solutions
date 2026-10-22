@@ -380,7 +380,8 @@
       letter-spacing: -0.04em;
       max-width: 12ch; margin: 0 auto;
     }
-    .hero-line-1, .hero-line-2 { display: block; position: relative; }
+    /* Three set lines, one word each; the longest fits the measure at every size */
+    .hero-line-1, .hero-line-2, .hero-line-3 { display: block; position: relative; white-space: nowrap; }
     /* Trailing punctuation hangs outside the measure so the words themselves
        centre optically; a centred comma would shift the word mass left */
     .hero-heading .hang { position: absolute; }
@@ -894,8 +895,7 @@
       /* Hero fills the viewport, everything centred */
       .hero { padding: 6.5rem 1.5rem 7rem; }
       .hero-eyebrow { margin-bottom: 1.25rem; }
-      .hero-heading { font-size: clamp(2.9rem, 14vw, 6rem); max-width: none; }
-      .hero-foot { margin-top: 2rem; }
+      .hero-heading { font-size: clamp(2.9rem, 14vw, 6rem); max-width: none; }      .hero-foot { margin-top: 2rem; }
       .hero-sub { font-size: 1rem; margin-bottom: 1.5rem; }
 
       /* Mark band: mark scaled harder so it still crops on a narrow screen */
@@ -1166,8 +1166,9 @@
     <div>
       <span class="hero-eyebrow fade-up">Align Solutions</span>
       <h1 class="hero-heading fade-up fd1">
-        <span class="hero-line-1">Reliability engineering<span class="hang">,</span></span>
-        <span class="hero-line-2">maintenance &amp; design<span class="hang">.</span></span>
+        <span class="hero-line-1">Reliability<span class="hang">,</span></span>
+        <span class="hero-line-2">maintenance</span>
+        <span class="hero-line-3">&amp; design<span class="hang">.</span></span>
       </h1>
     </div>
     <div class="hero-foot">
