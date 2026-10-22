@@ -675,56 +675,95 @@
     .explore-all:active { color: var(--w90); }
 
     /* ─── PARTNERSHIP ────────────────────────────────── */
+    /* The one white band on the home page: the partner logos keep their own
+       colours, so they sit on white rather than cobalt. Everything else is
+       cobalt ink, with --plate for the rules. */
     .partnership-section {
-      padding: 8rem 2rem;
-      border-top: 1px solid var(--w12);
+      padding: 7rem 2rem;
+      background: var(--white); color: var(--cobalt);
       text-align: center;
       position: relative;
       overflow: hidden;
     }
     .partnership-inner {
-      max-width: 760px; margin: 0 auto;
+      max-width: 1040px; margin: 0 auto;
       display: flex; flex-direction: column; align-items: center;
     }
     .partnership-eyebrow {
       font-size: 0.66rem; font-weight: 500; text-transform: uppercase;
-      letter-spacing: 0.12em; color: var(--w60);
+      letter-spacing: 0.12em; color: var(--cobalt); opacity: 0.6;
       display: block; margin-bottom: 1.75rem;
     }
     /* Horizontal lockup: line | logos | line */
     .partnership-lockup {
       display: flex; align-items: center; gap: 2.5rem;
-      width: 100%; margin-bottom: 2.25rem;
+      width: 100%; max-width: 760px; margin-bottom: 2.75rem;
     }
-    .partnership-line { flex: 1; height: 1px; background: var(--w22); }
+    .partnership-line { flex: 1; height: 1px; background: var(--plate); }
     /* Two-brand supplier lockup */
     .partnership-brands {
       position: relative; flex-shrink: 0;
       display: flex; align-items: center; gap: 2.25rem;
     }
+    /* Medium first line, Bold second: weight carries the emphasis */
     .partnership-name {
-      font-size: 0.66rem; font-weight: 500; text-transform: uppercase;
-      letter-spacing: 0.12em; color: var(--w60);
-      display: block; margin-bottom: 0.75rem;
+      font-size: clamp(2.2rem, 4.2vw, 3.8rem);
+      font-weight: 500; letter-spacing: -0.035em; line-height: 0.98;
+      margin-bottom: 1.25rem;
     }
+    .partnership-section .em-text { color: var(--cobalt); }
     .partnership-desc {
-      font-size: 1rem; font-weight: 500; line-height: 1.5;
-      letter-spacing: -0.01em; color: var(--w75);
-      max-width: 480px; margin: 0 auto;
+      font-size: 1.05rem; font-weight: 500; line-height: 1.5;
+      letter-spacing: -0.01em; color: var(--cobalt); opacity: 0.8;
+      max-width: 540px; margin: 0 auto;
     }
-    /* Click-through to the services lubricants section */
+    /* Three product lines, left aligned under hairline rules */
+    .partnership-products {
+      list-style: none; width: 100%;
+      margin-top: 3.5rem;
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 2.5rem;
+      text-align: left;
+    }
+    .partnership-product { padding-top: 1.5rem; border-top: 1px solid var(--plate); }
+    .partnership-tag {
+      display: block; margin-bottom: 0.9rem;
+      font-size: 0.66rem; font-weight: 500; text-transform: uppercase;
+      letter-spacing: 0.12em; opacity: 0.6;
+    }
+    .partnership-product h3 { font-size: 1.3rem; font-weight: 700; letter-spacing: -0.02em; line-height: 1.15; margin-bottom: 0.6rem; }
+    .partnership-product p { font-size: 0.95rem; line-height: 1.5; opacity: 0.8; }
+    /* What the range is specified for */
+    .partnership-uses {
+      list-style: none; margin-top: 3rem;
+      display: flex; flex-wrap: wrap; justify-content: center; gap: 0.5rem;
+    }
+    .partnership-uses li {
+      padding: 0.45rem 1rem; border: 1px solid var(--plate); border-radius: 100px;
+      font-size: 0.85rem; font-weight: 500;
+    }
+    .partnership-actions {
+      margin-top: 3rem;
+      display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 1.25rem 2rem;
+    }
+    /* The shared flood button, inverted for the white band */
+    .btn-flood--ink { color: var(--cobalt); border-color: var(--cobalt); }
+    .btn-flood--ink::after { background: var(--cobalt); }
+    .btn-flood--ink:hover { color: var(--white); border-color: var(--cobalt); }
+    /* Click-through to the lubricants page */
     .partnership-cta {
-      margin-top: 1.25rem;
       display: inline-flex; align-items: center; gap: 0.5rem;
       padding: 0.6rem 0 0.35rem;
       font-size: 0.72rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.1em;
-      color: var(--white); text-decoration: none;
-      border-bottom: 1px solid var(--w40);
+      color: var(--cobalt); text-decoration: none;
+      border-bottom: 1px solid var(--plate);
       transition: border-color 0.25s ease;
     }
-    .partnership-cta:hover { border-color: var(--white); }
+    .partnership-cta:hover, .partnership-cta:focus-visible { border-color: var(--cobalt); }
+    .partnership-cta:active { opacity: 0.8; }
     .partnership-cta svg { flex-shrink: 0; transition: transform 0.25s var(--ease-spring); }
     .partnership-cta:hover svg { transform: translate(2px, -2px); }
+    /* Cobalt focus ring: the shared white one would vanish on white */
+    .partnership-section a:focus-visible { outline-color: var(--cobalt); }
 
     /* ─── QUOTE ───────────────────────────────────────── */
     .quote-section { padding: 11rem 2rem; text-align: center; }
@@ -939,6 +978,7 @@
       /* Partnership */
       .partnership-section { padding: 5rem 1.25rem; }
       .partnership-lockup { gap: 1rem; }
+      .partnership-products { grid-template-columns: 1fr; gap: 1.75rem; margin-top: 2.75rem; }
       .partnership-brands { gap: 1.25rem; }
       .brand-chip { height: 72px; padding: 0 0.35rem; }
       .brand-chip.is-shell img { height: 64px; }
@@ -1410,10 +1450,10 @@
 
 
 <!-- ═══════════════════════════════ PARTNERSHIP ═══════ -->
-<section class="partnership-section">
+<section class="partnership-section" aria-labelledby="partnership-heading">
   <div class="partnership-inner">
 
-    <span class="partnership-eyebrow fade-up">Strategic Partnership</span>
+    <span class="partnership-eyebrow fade-up">Authorised lubricant supplier</span>
 
     <div class="partnership-lockup fade-up fd1">
       <div class="partnership-line" aria-hidden="true"></div>
@@ -1424,14 +1464,48 @@
       <div class="partnership-line" aria-hidden="true"></div>
     </div>
 
-    <h2 class="partnership-name fade-up fd2">Shell &amp; Castrol</h2>
+    <h2 class="partnership-name fade-up fd2" id="partnership-heading">Shell &amp; Castrol lubricants,<br /><span class="em-text">chosen by engineers.</span></h2>
     <p class="partnership-desc fade-up fd3">
-      Authorised supplier of premium Shell and Castrol lubricants, plus Shell LubeAnalyst oil analysis, product supply backed by reliability engineering, across oil &amp; gas, maritime and renewables.
+      The right oil for every asset, specified by the reliability engineers who set your maintenance strategy and backed by oil analysis. Supplied UK-wide across oil &amp; gas, maritime, renewables and general industry.
     </p>
-    <a href="lubricants.html" class="partnership-cta fade-up fd3">
-      Lubricant supply &amp; oil analysis
-      <svg width="11" height="11" viewBox="0 0 11 11" fill="none"><path d="M2 9L9 2M9 2H3M9 2V8" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-    </a>
+
+    <ul class="partnership-products">
+      <li class="partnership-product fade-up">
+        <span class="partnership-tag">Supply</span>
+        <h3>Shell &amp; Shell Panolin</h3>
+        <p>The full Shell range, including biodegradable Panolin for sites where oil can reach water or soil.</p>
+      </li>
+      <li class="partnership-product fade-up fd1">
+        <span class="partnership-tag">Supply</span>
+        <h3>Castrol industrial</h3>
+        <p>Gear, hydraulic, compressor and engine oils, specified against OEM requirements and actual duty.</p>
+      </li>
+      <li class="partnership-product fade-up fd2">
+        <span class="partnership-tag">Oil analysis</span>
+        <h3>Shell LubeAnalyst</h3>
+        <p>Track wear, contamination and oil life, with every report read by our engineers against the asset's history.</p>
+      </li>
+    </ul>
+
+    <ul class="partnership-uses fade-up" aria-label="Applications">
+      <li>Gearboxes</li>
+      <li>Hydraulics</li>
+      <li>Compressors</li>
+      <li>Turbines</li>
+      <li>Engines</li>
+      <li>Bearings</li>
+    </ul>
+
+    <div class="partnership-actions fade-up">
+      <a href="contact.html?service=lubricants" class="btn-flood btn-flood--ink">
+        Request a lubricant quote
+        <svg width="11" height="11" viewBox="0 0 11 11" fill="none" aria-hidden="true"><path d="M2 9L9 2M9 2H3M9 2V8" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+      <a href="lubricants.html" class="partnership-cta">
+        Lubricant supply &amp; oil analysis
+        <svg width="11" height="11" viewBox="0 0 11 11" fill="none" aria-hidden="true"><path d="M2 9L9 2M9 2H3M9 2V8" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
 
   </div>
 </section>
