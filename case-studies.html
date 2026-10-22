@@ -575,30 +575,7 @@
     .case-card { scroll-margin-top: 90px; }
     .filter-empty { max-width: 1240px; margin: 0 auto; padding: 0 2.5rem 4rem; font-size: 1rem; color: var(--w75); }
 
-    /* ─── FEATURED CASE STUDY ─────────────────────────── */
-    .featured-section { max-width: 1240px; margin: 0 auto; padding: 0 2.5rem 3rem; }
-    .featured-card {
-      display: grid; grid-template-columns: 1fr; gap: 0.6rem; padding: 2.25rem;
-      color: var(--white); text-decoration: none;
-      transition: border-color 0.25s ease, transform 0.35s var(--ease-spring);
-    }
-    .featured-card:hover, .featured-card:focus-visible { border-color: var(--w40); transform: translateY(-4px); }
-    .featured-card:active { transform: translateY(-1px); }
-    .featured-title { font-size: clamp(1.5rem, 2.6vw, 2.2rem); font-weight: 700; letter-spacing: -0.03em; line-height: 1.05; max-width: 30ch; }
-    .featured-desc { font-size: 1rem; line-height: 1.5; color: var(--w75); }
-    .featured-go {
-      margin-top: 0.6rem; display: inline-flex; align-items: center; gap: 0.5rem;
-      font-size: 0.72rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.1em; color: var(--w75);
-    }
-    .featured-go svg { transition: transform 0.25s var(--ease-spring); }
-    .featured-card:hover .featured-go { color: var(--white); }
-    .featured-card:hover .featured-go svg { transform: translate(2px, -2px); }
-    @media (max-width: 768px) {
-      .featured-section { padding: 0 1.5rem 2.5rem; }
-      .featured-card { padding: 1.75rem; }
-    }
-
- ─────────────────────────────── */
+    /* ─── PAGE RESPONSIVE ─────────────────────────────── */
     @media (max-width: 1024px) {
       .cases-grid { grid-template-columns: repeat(2, 1fr); }
     }
@@ -946,16 +923,6 @@
       <h1 class="hero-h1 fade-up fd1">Engineering case studies<br />that speak for themselves.</h1>
       <p class="hero-sub fade-up fd2">Real projects. Measurable results. Across every sector we serve.</p>
     </div>
-  </section>
-
-  <!-- ─── FEATURED CASE STUDY ──────────────────────────────── -->
-  <section class="featured-section">
-    <a href="case-study-gas-platform-criticality.html" class="featured-card glass fade-up">
-      <span class="eyebrow">Full case study / Oil &amp; Gas</span>
-      <span class="featured-title">Criticality and critical spares on a North Sea gas platform</span>
-      <span class="featured-desc">Every tag classed C1 to C3, system by system, with the spares to hold for each.</span>
-      <span class="featured-go">Read the case study <svg width="11" height="11" viewBox="0 0 11 11" fill="none" aria-hidden="true"><path d="M2 9L9 2M9 2H3M9 2V8" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-    </a>
   </section>
 
   <!-- ─── FILTER PILLS ─────────────────────────────────────── -->
