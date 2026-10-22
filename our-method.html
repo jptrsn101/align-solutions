@@ -63,7 +63,7 @@
       "@type": "HowToStep",
       "position": 4,
       "name": "Reliability analysis",
-      "text": "Weibull, exponential and Poisson modelling show whether each asset type fails early, at random or through wear-out. That decides whether time-based maintenance helps at all."
+      "text": "Weibull, exponential and Poisson modelling show whether each asset type fails early, at random or through wear-out. That decides whether time-based maintenance helps at all. Where your own history is thin, OREDA industry data fills the gap."
     },
     {
       "@type": "HowToStep",
@@ -586,6 +586,20 @@
     .faq-q { font-size: 1.25rem; font-weight: 700; letter-spacing: -0.02em; line-height: 1.15; margin-bottom: 0.75rem; }
     .faq-a { font-size: 1rem; line-height: 1.5; color: var(--w75); max-width: 60ch; }
 
+    /* ─── RELIABILITY DATA (OREDA) ────────────────────── */
+    /* Where a plant has little failure history, likelihoods come from OREDA.
+       Their white logo sits on the glass panel with its colours untouched. */
+    .data-panel { padding: 2.75rem; display: grid; grid-template-columns: 1fr 1.6fr; gap: 3rem; align-items: start; }
+    .data-logo { display: block; height: 32px; width: auto; margin-bottom: 2rem; }
+    .data-panel p { font-size: 1.1rem; line-height: 1.5; color: var(--w90); max-width: 56ch; margin-bottom: 1.5rem; }
+    @media (max-width: 1024px) {
+      .data-panel { grid-template-columns: 1fr; gap: 1.5rem; }
+    }
+    @media (max-width: 768px) {
+      .data-panel { padding: 2rem 1.75rem; }
+      .data-logo { height: 28px; margin-bottom: 1.5rem; }
+    }
+
     /* ─── PAGE RESPONSIVE ─────────────────────────────── */
     @media (max-width: 1024px) {
       .svc-split, .svc-define { gap: 3rem; }
@@ -1034,9 +1048,9 @@
           <span class="step-no">04</span>
           <div>
             <h3>Reliability analysis</h3>
-            <p>Weibull, exponential and Poisson modelling show whether each asset type fails early, at random or through wear-out. That decides whether time-based maintenance helps at all.</p>
+            <p>Weibull, exponential and Poisson modelling show whether each asset type fails early, at random or through wear-out. That decides whether time-based maintenance helps at all. Where your own history is thin, OREDA industry data fills the gap.</p>
             <dl class="step-facts">
-              <div><dt>Data we use</dt><dd>The cleaned failure history</dd></div>
+              <div><dt>Data we use</dt><dd>The cleaned failure history, plus OREDA data where history is thin</dd></div>
               <div><dt>What you get</dt><dd>Failure patterns and life estimates for each asset type</dd></div>
             </dl>
           </div>
@@ -1108,6 +1122,22 @@
           </div>
         </li>
       </ol>
+    </div>
+  </section>
+
+  <!-- ─── RELIABILITY DATA ──────────────────────────────────── -->
+  <section class="svc-section">
+    <div class="svc-wrap">
+      <div class="data-panel glass fade-up">
+        <div>
+          <img class="data-logo" src="Brand_Assets/SVG Logos/oreda-logo-white.svg" alt="OREDA" width="208" height="32" loading="lazy" />
+          <h2 class="svc-h2">No failure history?<br /><span class="em-text">We use OREDA.</span></h2>
+        </div>
+        <div>
+          <p>Many plants have never recorded enough failures to give a realistic likelihood of failure. Where your own history is thin, we use OREDA, the energy industry's reliability database built from over four decades of offshore and onshore equipment records, to set realistic failure rates. As your own data builds, it takes over.</p>
+          <a href="https://oreda.com" target="_blank" rel="noopener noreferrer" class="text-link">About OREDA <svg width="11" height="11" viewBox="0 0 11 11" fill="none" aria-hidden="true"><path d="M2 9L9 2M9 2H3M9 2V8" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        </div>
+      </div>
     </div>
   </section>
 

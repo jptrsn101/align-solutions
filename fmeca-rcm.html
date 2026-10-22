@@ -583,6 +583,20 @@
     .faq-q { font-size: 1.25rem; font-weight: 700; letter-spacing: -0.02em; line-height: 1.15; margin-bottom: 0.75rem; }
     .faq-a { font-size: 1rem; line-height: 1.5; color: var(--w75); max-width: 60ch; }
 
+    /* ─── RELIABILITY DATA (OREDA) ────────────────────── */
+    /* Where a plant has little failure history, likelihoods come from OREDA.
+       Their white logo sits on the glass panel with its colours untouched. */
+    .data-panel { padding: 2.75rem; display: grid; grid-template-columns: 1fr 1.6fr; gap: 3rem; align-items: start; }
+    .data-logo { display: block; height: 32px; width: auto; margin-bottom: 2rem; }
+    .data-panel p { font-size: 1.1rem; line-height: 1.5; color: var(--w90); max-width: 56ch; margin-bottom: 1.5rem; }
+    @media (max-width: 1024px) {
+      .data-panel { grid-template-columns: 1fr; gap: 1.5rem; }
+    }
+    @media (max-width: 768px) {
+      .data-panel { padding: 2rem 1.75rem; }
+      .data-logo { height: 28px; margin-bottom: 1.5rem; }
+    }
+
     /* ─── PAGE RESPONSIVE ─────────────────────────────── */
     @media (max-width: 1024px) {
       .svc-split, .svc-define { gap: 3rem; }
@@ -962,11 +976,27 @@
         </div>
         <div class="svc-block fade-up">
           <h3>Pick the right strategy for each failure mode</h3>
-          <p>Time-based replacement only works for failures that wear out on a predictable curve. Using Weibull analysis on your failure data where it exists, we choose between condition monitoring, scheduled restoration, failure-finding tests, redesign or run to failure. Each failure mode gets the cheapest strategy that controls the risk.</p>
+          <p>Time-based replacement only works for failures that wear out on a predictable curve. Using Weibull analysis on your failure data where it exists, and OREDA industry data where it doesn't, we choose between condition monitoring, scheduled restoration, failure-finding tests, redesign or run to failure. Each failure mode gets the cheapest strategy that controls the risk.</p>
         </div>
         <div class="svc-block fade-up">
           <h3>RCM where it is justified</h3>
           <p>Full RCM on every asset is slow and expensive. We apply full RCM to C1 assets and a lighter FMECA-based review to C2, so the depth of analysis matches the consequence of failure.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── RELIABILITY DATA ──────────────────────────────────── -->
+  <section class="svc-section">
+    <div class="svc-wrap">
+      <div class="data-panel glass fade-up">
+        <div>
+          <img class="data-logo" src="Brand_Assets/SVG Logos/oreda-logo-white.svg" alt="OREDA" width="208" height="32" loading="lazy" />
+          <h2 class="svc-h2">No failure history?<br /><span class="em-text">We use OREDA.</span></h2>
+        </div>
+        <div>
+          <p>Many plants have never recorded enough failures to give a realistic likelihood of failure. Where your own history is thin, we use OREDA, the energy industry's reliability database built from over four decades of offshore and onshore equipment records, to set realistic failure rates. As your own data builds, it takes over.</p>
+          <a href="https://oreda.com" target="_blank" rel="noopener noreferrer" class="text-link">About OREDA <svg width="11" height="11" viewBox="0 0 11 11" fill="none" aria-hidden="true"><path d="M2 9L9 2M9 2H3M9 2V8" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
         </div>
       </div>
     </div>
