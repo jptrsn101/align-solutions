@@ -161,6 +161,115 @@
     .nav-links a:hover, .nav-links a.active { color: var(--white); }
     .nav-links a:hover::after, .nav-links a.active::after { transform: scaleX(1); }
 
+    /* ─── NAV MENUS ───────────────────────────────────── */
+    /* Top-level triggers share the link styling. Each opens a frosted navy
+       panel fixed under the bar: the Services mega menu (full width) and two
+       small drops (Insights, About) centred on their trigger. Panels sit
+       outside .site-nav so their blur reaches the page underneath. */
+    .nav-trigger {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      font-family: inherit; font-size: 0.7rem; font-weight: 500;
+      text-transform: uppercase; letter-spacing: 0.1em; color: var(--w60);
+      background: none; border: 0; cursor: pointer;
+      position: relative; padding: 0 0 3px;
+      transition: color 0.25s ease;
+    }
+    .nav-trigger::after {
+      content: '';
+      position: absolute; bottom: 0; left: 0;
+      width: 100%; height: 1px;
+      background: var(--white);
+      transform: scaleX(0);
+      transform-origin: left center;
+      transition: transform 0.35s var(--ease-spring);
+    }
+    .nav-trigger:hover, .nav-trigger.active, .nav-trigger[aria-expanded="true"] { color: var(--white); }
+    .nav-trigger:hover::after, .nav-trigger.active::after, .nav-trigger[aria-expanded="true"]::after { transform: scaleX(1); }
+    .nav-trigger:active .nav-chevron { transform: translateY(1px); }
+    .nav-chevron { flex-shrink: 0; transition: transform 0.3s var(--ease-spring); }
+    .nav-trigger[aria-expanded="true"] .nav-chevron,
+    .m-acc-trigger[aria-expanded="true"] .nav-chevron { transform: rotate(180deg); }
+
+    /* Shared panel surface: the mobile overlay's frosted navy, closed by default.
+       visibility keeps closed-panel links out of the tab order. */
+    .nav-panel {
+      position: fixed; top: 68px; z-index: 99;
+      background: rgba(27,36,86,0.88);
+      -webkit-backdrop-filter: blur(24px); backdrop-filter: blur(24px);
+      border: 1px solid var(--glass-border);
+      opacity: 0; visibility: hidden; transform: translateY(-8px);
+      transition: opacity 0.25s ease, transform 0.35s var(--ease-out), visibility 0s linear 0.35s;
+    }
+    .nav-panel.open {
+      opacity: 1; visibility: visible; transform: translateY(0);
+      transition: opacity 0.25s ease, transform 0.35s var(--ease-out), visibility 0s;
+    }
+
+    /* Services mega menu */
+    .nav-mega {
+      left: 0; right: 0; border-width: 0 0 1px;
+      max-height: calc(100vh - 68px); overflow-y: auto;
+    }
+    .mega-inner {
+      max-width: 1240px; margin: 0 auto; padding: 2.5rem 2.5rem 0;
+      display: grid; grid-template-columns: 3fr 1fr; gap: 3rem;
+    }
+    .mega-group + .mega-group { margin-top: 1.75rem; padding-top: 1.75rem; border-top: 1px solid var(--w12); }
+    .mega-label {
+      display: block; margin-bottom: 1.1rem;
+      font-size: 0.66rem; font-weight: 500; text-transform: uppercase;
+      letter-spacing: 0.12em; color: var(--w60);
+    }
+    .mega-cols { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+    .mega-cat {
+      display: inline-block; margin-bottom: 0.6rem;
+      font-size: 1.05rem; font-weight: 700; letter-spacing: -0.02em; line-height: 1.15;
+      color: var(--white); text-decoration: underline;
+      text-decoration-color: transparent; text-underline-offset: 0.2em;
+      transition: text-decoration-color 0.2s ease;
+    }
+    .mega-cat:hover, .mega-cat:focus-visible, .mega-cat[aria-current="page"] { text-decoration-color: var(--white); }
+    .mega-list { list-style: none; }
+    .mega-list a {
+      display: block; padding: 0.28rem 0;
+      font-size: 0.88rem; line-height: 1.3; color: var(--w60);
+      text-decoration: none; transition: color 0.2s ease;
+    }
+    .mega-list a:hover, .mega-list a:focus-visible, .mega-list a[aria-current="page"] { color: var(--white); }
+    .mega-list a:active { color: var(--w90); }
+    .mega-list--lg a { font-size: 0.95rem; color: var(--w75); }
+    .mega-side { border-left: 1px solid var(--w12); padding-left: 2.5rem; }
+    .mega-foot {
+      max-width: 1240px; margin: 2rem auto 0; padding: 1.1rem 2.5rem 1.4rem;
+      display: flex; gap: 2.5rem; border-top: 1px solid var(--w12);
+    }
+    .mega-foot-link, .drop-foot {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      font-size: 0.7rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.1em;
+      color: var(--w75); text-decoration: none; transition: color 0.2s ease;
+    }
+    .mega-foot-link svg, .drop-foot svg { transition: transform 0.25s var(--ease-spring); }
+    .mega-foot-link:hover, .mega-foot-link:focus-visible, .drop-foot:hover, .drop-foot:focus-visible { color: var(--white); }
+    .mega-foot-link:hover svg, .drop-foot:hover svg { transform: translate(2px, -2px); }
+    .mega-foot-link:active, .drop-foot:active { color: var(--w90); }
+
+    /* Small drop panels (Insights, About), left edge set by JS via --drop-x */
+    .nav-drop {
+      left: var(--drop-x, 50%); width: 300px;
+      border-top: 0; border-radius: 0 0 20px 20px;
+      padding: 0.6rem;
+    }
+    .drop-list { list-style: none; }
+    .drop-list a {
+      display: block; padding: 0.8rem 0.9rem; border-radius: 12px;
+      text-decoration: none;
+    }
+    .drop-list a:hover, .drop-list a:focus-visible, .drop-list a[aria-current="page"] { background: var(--w07); }
+    .drop-list a:active { background: var(--w12); }
+    .drop-name { display: block; font-size: 1rem; font-weight: 700; letter-spacing: -0.02em; color: var(--white); }
+    .drop-desc { display: block; margin-top: 0.2rem; font-size: 0.8rem; line-height: 1.35; color: var(--w60); }
+    .drop-foot { margin: 0.4rem 0.9rem 0.6rem; }
+
     /* ─── BUTTONS ─────────────────────────────────────── */
     /* Two flat pills. Rest: hairline white outline. Hover: white floods in
        from the left and the label flips to cobalt. */
@@ -461,6 +570,11 @@
     .case-card--featured .card-related a { color: var(--cobalt); text-decoration-color: rgba(62,81,163,0.4); }
     .case-card--featured .card-related a:hover, .case-card--featured .card-related a:focus-visible { text-decoration-color: var(--cobalt); }
 
+    /* Second filter row (service) and the no-match message */
+    .filter-row + .filter-row { margin-top: 0.6rem; }
+    .case-card { scroll-margin-top: 90px; }
+    .filter-empty { max-width: 1240px; margin: 0 auto; padding: 0 2.5rem 4rem; font-size: 1rem; color: var(--w75); }
+
     /* ─── PAGE RESPONSIVE ─────────────────────────────── */
     @media (max-width: 1024px) {
       .cases-grid { grid-template-columns: repeat(2, 1fr); }
@@ -671,6 +785,44 @@
       .footer-visual-wordmark { white-space: normal; font-size: clamp(32px, 8.5vw, 58px); }
     }
 
+    /* ─── NAV MENUS, responsive ──────────────────────── */
+    @media (max-width: 1024px) {
+      .nav-links { gap: 1.6rem; }
+      .mega-inner { grid-template-columns: 1fr; gap: 1.75rem; padding: 2rem 2.5rem 0; }
+      .mega-side {
+        border-left: 0; padding-left: 0; padding-top: 1.75rem; border-top: 1px solid var(--w12);
+        display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;
+      }
+      .mega-side .mega-group + .mega-group { margin-top: 0; padding-top: 0; border-top: 0; }
+    }
+    @media (max-width: 768px) {
+      /* Desktop panels never show on mobile; the overlay carries the menus */
+      .nav-panel { display: none; }
+      .mobile-nav { justify-content: flex-start; overflow-y: auto; }
+      .m-acc-trigger {
+        display: flex; align-items: center; justify-content: space-between;
+        width: 100%; padding: 1rem 0;
+        background: none; border: 0; cursor: pointer; text-align: left;
+        font-family: inherit; font-size: 1.5rem; font-weight: 700; letter-spacing: -0.03em;
+        color: var(--w75); transition: color 0.2s ease;
+      }
+      .m-acc-trigger:hover, .m-acc-trigger.active, .m-acc-trigger[aria-expanded="true"] { color: var(--white); }
+      .m-acc-trigger:active { color: var(--w90); }
+      .m-acc-trigger .nav-chevron { width: 14px; height: 14px; }
+      .m-acc-panel { padding: 0 0 1.25rem; }
+      .m-label {
+        display: block; margin: 1rem 0 0.35rem;
+        font-size: 0.66rem; font-weight: 500; text-transform: uppercase;
+        letter-spacing: 0.12em; color: var(--w60);
+      }
+      .m-acc-panel .m-label:first-child { margin-top: 0; }
+      .mobile-nav-links .m-acc-panel a {
+        padding: 0.4rem 0;
+        font-size: 1.05rem; font-weight: 500; letter-spacing: -0.01em;
+      }
+      .mobile-nav-links .m-acc-panel a[aria-current="page"] { color: var(--white); }
+    }
+
     /* ─── REDUCED MOTION ─────────────────────────────── */
     /* Last in the sheet so it wins the cascade over every rule above.
        !important is required here: this accessibility override must beat
@@ -690,43 +842,76 @@
 <body>
 
   <!-- ─── NAV ─────────────────────────────────────────────── -->
-  <nav class="site-nav">
-    <a href="index.html" class="nav-logo" aria-label="Align Solutions">
-      <img src="Brand_Assets/SVG Logos/logo-lockup-white.svg" alt="Align Solutions" width="130" height="40" />
-    </a>
-    <ul class="nav-links">
-      <li><a href="index.html">Home</a></li>
-      <li><a href="services.html">Services</a></li>
-      <li><a href="packages.html">Packages</a></li>
-      <li><a href="how-we-work.html">How We Work</a></li>
-      <li><a href="case-studies.html" class="active">Case Studies</a></li>
-      <li><a href="sectors.html">Sectors</a></li>
-      <li><a href="about.html">About</a></li>
-    </ul>
-    <a href="contact.html" class="btn-pill">
-      Get In Touch
-      <svg width="11" height="11" viewBox="0 0 11 11" fill="none"><path d="M2 9L9 2M9 2H3M9 2V8" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-    </a>
-    <button class="nav-hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="mobileNav" id="navHamburger">
-      <span></span><span></span><span></span>
-    </button>
-  </nav>
+  <nav class="site-nav" aria-label="Main">
+  <a href="index.html" class="nav-logo" aria-label="Align Solutions home">
+    <img src="Brand_Assets/SVG Logos/logo-lockup-white.svg" alt="Align Solutions" width="130" height="40" />
+  </a>
+  <ul class="nav-links">
+    <li><button type="button" class="nav-trigger" aria-expanded="false" aria-controls="menu-services">Services<svg class="nav-chevron" width="9" height="9" viewBox="0 0 9 9" fill="none" aria-hidden="true"><path d="M1.5 3.25L4.5 6.25L7.5 3.25" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button></li>
+    <li><a href="sectors.html">Sectors</a></li>
+    <li><button type="button" class="nav-trigger active" aria-expanded="false" aria-controls="menu-insights">Align Insights<svg class="nav-chevron" width="9" height="9" viewBox="0 0 9 9" fill="none" aria-hidden="true"><path d="M1.5 3.25L4.5 6.25L7.5 3.25" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button></li>
+    <li><button type="button" class="nav-trigger" aria-expanded="false" aria-controls="menu-about">About<svg class="nav-chevron" width="9" height="9" viewBox="0 0 9 9" fill="none" aria-hidden="true"><path d="M1.5 3.25L4.5 6.25L7.5 3.25" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button></li>
+  </ul>
+  <a href="contact.html" class="btn-pill">
+    Get In Touch
+    <svg width="11" height="11" viewBox="0 0 11 11" fill="none" aria-hidden="true"><path d="M2 9L9 2M9 2H3M9 2V8" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </a>
+  <button class="nav-hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="mobileNav" id="navHamburger">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- Services mega menu: Consulting and Engineering services on the left,
+     Other services and Packages in the side rail -->
+<div class="nav-panel nav-mega" id="menu-services">
+  <div class="mega-inner">
+    <div class="mega-main">
+      <div class="mega-group">
+        <span class="mega-label">Consulting services</span>
+        <div class="mega-cols"><div class="mega-col"><a class="mega-cat" href="maintenance-management.html">Maintenance management</a><ul class="mega-list"><li><a href="equipment-criticality.html">Equipment criticality</a></li><li><a href="fmeca-rcm.html">FMECA and RCM</a></li><li><a href="maintenance-rationalisation.html">Maintenance rationalisation</a></li><li><a href="work-planning-scheduling.html">Work planning and scheduling</a></li></ul></div><div class="mega-col"><a class="mega-cat" href="reliability-management.html">Reliability management</a><ul class="mega-list"><li><a href="risk-based-maintenance.html">Risk-based maintenance</a></li><li><a href="root-cause-analysis.html">Root cause analysis</a></li><li><a href="condition-monitoring.html">Condition monitoring</a></li></ul></div><div class="mega-col"><a class="mega-cat" href="spares-management.html">Spares management</a><ul class="mega-list"><li><a href="spare-parts-strategy.html">Spare parts strategy</a></li><li><a href="critical-spares-review.html">Critical spares review</a></li><li><a href="obsolescence-review.html">Obsolescence review</a></li><li><a href="spares-data-enhancement.html">Spares data enhancement</a></li></ul></div></div>
+      </div>
+      <div class="mega-group">
+        <span class="mega-label">Engineering services</span>
+        <div class="mega-cols"><div class="mega-col"><a class="mega-cat" href="design-engineering.html">Design engineering</a><ul class="mega-list"><li><a href="design-engineering.html#concept">Concept and feasibility</a></li><li><a href="design-engineering.html#detailed-design">Detailed design, P&amp;IDs and CAD</a></li><li><a href="design-engineering.html#modifications">Modifications</a></li></ul></div><div class="mega-col"><a class="mega-cat" href="asset-management.html">Asset management</a><ul class="mega-list"><li><a href="asset-management.html#lifecycle">Lifecycle planning</a></li><li><a href="asset-management.html#risk">Risk assessment</a></li><li><a href="asset-management.html#compliance">Compliance assurance</a></li></ul></div><div class="mega-col"><a class="mega-cat" href="project-delivery.html">Project delivery</a><ul class="mega-list"><li><a href="project-delivery.html#project-management">Project management</a></li><li><a href="project-delivery.html#commissioning">Commissioning and testing</a></li><li><a href="project-delivery.html#handover">Handover into maintenance</a></li></ul></div></div>
+      </div>
+    </div>
+    <div class="mega-side">
+      <div class="mega-group">
+        <span class="mega-label">Other services</span>
+        <ul class="mega-list mega-list--lg"><li><a href="hseq.html">HSEQ</a></li><li><a href="lubricants.html">Lubricant supply and oil analysis</a></li></ul>
+      </div>
+      <div class="mega-group">
+        <span class="mega-label">Packages</span>
+        <ul class="mega-list mega-list--lg"><li><a href="packages.html#essentials">Essentials</a></li><li><a href="packages.html#advanced">Advanced</a></li><li><a href="packages.html#enterprise">Enterprise</a></li><li><a href="packages.html">Compare packages</a></li></ul>
+      </div>
+    </div>
+  </div>
+  <div class="mega-foot">
+    <a href="services.html" class="mega-foot-link">All services <svg width="11" height="11" viewBox="0 0 11 11" fill="none" aria-hidden="true"><path d="M2 9L9 2M9 2H3M9 2V8" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+    <a href="our-method.html" class="mega-foot-link">Our method <svg width="11" height="11" viewBox="0 0 11 11" fill="none" aria-hidden="true"><path d="M2 9L9 2M9 2H3M9 2V8" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+  </div>
+</div>
+
+<div class="nav-panel nav-drop" id="menu-insights">
+  <ul class="drop-list"><li><a href="articles.html"><span class="drop-name">Articles</span><span class="drop-desc">Practical writing on maintenance and reliability</span></a></li><li><a href="case-studies.html" aria-current="page"><span class="drop-name">Case studies</span><span class="drop-desc">Real projects, by sector and service</span></a></li><li><a href="resources.html"><span class="drop-name">Resources</span><span class="drop-desc">Templates and tools for your own team</span></a></li></ul>
+  <a href="insights.html" class="drop-foot">Align Insights home <svg width="11" height="11" viewBox="0 0 11 11" fill="none" aria-hidden="true"><path d="M2 9L9 2M9 2H3M9 2V8" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+</div>
+
+<div class="nav-panel nav-drop" id="menu-about">
+  <ul class="drop-list"><li><a href="about.html"><span class="drop-name">About Align</span><span class="drop-desc">Who we are and how we work</span></a></li><li><a href="about-mark.html"><span class="drop-name">About Mark</span><span class="drop-desc">Founder and Managing Director</span></a></li><li><a href="our-method.html"><span class="drop-name">Our method</span><span class="drop-desc">Ten steps from your data to a working strategy</span></a></li></ul>
+</div>
 
 <div class="mobile-nav" id="mobileNav" aria-hidden="true" role="dialog" aria-label="Site navigation">
   <ul class="mobile-nav-links">
     <li><a href="index.html">Home</a></li>
-    <li><a href="services.html">Services</a></li>
-    <li><a href="packages.html">Packages</a></li>
-    <li><a href="how-we-work.html">How We Work</a></li>
-    <li><a href="case-studies.html" class="active">Case Studies</a></li>
+    <li><button type="button" class="m-acc-trigger" aria-expanded="false" aria-controls="m-services">Services<svg class="nav-chevron" width="9" height="9" viewBox="0 0 9 9" fill="none" aria-hidden="true"><path d="M1.5 3.25L4.5 6.25L7.5 3.25" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button><div class="m-acc-panel" id="m-services" hidden><span class="m-label">Consulting services</span><a href="maintenance-management.html">Maintenance management</a><a href="reliability-management.html">Reliability management</a><a href="spares-management.html">Spares management</a><span class="m-label">Engineering services</span><a href="design-engineering.html">Design engineering</a><a href="asset-management.html">Asset management</a><a href="project-delivery.html">Project delivery</a><span class="m-label">Other services</span><a href="hseq.html">HSEQ</a><a href="lubricants.html">Lubricant supply and oil analysis</a><span class="m-label">Packages</span><a href="packages.html#essentials">Essentials</a><a href="packages.html#advanced">Advanced</a><a href="packages.html#enterprise">Enterprise</a><a href="packages.html">Compare packages</a><span class="m-label">More</span><a href="services.html">All services</a><a href="our-method.html">Our method</a></div></li>
     <li><a href="sectors.html">Sectors</a></li>
-    <li><a href="about.html">About</a></li>
+    <li><button type="button" class="m-acc-trigger active" aria-expanded="false" aria-controls="m-insights">Align Insights<svg class="nav-chevron" width="9" height="9" viewBox="0 0 9 9" fill="none" aria-hidden="true"><path d="M1.5 3.25L4.5 6.25L7.5 3.25" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button><div class="m-acc-panel" id="m-insights" hidden><a href="insights.html">Align Insights home</a><a href="articles.html">Articles</a><a href="case-studies.html" aria-current="page">Case studies</a><a href="resources.html">Resources</a></div></li>
+    <li><button type="button" class="m-acc-trigger" aria-expanded="false" aria-controls="m-about">About<svg class="nav-chevron" width="9" height="9" viewBox="0 0 9 9" fill="none" aria-hidden="true"><path d="M1.5 3.25L4.5 6.25L7.5 3.25" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button><div class="m-acc-panel" id="m-about" hidden><a href="about.html">About Align</a><a href="about-mark.html">About Mark</a><a href="our-method.html">Our method</a></div></li>
   </ul>
   <a href="contact.html" class="btn-pill btn-pill-lg">
     Get In Touch
-    <svg width="11" height="11" viewBox="0 0 11 11" fill="none">
-      <path d="M2 9L9 2M9 2H3M9 2V8" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
-    </svg>
+    <svg width="11" height="11" viewBox="0 0 11 11" fill="none" aria-hidden="true"><path d="M2 9L9 2M9 2H3M9 2V8" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
   </a>
 </div>
 
@@ -742,7 +927,7 @@
 
   <!-- ─── FILTER PILLS ─────────────────────────────────────── -->
   <div class="filter-section">
-    <div class="filter-row fade-up">
+    <div class="filter-row fade-up" role="group" aria-label="Filter by sector">
       <button type="button" class="filter-pill active" aria-pressed="true" data-sector="all">All</button>
       <button type="button" class="filter-pill" aria-pressed="false" data-sector="oil-gas">Oil &amp; Gas</button>
       <button type="button" class="filter-pill" aria-pressed="false" data-sector="manufacturing">Manufacturing</button>
@@ -751,6 +936,14 @@
       <button type="button" class="filter-pill" aria-pressed="false" data-sector="pharmaceutical">Pharmaceutical</button>
       <button type="button" class="filter-pill" aria-pressed="false" data-sector="marine">Marine</button>
     </div>
+    <div class="filter-row filter-row--service fade-up fd1" role="group" aria-label="Filter by service">
+      <button type="button" class="filter-pill active" aria-pressed="true" data-service="all">All services</button>
+      <button type="button" class="filter-pill" aria-pressed="false" data-service="maintenance">Maintenance</button>
+      <button type="button" class="filter-pill" aria-pressed="false" data-service="reliability">Reliability</button>
+      <button type="button" class="filter-pill" aria-pressed="false" data-service="spares">Spares</button>
+      <button type="button" class="filter-pill" aria-pressed="false" data-service="design">Design</button>
+      <button type="button" class="filter-pill" aria-pressed="false" data-service="asset">Asset management</button>
+    </div>
   </div>
 
   <!-- ─── CASE STUDY GRID ───────────────────────────────────── -->
@@ -758,7 +951,7 @@
     <div class="cases-grid">
 
       <!-- Card 01: offshore operator (NCS), frac pump reliability -->
-      <article class="case-card case-card--featured fade-up" data-sector="oil-gas">
+      <article id="case-01" data-service="reliability" class="case-card case-card--featured fade-up" data-sector="oil-gas">
         <div class="card-photo">
           <img src="assets/images/hero-packages-800.webp" alt="Offshore stimulation equipment, frac pump operations" width="800" height="534" loading="lazy" class="card-photo-img--top" />
         </div>
@@ -774,7 +967,7 @@
           <li><strong>USD 500k</strong> saved per day</li>
           <li><strong>USD 2.5M</strong> campaign savings</li>
         </ul>
-        <p class="card-related">Related: <a href="services.html#reliability">Reliability engineering</a> <span aria-hidden="true">/</span> <a href="sectors.html#oil-gas">Oil &amp; Gas</a></p>
+        <p class="card-related">Related: <a href="reliability-management.html">Reliability engineering</a> <span aria-hidden="true">/</span> <a href="sectors.html#oil-gas">Oil &amp; Gas</a></p>
         <a href="contact.html?service=reliability" class="card-link">
           Discuss a similar project
           <svg width="11" height="11" viewBox="0 0 11 11" fill="none"><path d="M2 9L9 2M9 2H3M9 2V8" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -782,7 +975,7 @@
       </article>
 
       <!-- Card 02: Manufacturing -->
-      <article class="case-card fade-up fd1" data-sector="manufacturing">
+      <article id="case-02" data-service="design" class="case-card fade-up fd1" data-sector="manufacturing">
         <div class="card-photo">
           <img src="assets/images/hero-services-800.webp" alt="Manufacturing production line" width="800" height="534" loading="lazy" />
         </div>
@@ -793,7 +986,7 @@
         <p class="card-desc">
           Redesigned and documented a critical production line for a FMCG manufacturer in the East Midlands. OEE improvement sustained across a 12-month baseline period.
         </p>
-        <p class="card-related">Related: <a href="services.html#design">Design engineering</a> <span aria-hidden="true">/</span> <a href="sectors.html#manufacturing">Manufacturing</a></p>
+        <p class="card-related">Related: <a href="design-engineering.html">Design engineering</a> <span aria-hidden="true">/</span> <a href="sectors.html#manufacturing">Manufacturing</a></p>
         <a href="contact.html?service=design" class="card-link">
           Discuss a similar project
           <svg width="11" height="11" viewBox="0 0 11 11" fill="none"><path d="M2 9L9 2M9 2H3M9 2V8" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -801,7 +994,7 @@
       </article>
 
       <!-- Card 03: Water & Utilities -->
-      <article class="case-card fade-up fd2" data-sector="water-utilities">
+      <article id="case-03" data-service="maintenance" class="case-card fade-up fd2" data-sector="water-utilities">
         <div class="card-photo">
           <img src="assets/images/hero-contact-800.webp" alt="Water treatment facility" width="800" height="534" loading="lazy" />
         </div>
@@ -812,7 +1005,7 @@
         <p class="card-desc">
           Developed and implemented a planned maintenance strategy across 6 water treatment facilities. Annual savings confirmed in year-one audit against baseline costs.
         </p>
-        <p class="card-related">Related: <a href="services.html#maintenance">Maintenance engineering</a> <span aria-hidden="true">/</span> <a href="sectors.html#water-utilities">Water &amp; Utilities</a></p>
+        <p class="card-related">Related: <a href="maintenance-management.html">Maintenance engineering</a> <span aria-hidden="true">/</span> <a href="sectors.html#water-utilities">Water &amp; Utilities</a></p>
         <a href="contact.html?service=maintenance" class="card-link">
           Discuss a similar project
           <svg width="11" height="11" viewBox="0 0 11 11" fill="none"><path d="M2 9L9 2M9 2H3M9 2V8" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -820,7 +1013,7 @@
       </article>
 
       <!-- Card 04: HPU Reliability Retainer -->
-      <article class="case-card fade-up fd3" data-sector="industrial">
+      <article id="case-04" data-service="reliability" class="case-card fade-up fd3" data-sector="industrial">
         <div class="card-photo">
           <img src="assets/images/hero-home-800.webp" alt="Hydraulic power unit with pumps and gearbox" width="800" height="534" loading="lazy" />
         </div>
@@ -831,7 +1024,7 @@
         <p class="card-desc">
           Hydraulic pumps and gearbox on an HPU showed accelerated wear flagged by vibration analysis. Weibull life modelling confirmed wear was system-driven, not ageing. A 2018 overhaul had set all pumps to identical pressure settings, creating vibrational resonance. Introducing a pressure differential resolved it. A design deficiency was also identified: no isolation check valves between pumps and the common discharge manifold.
         </p>
-        <p class="card-related">Related: <a href="services.html#reliability">Reliability engineering</a> <span aria-hidden="true">/</span> <a href="packages.html">Retainer packages</a></p>
+        <p class="card-related">Related: <a href="reliability-management.html">Reliability engineering</a> <span aria-hidden="true">/</span> <a href="packages.html">Retainer packages</a></p>
         <a href="contact.html?service=reliability" class="card-link">
           Discuss a similar project
           <svg width="11" height="11" viewBox="0 0 11 11" fill="none"><path d="M2 9L9 2M9 2H3M9 2V8" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -839,7 +1032,7 @@
       </article>
 
       <!-- Card 05: Pharmaceutical -->
-      <article class="case-card fade-up fd4" data-sector="pharmaceutical">
+      <article id="case-05" data-service="asset" class="case-card fade-up fd4" data-sector="pharmaceutical">
         <div class="card-photo">
           <img src="assets/images/hero-how-we-work-800.webp" alt="Pharmaceutical cleanroom" width="800" height="534" loading="lazy" />
         </div>
@@ -850,7 +1043,7 @@
         <p class="card-desc">
           Full engineering review of GMP cleanroom systems, resolving 23 identified compliance risks. Zero compliance failures recorded across two subsequent regulatory inspections.
         </p>
-        <p class="card-related">Related: <a href="services.html#asset-management">Asset management</a> <span aria-hidden="true">/</span> <a href="sectors.html#pharmaceutical">Pharmaceutical</a></p>
+        <p class="card-related">Related: <a href="asset-management.html">Asset management</a> <span aria-hidden="true">/</span> <a href="sectors.html#pharmaceutical">Pharmaceutical</a></p>
         <a href="contact.html?service=asset" class="card-link">
           Discuss a similar project
           <svg width="11" height="11" viewBox="0 0 11 11" fill="none"><path d="M2 9L9 2M9 2H3M9 2V8" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -858,7 +1051,7 @@
       </article>
 
       <!-- Card 06: Marine -->
-      <article class="case-card fade-up fd1" data-sector="marine">
+      <article id="case-06" data-service="maintenance spares" class="case-card fade-up fd1" data-sector="marine">
         <div class="card-photo">
           <img src="assets/images/hero-sectors-800.webp" alt="Offshore support vessel" width="800" height="534" loading="lazy" />
         </div>
@@ -869,7 +1062,7 @@
         <p class="card-desc">
           Overhauled the maintenance strategy for a fleet of 8 offshore support vessels. Maintenance cost reduction achieved within 24 months through RCM and spare parts rationalisation.
         </p>
-        <p class="card-related">Related: <a href="services.html#maintenance">Maintenance engineering</a> <span aria-hidden="true">/</span> <a href="sectors.html#marine">Marine</a></p>
+        <p class="card-related">Related: <a href="maintenance-management.html">Maintenance engineering</a> <span aria-hidden="true">/</span> <a href="sectors.html#marine">Marine</a></p>
         <a href="contact.html?service=maintenance" class="card-link">
           Discuss a similar project
           <svg width="11" height="11" viewBox="0 0 11 11" fill="none"><path d="M2 9L9 2M9 2H3M9 2V8" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -877,6 +1070,7 @@
       </article>
 
     </div>
+    <p class="filter-empty" hidden>No case studies match both filters yet. Try another sector or service.</p>
   </section>
 
   <!-- ─── BOTTOM CTA ────────────────────────────────────────── -->
@@ -969,24 +1163,34 @@
       }, 350);
     });
 
-// ── Case-study sector filter ────────────────────────
-// Pills toggle aria-pressed/active; cards show only when their
-// data-sector matches the selected pill ("all" shows everything).
+// ── Case-study filters: sector and service ───────────
+// Each row of pills sets one filter; a card shows only when it matches both.
+// A card's data-service can carry several services, space separated.
 (function initCaseFilter() {
-  const pills = document.querySelectorAll('.filter-pill');
   const cards = document.querySelectorAll('.case-card');
-  if (!pills.length || !cards.length) return;
-  pills.forEach(pill => pill.addEventListener('click', () => {
-    const sector = pill.dataset.sector;
-    pills.forEach(p => {
-      const selected = p === pill;
-      p.classList.toggle('active', selected);
-      p.setAttribute('aria-pressed', selected ? 'true' : 'false');
-    });
-    cards.forEach(card => {
-      card.style.display = (sector === 'all' || card.dataset.sector === sector) ? '' : 'none';
-    });
-  }));
+  const empty = document.querySelector('.filter-empty');
+  if (!cards.length) return;
+  const state = { sector: 'all', service: 'all' };
+  document.querySelectorAll('.filter-row').forEach(row => {
+    const pills = row.querySelectorAll('.filter-pill');
+    pills.forEach(pill => pill.addEventListener('click', () => {
+      const key = 'sector' in pill.dataset ? 'sector' : 'service';
+      state[key] = pill.dataset[key];
+      pills.forEach(p => {
+        const selected = p === pill;
+        p.classList.toggle('active', selected);
+        p.setAttribute('aria-pressed', selected ? 'true' : 'false');
+      });
+      let shown = 0;
+      cards.forEach(card => {
+        const match = (state.sector === 'all' || card.dataset.sector === state.sector) &&
+          (state.service === 'all' || card.dataset.service.split(' ').includes(state.service));
+        card.style.display = match ? '' : 'none';
+        if (match) shown++;
+      });
+      if (empty) empty.hidden = shown > 0;
+    }));
+  });
 })();
 
 // ── Live footer clock ───────────────────────────────
@@ -1001,11 +1205,107 @@ function updateFooterClock() {
 setInterval(updateFooterClock, 1000);
 updateFooterClock();
 
-// ── Mobile nav hamburger: toggle, focus management, focus trap ──
+// ── Desktop nav menus: Services mega panel, Insights and About drops ──
+// Click or Enter toggles; hover opens on mouse devices; Escape, a click
+// outside, or focus leaving trigger + panel closes. Panels sit after the bar
+// in the DOM, so Tab is routed into an open panel and back out to the bar.
+(function initNavMenus() {
+  const triggers = [...document.querySelectorAll('.nav-trigger')];
+  if (!triggers.length) return;
+  const canHover = window.matchMedia('(hover: hover) and (pointer: fine)');
+  const barItems = () => [...document.querySelectorAll('.site-nav a, .site-nav button')]
+    .filter(el => el.offsetParent !== null);
+  const panelOf = t => document.getElementById(t.getAttribute('aria-controls'));
+  let current = null, closeTimer = null, hoverOpened = false;
+
+  // Centre a small drop under its trigger, kept 16px inside the viewport
+  function place(t, panel) {
+    if (!panel.classList.contains('nav-drop')) return;
+    const r = t.getBoundingClientRect();
+    const w = panel.offsetWidth;
+    const x = Math.min(Math.max(16, r.left + r.width / 2 - w / 2), window.innerWidth - w - 16);
+    panel.style.setProperty('--drop-x', x + 'px');
+  }
+  function open(t) {
+    clearTimeout(closeTimer);
+    if (current && current !== t) close(current);
+    const panel = panelOf(t);
+    place(t, panel);
+    panel.classList.add('open');
+    t.setAttribute('aria-expanded', 'true');
+    current = t;
+  }
+  function close(t, refocus) {
+    hoverOpened = false;
+    panelOf(t).classList.remove('open');
+    t.setAttribute('aria-expanded', 'false');
+    if (current === t) current = null;
+    if (refocus) t.focus();
+  }
+  function closeSoon(t) {
+    clearTimeout(closeTimer);
+    closeTimer = setTimeout(() => close(t), 180);
+  }
+
+  triggers.forEach(t => {
+    const panel = panelOf(t);
+    t.addEventListener('click', e => {
+      // A click straight after a hover-open keeps the panel open
+      if (hoverOpened && current === t) { hoverOpened = false; return; }
+      if (t.getAttribute('aria-expanded') === 'true') return close(t);
+      open(t);
+      // Opened from the keyboard: move focus to the first link in the panel
+      if (e.detail === 0) panel.querySelector('a').focus();
+    });
+    [t, panel].forEach(el => {
+      el.addEventListener('mouseenter', () => {
+        if (!canHover.matches) return;
+        if (current !== t) hoverOpened = true;
+        open(t);
+      });
+      el.addEventListener('mouseleave', () => { if (canHover.matches) closeSoon(t); });
+      el.addEventListener('focusout', e => {
+        if (!t.contains(e.relatedTarget) && !panel.contains(e.relatedTarget)) closeSoon(t);
+      });
+      el.addEventListener('focusin', () => clearTimeout(closeTimer));
+    });
+    // Tab off the panel's last link returns to the next item in the bar;
+    // Shift+Tab off its first link returns to the trigger
+    panel.addEventListener('keydown', e => {
+      if (e.key !== 'Tab') return;
+      const links = [...panel.querySelectorAll('a')];
+      if (e.shiftKey && document.activeElement === links[0]) {
+        e.preventDefault(); t.focus();
+      } else if (!e.shiftKey && document.activeElement === links[links.length - 1]) {
+        const items = barItems();
+        const next = items[items.indexOf(t) + 1];
+        if (next) { e.preventDefault(); close(t); next.focus(); }
+      }
+    });
+  });
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && current) close(current, true);
+  });
+  document.addEventListener('click', e => {
+    if (current && !current.contains(e.target) && !panelOf(current).contains(e.target)) close(current);
+  });
+  // Close on a width change only: mobile toolbars fire resize while scrolling
+  let lastWidth = window.innerWidth;
+  window.addEventListener('resize', () => {
+    if (window.innerWidth === lastWidth) return;
+    lastWidth = window.innerWidth;
+    if (current) close(current);
+  });
+})();
+
+// ── Mobile nav: toggle, accordions, focus management, focus trap ──
 (function initMobileNav() {
   const btn = document.getElementById('navHamburger');
   const nav = document.getElementById('mobileNav');
   if (!btn || !nav) return;
+  // Only what is currently visible can take focus (closed accordions are hidden)
+  const focusables = () => [...nav.querySelectorAll('a, button')].filter(el => el.offsetParent !== null);
 
   function openMenu() {
     nav.classList.add('open');
@@ -1014,7 +1314,7 @@ updateFooterClock();
     btn.setAttribute('aria-label', 'Close menu');
     nav.setAttribute('aria-hidden', 'false');
     document.body.style.overflow = 'hidden';
-    const first = nav.querySelector('a');
+    const first = focusables()[0];
     if (first) first.focus();
   }
   function closeMenu() {
@@ -1030,12 +1330,19 @@ updateFooterClock();
 
   btn.addEventListener('click', () => nav.classList.contains('open') ? closeMenu() : openMenu());
   nav.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
+  // Accordions: each section button shows or hides its list of links
+  nav.querySelectorAll('.m-acc-trigger').forEach(b => b.addEventListener('click', () => {
+    const panel = document.getElementById(b.getAttribute('aria-controls'));
+    const opening = b.getAttribute('aria-expanded') !== 'true';
+    b.setAttribute('aria-expanded', opening ? 'true' : 'false');
+    panel.hidden = !opening;
+  }));
   document.addEventListener('keydown', e => {
     if (e.key === 'Escape') closeMenu();
-    // Keep Tab cycling between the toggle and the menu links while open
+    // Keep Tab cycling between the toggle and the menu while open
     if (e.key === 'Tab' && nav.classList.contains('open')) {
-      const links = nav.querySelectorAll('a');
-      const last = links[links.length - 1];
+      const items = focusables();
+      const last = items[items.length - 1];
       if (e.shiftKey && document.activeElement === btn) { e.preventDefault(); last.focus(); }
       else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); btn.focus(); }
     }
