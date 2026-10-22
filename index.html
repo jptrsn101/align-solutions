@@ -994,7 +994,7 @@
   </div>
   <div class="scroll-statement fade-up">
     <p class="scroll-statement-text">
-      Align Solutions is a Norwich engineering consultancy <span class="em-text">bridging design, maintenance and reliability engineering</span> for industrial operators across the UK and beyond. One team covers <a href="services.html">reliability, maintenance, design and asset management</a>, works across <a href="sectors.html">six critical sectors</a>, and supplies <a href="lubricants.html">Shell and Castrol lubricants</a> with the same rigour.
+      Align Solutions is a Norwich engineering consultancy <span class="em-text">bridging design, maintenance and reliability engineering</span> for industrial operators across the UK and beyond. One team covers <a href="services.html">reliability, maintenance, design and asset management</a>, works across <a href="sectors.html">the sectors where failure costs most</a>, and supplies <a href="lubricants.html">Shell and Castrol lubricants</a> with the same rigour.
     </p>
   </div>
 </section>
@@ -1024,7 +1024,9 @@
       <div class="bento-card bc-3 fade-up fd2" data-dots="light">
         <canvas class="bento-dots"></canvas>
         <span class="bento-label bento-label-light">Sectors<br>served</span>
-        <div class="bento-num bento-num-md bento-num-light" data-count="6">6</div>
+        <!-- Counted at runtime from the .sector-band list on sectors.html
+             (initSectorCount), so it follows the Sectors page. 6 is the fallback. -->
+        <div class="bento-num bento-num-md bento-num-light" data-count="6" data-count-from="sectors.html .sector-band">6</div>
       </div>
 
       <!-- Bottom right small -->
@@ -1426,12 +1428,36 @@ const counterIO = new IntersectionObserver(entries => {
       // ease-out cubic
       const eased = 1 - Math.pow(1 - t, 3);
       el.textContent = Math.floor(eased * target) + suffix;
-      if (t >= 1) { el.textContent = target + suffix; clearInterval(timer); }
+      // Finish on the current data-count, which a derived count may have updated
+      if (t >= 1) { el.textContent = el.dataset.count + suffix; clearInterval(timer); }
     }, fps);
+    el.dataset.counted = '1';
     counterIO.unobserve(el);
   });
 }, { threshold: 0.5 });
 document.querySelectorAll('[data-count]').forEach(el => counterIO.observe(el));
+
+// ── Derived counts ───────────────────────────────
+// data-count-from="<page> <selector>" fetches that page and counts the
+// matching elements, so the total follows the source list instead of being
+// typed in. The markup value stays as the fallback if the fetch fails.
+(function initSectorCount() {
+  document.querySelectorAll('[data-count-from]').forEach(el => {
+    const [page, ...sel] = el.dataset.countFrom.split(' ');
+    fetch(page)
+      .then(r => r.ok ? r.text() : Promise.reject(r.status))
+      .then(html => {
+        const n = new DOMParser().parseFromString(html, 'text/html')
+          .querySelectorAll(sel.join(' ')).length;
+        if (!n) return;
+        // The counter reads data-count when the tile scrolls into view;
+        // if it has already run, set the final text directly
+        el.dataset.count = n;
+        if (el.dataset.counted) el.textContent = n;
+      })
+      .catch(() => {});
+  });
+})();
 
 // ── Scroll-linked photo reveal ─────────────────────
 // The band's photo is hidden on load. As the band scrolls into view,
