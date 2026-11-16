@@ -18,6 +18,7 @@ CMYK = {
     (255, 255, 255): (0, 0, 0, 0),     # white
     (156, 156, 156): (0, 0, 0, 38),    # grey 60
     (67, 67, 68): (67, 60, 58, 44),    # grey 20
+    (159, 168, 209): (44, 39, 0, 0),   # 50% cobalt tint, second icon tone
     (27, 36, 86): (100, 95, 36, 31),   # navy, background mark on cobalt
     (56, 56, 58): (67, 60, 58, 56),    # deep grey, background mark on grey 20
     (237, 237, 237): (0, 0, 0, 7),     # light grey, background mark on white
