@@ -576,6 +576,7 @@
     /* Our equipment: placeholder panel until the equipment list arrives */
     .equip-panel { padding: 2.5rem; }
     .equip-panel p { font-size: 1.05rem; line-height: 1.5; color: var(--w75); max-width: 56ch; }
+    .equip-panel p + p { margin-top: 1rem; }
 
     /* How we work: four numbered steps in a row */
     .step-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
@@ -1001,7 +1002,8 @@
     <div class="svc-wrap svc-split">
       <h2 class="svc-h2 fade-up">Our<br /><span class="em-text">equipment.</span></h2>
       <div class="equip-panel glass fade-up fd1">
-        <p>We use the <span class="em-text">ACOEM FALCON</span>, a portable vibration analyser and data collector. It records the full spectrum and time waveform at every measurement point, so we can diagnose the fault and trend it from one survey to the next, not just flag a high reading.</p>
+        <p>We use the <span class="em-text">ACOEM FALCON</span>, a portable vibration analyser and data collector. A triaxial sensor measures all three axes at once, and it records the full spectrum and time waveform at every point, so we can diagnose the fault and trend it from one survey to the next, not just flag a high reading. Overall levels are assessed against ISO 10816.</p>
+        <p>Each measurement point carries a QR code, so every reading is taken in the same place every time. A built-in pyrometer and stroboscope add bearing temperature and running speed on the same round.</p>
       </div>
     </div>
   </section>
