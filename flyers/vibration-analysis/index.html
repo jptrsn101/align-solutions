@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Vibration analysis flyer | Align Solutions</title>
+  <!--
+    A4 print flyer, single page, three colourways: cobalt, grey, white.
+    Same system as flyers/condition-monitoring: A4 + 3mm bleed (216 x 303mm),
+    14mm margin inside the trim, colourway set by the class on <body>.
+    Export: node build.mjs, then python finish-pdf.py per colourway.
+
+    Kit facts come from the ACOEM FALCON spec sheet Mark sent, and only use
+    features standard on every FALCON package. Balancing, automatic diagnosis
+    (optional on Essential) and the FALCON-EX ATEX model stay off until Mark
+    confirms which he has.
+  -->
+  <style>
+    /* ─── FONTS ───────────────────────────────────────── */
+    @font-face {
+      font-family: 'NeueHaas';
+      src: url('../../assets/fonts/NeueHaasDisplayMediu.woff2') format('woff2');
+      font-weight: 500; font-style: normal;
+    }
+    @font-face {
+      font-family: 'NeueHaas';
+      src: url('../../assets/fonts/NeueHaasDisplayBold.woff2') format('woff2');
+      font-weight: 700; font-style: normal;
+    }
+
+    /* ─── COLOURWAYS ──────────────────────────────────── */
+    /* bg = sheet, ink = copy, head = headings, muted = labels, line = rules
+       and outlines, mark = background logomark, card / card-ink = the one
+       solid hero card (the call to action), ic1 / ic2 = two-tone icon */
+    :root {
+      --cobalt: #3e51a3;  /* CMYK 87 78 0 0 */
+      --white:  #ffffff;  /* CMYK 0 0 0 0 */
+      --grey60: #9c9c9c;  /* CMYK 0 0 0 38 */
+      --grey20: #434344;  /* CMYK 67 60 58 44 */
+      --cobalt-50: #9fa8d1; /* 50% cobalt tint, CMYK 44 39 0 0: second icon tone */
+
+      --bleed: 3mm;
+      --margin: 14mm;     /* inside the trim, equal on all four sides */
+      --gutter: 4mm;
+    }
+    .t-cobalt {
+      --bg: var(--cobalt); --ink: var(--white); --head: var(--white); --muted: var(--white);
+      --line: var(--white); --mark: #1b2456;  /* navy, CMYK 100 95 36 31 */
+      --card: var(--white); --card-ink: var(--cobalt);
+      --ic1: var(--white); --ic2: var(--cobalt-50);
+    }
+    .t-grey {
+      --bg: var(--grey20); --ink: var(--white); --head: var(--white); --muted: var(--grey60);
+      --line: var(--grey60); --mark: #38383a; /* grey 20 deepened, CMYK 67 60 58 56 */
+      --card: var(--white); --card-ink: var(--grey20);
+      --ic1: var(--white); --ic2: var(--grey60);
+    }
+    .t-white {
+      --bg: var(--white); --ink: var(--grey20); --head: var(--cobalt); --muted: var(--grey60);
+      --line: var(--grey60); --mark: #ededed; /* grey tint, CMYK 0 0 0 7 */
+      --card: var(--cobalt); --card-ink: var(--white);
+      --ic1: var(--cobalt); --ic2: var(--cobalt-50);
+    }
+
+    @page { size: 216mm 303mm; margin: 0; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body {
+      width: 216mm; height: 303mm;
+      -webkit-print-color-adjust: exact; print-color-adjust: exact;
+    }
+    body {
+      font-family: 'NeueHaas', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      font-weight: 500; color: var(--ink); background: var(--bg);
+      letter-spacing: -0.01em;
+    }
+
+    /* ─── SHEET ───────────────────────────────────────── */
+    .sheet { position: relative; overflow: hidden; width: 216mm; height: 303mm; background: var(--bg); }
+    .safe {
+      position: absolute; inset: calc(var(--bleed) + var(--margin));
+      display: flex; flex-direction: column; justify-content: space-between;
+    }
+
+    /* Full-bleed logomark, tone on tone, cropped off the right and bottom edges */
+    .mark { position: absolute; width: 265mm; right: -78mm; bottom: -34mm; color: var(--mark); }
+
+    /* ─── TYPE ────────────────────────────────────────── */
+    .eyebrow {
+      display: block; font-size: 6.6pt; font-weight: 500; text-transform: uppercase;
+      letter-spacing: 0.12em; color: var(--muted);
+    }
+    .label { margin-bottom: 3.5mm; }
+
+    /* ─── HEADER ──────────────────────────────────────── */
+    .head { display: flex; justify-content: space-between; align-items: flex-start; }
+    .head img { width: 36mm; height: auto; display: none; }
+    .t-cobalt .logo-white, .t-grey .logo-white, .t-white .logo-positive { display: block; }
+    .head-meta { text-align: right; display: flex; flex-direction: column; gap: 1.2mm; }
+    .head-meta strong { font-size: 9pt; font-weight: 700; color: var(--head); }
+
+    /* ─── HERO ────────────────────────────────────────── */
+    .hero { display: grid; grid-template-columns: 1fr auto; gap: 6mm; align-items: start; }
+    .hero h1 {
+      font-size: 46pt; font-weight: 700; letter-spacing: -0.045em; line-height: 0.92;
+      color: var(--head); max-width: 150mm;
+    }
+    .hero svg { width: 22mm; height: 22mm; margin-top: 2mm; }
+    .hero .lead {
+      grid-column: 1 / -1; margin-top: 1mm; max-width: 120mm;
+      font-size: 11pt; line-height: 1.3; letter-spacing: -0.02em;
+    }
+    .i1 { fill: var(--ic1); }
+    .i2 { fill: var(--ic2); }
+
+    /* ─── WHAT IT CATCHES ─────────────────────────────── */
+    /* Outline cards: number top, fault name at the foot */
+    .grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--gutter); }
+    .fault {
+      height: 17mm; padding: 3mm 4mm;
+      border: 0.25mm solid var(--line); border-radius: 3.5mm;
+      display: flex; flex-direction: column; justify-content: space-between;
+    }
+    .fault .num { font-size: 6.6pt; letter-spacing: 0.12em; color: var(--muted); }
+    .fault strong { font-size: 11pt; font-weight: 700; letter-spacing: -0.02em; line-height: 1.05; color: var(--head); }
+
+    /* ─── THE KIT ─────────────────────────────────────── */
+    /* Name and one line on the left, facts as ruled rows on the right */
+    .kit { display: grid; grid-template-columns: 1fr 1.25fr; gap: 8mm; align-items: start; }
+    .kit h2 { margin-top: 2mm; font-size: 24pt; font-weight: 700; letter-spacing: -0.04em; line-height: 0.95; color: var(--head); }
+    .kit-line { margin-top: 3mm; font-size: 9pt; line-height: 1.35; max-width: 66mm; }
+    .facts { list-style: none; }
+    .facts li { padding: 2mm 0; border-top: 0.25mm solid var(--line); font-size: 8.4pt; line-height: 1.3; }
+    .facts li:last-child { border-bottom: 0.25mm solid var(--line); }
+    .facts strong { font-weight: 700; color: var(--head); }
+
+    /* ─── HOW A SURVEY RUNS ───────────────────────────── */
+    .steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--gutter); }
+    .step { padding-top: 3mm; border-top: 0.25mm solid var(--line); }
+    .step .num { margin-bottom: 1.5mm; }
+    .step strong { display: block; font-size: 11pt; font-weight: 700; letter-spacing: -0.02em; color: var(--head); }
+    .step span:last-child { display: block; margin-top: 1mm; font-size: 8pt; line-height: 1.3; }
+
+    /* ─── ASSETS IT SUITS ─────────────────────────────── */
+    .suits { display: flex; flex-wrap: wrap; align-items: center; gap: 2.5mm; }
+    .suits .eyebrow { margin-right: 1.5mm; }
+    .tag {
+      padding: 1.4mm 3.2mm; border-radius: 10mm; border: 0.25mm solid var(--line);
+      font-size: 8pt; font-weight: 700; color: var(--head);
+    }
+
+    /* ─── CTA: the one solid card ─────────────────────── */
+    .cta {
+      background: var(--card); color: var(--card-ink); border-radius: 4mm;
+      padding: 7mm; display: grid; grid-template-columns: 1fr 1fr; gap: var(--gutter); align-items: end;
+    }
+    .cta h2 { font-size: 24pt; font-weight: 700; letter-spacing: -0.04em; line-height: 0.95; }
+    .cta p { margin-top: 2.5mm; font-size: 9pt; line-height: 1.35; max-width: 72mm; }
+    .contact { display: flex; flex-direction: column; gap: 1.4mm; text-align: right; }
+    .contact a { color: inherit; text-decoration: none; font-size: 11pt; font-weight: 700; letter-spacing: -0.01em; }
+  </style>
+</head>
+<body class="t-cobalt">
+<main class="sheet">
+
+  <!-- Background logomark: same paths as the site's footer mark -->
+  <svg class="mark" viewBox="0 0 796.86 771.12" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <path fill="currentColor" d="M174.68,529.44l74.42,129.24c-4.98,41.48-29.86,78.46-69.26,97.75-57.63,28.21-127.48,7.88-161.09-46.34-33.47-54.01-21.07-125.34,28.9-164.31,37.39-29.15,85.12-34.34,127.04-16.34Z"/>
+    <path fill="currentColor" d="M430.17,664.34c-15.43,44.94-45.56,82.81-86.72,106.78l-25.57-43.3L123.62,396.93c44.71-26.78,96.96-33.12,147.33-21.33,25.48,5.96,48.44,16.39,69.21,30.32h.01l101.3,178.49c1.33,26.81-2.23,53.51-11.3,79.92Z"/>
+    <polygon fill="currentColor" points="796.86 767.96 576.19 768.26 242.35 191.87 353.46 0 796.86 767.96"/>
+  </svg>
+
+  <div class="safe">
+
+    <!-- ─── HEADER ─────────────────────────────────────── -->
+    <header class="head">
+      <img class="logo-white" src="../../Brand_Assets/SVG Logos/logo-lockup-white.svg" alt="Align Solutions" />
+      <img class="logo-positive" src="../../Brand_Assets/SVG Logos/Asset 6.svg" alt="Align Solutions" />
+      <div class="head-meta">
+        <span class="eyebrow">Condition monitoring / Vibration analysis</span>
+        <!-- TODO: replace with the recipient company's name before printing -->
+        <strong>Prepared for [Company name]</strong>
+      </div>
+    </header>
+
+    <!-- ─── HERO ───────────────────────────────────────── -->
+    <section class="hero">
+      <h1>Catch the fault months before the failure.</h1>
+      <!-- Same two-tone vibration icon as the condition monitoring flyer -->
+      <svg viewBox="0 0 36 36" aria-hidden="true"><rect class="i1" x="3" y="14" width="4" height="8" rx="1"/><rect class="i2" x="9" y="10" width="4" height="16" rx="1"/><rect class="i1" x="15" y="3" width="4" height="30" rx="1"/><rect class="i2" x="21" y="8" width="4" height="20" rx="1"/><rect class="i1" x="27" y="13" width="4" height="10" rx="1"/></svg>
+      <p class="lead">Every rotating machine has a vibration signature. When a bearing wears or a shaft drifts out of line, that signature changes long before anything fails. We measure it, trend it and tell you what to fix and when.</p>
+    </section>
+
+    <!-- ─── WHAT IT CATCHES ────────────────────────────── -->
+    <section>
+      <span class="eyebrow label">What it catches</span>
+      <div class="grid3">
+        <div class="fault"><span class="num">01</span><strong>Imbalance</strong></div>
+        <div class="fault"><span class="num">02</span><strong>Misalignment</strong></div>
+        <div class="fault"><span class="num">03</span><strong>Bearing wear</strong></div>
+        <div class="fault"><span class="num">04</span><strong>Looseness</strong></div>
+        <div class="fault"><span class="num">05</span><strong>Gear defects</strong></div>
+        <div class="fault"><span class="num">06</span><strong>Pump cavitation</strong></div>
+      </div>
+    </section>
+
+    <!-- ─── THE KIT ────────────────────────────────────── -->
+    <section class="kit">
+      <div>
+        <span class="eyebrow">Our kit</span>
+        <h2>ACOEM FALCON</h2>
+        <p class="kit-line">A portable vibration analyser and data collector, built for site work: IP65 and drop-tested to 1.2m.</p>
+      </div>
+      <ul class="facts">
+        <li><strong>Three axes at once.</strong> One wireless sensor reads every direction.</li>
+        <li><strong>Full spectrum and waveform.</strong> We diagnose the fault, not just a high reading.</li>
+        <li><strong>Assessed to ISO 10816.</strong> Levels judged against the recognised standard.</li>
+        <li><strong>Same point, every time.</strong> QR-coded points keep each trend honest.</li>
+        <li><strong>Temperature and speed.</strong> Built-in pyrometer and stroboscope too.</li>
+      </ul>
+    </section>
+
+    <!-- ─── HOW A SURVEY RUNS ──────────────────────────── -->
+    <section>
+      <span class="eyebrow label">How a survey runs</span>
+      <div class="steps">
+        <div class="step"><span class="eyebrow num">Step 01</span><strong>Route</strong><span>Set by criticality.</span></div>
+        <div class="step"><span class="eyebrow num">Step 02</span><strong>Baseline</strong><span>First readings on every point.</span></div>
+        <div class="step"><span class="eyebrow num">Step 03</span><strong>Trend</strong><span>Each round against the last.</span></div>
+        <div class="step"><span class="eyebrow num">Step 04</span><strong>Report</strong><span>Ranked findings, clear actions.</span></div>
+      </div>
+    </section>
+
+    <!-- ─── ASSETS IT SUITS ────────────────────────────── -->
+    <section class="suits">
+      <span class="eyebrow">Suits</span>
+      <span class="tag">Motors</span>
+      <span class="tag">Pumps</span>
+      <span class="tag">Fans</span>
+      <span class="tag">Gearboxes</span>
+      <span class="tag">Compressors</span>
+      <span class="tag">Conveyors</span>
+    </section>
+
+    <!-- ─── CTA ────────────────────────────────────────── -->
+    <section class="cta">
+      <div>
+        <h2>Book a vibration survey.</h2>
+        <p>We walk your plant with you, set the route on your critical machines and send a quote for the first round.</p>
+      </div>
+      <div class="contact">
+        <a href="mailto:hello@alignsolutions.co.uk">hello@alignsolutions.co.uk</a>
+        <a href="https://www.alignsolutions.co.uk/vibration-analysis.html">alignsolutions.co.uk</a>
+      </div>
+    </section>
+
+  </div>
+</main>
+</body>
+</html>
