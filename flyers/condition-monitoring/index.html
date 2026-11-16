@@ -131,13 +131,16 @@
     .help-list li { padding: 1.8mm 0; border-top: 0.25mm solid var(--plate); font-size: 8pt; line-height: 1.32; }
     .help-list strong { font-weight: 700; }
 
-    /* Placeholder: dashed outline so it reads as unfinished on any proof */
-    .placeholder {
-      flex: 1; margin-top: 1mm;
-      border: 0.3mm dashed var(--rule); border-radius: 3mm; padding: 4mm;
-      display: flex; align-items: center; justify-content: center; text-align: center;
-      font-size: 8.4pt; line-height: 1.4; color: var(--label);
+    /* Equipment: one row per technique, instrument on the right */
+    .equip-list { list-style: none; }
+    .equip-list li {
+      display: flex; justify-content: space-between; gap: 3mm;
+      padding: 1.4mm 0; border-top: 0.25mm solid var(--rule);
+      font-size: 8pt; line-height: 1.32; color: var(--body);
     }
+    .equip-list strong { font-weight: 700; color: var(--white); text-align: right; }
+    /* Still waiting on Mark: muted so it reads as unfinished on any proof */
+    .equip-list .tbc { font-weight: 500; color: var(--label); }
 
     /* ─── CTA ─────────────────────────────────────────── */
     .cta {
@@ -248,8 +251,15 @@
       <div class="card card--panel">
         <span class="eyebrow">Our equipment</span>
         <h2 class="h2">The kit we bring.</h2>
-        <!-- TODO(Mark): replace with the equipment list (instrument, model, software, certification per technique) -->
-        <div class="placeholder">[Placeholder] Equipment list to follow from Mark: instruments, software and certification for each technique.</div>
+        <!-- TODO(Mark): fill in the five remaining instruments, then remove the .tbc styling -->
+        <ul class="equip-list">
+          <li><span>Vibration analysis</span><strong>ACOEM FALCON</strong></li>
+          <li><span>Ultrasound analysis</span><strong class="tbc">[To confirm]</strong></li>
+          <li><span>Infrared thermography</span><strong class="tbc">[To confirm]</strong></li>
+          <li><span>Oil analysis</span><strong class="tbc">[To confirm]</strong></li>
+          <li><span>Optical gas imaging</span><strong class="tbc">[To confirm]</strong></li>
+          <li><span>Shaft current analysis</span><strong class="tbc">[To confirm]</strong></li>
+        </ul>
       </div>
     </section>
 
