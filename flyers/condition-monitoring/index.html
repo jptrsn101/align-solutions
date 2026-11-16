@@ -5,14 +5,18 @@
   <meta name="robots" content="noindex, nofollow" />
   <title>Condition monitoring flyer | Align Solutions</title>
   <!--
-    A4 print flyer, single page.
+    A4 print flyer, single page, three colourways: cobalt, grey, white.
     Page = A4 (210 x 297mm) + 3mm bleed each side = 216 x 303mm.
     Trim sits 3mm in from every edge; content keeps a 14mm margin inside the trim.
-    Export: flyers/condition-monitoring/build.mjs (Chrome PDF), then Ghostscript to CMYK.
+    Colourway is set by the class on <body> (t-cobalt, t-grey, t-white).
+    Export: node build.mjs (Chrome PDF, then finish-pdf.py writes exact brand CMYK).
+
+    Only the brand palette is used (Brand Guidelines p17), plus one deeper tone
+    per colourway for the background mark. finish-pdf.py maps every RGB value
+    below to its CMYK build and fails if it meets any other colour.
   -->
   <style>
     /* ─── FONTS ───────────────────────────────────────── */
-    /* Medium for copy, Bold for headings. Same WOFF2 files as the site. */
     @font-face {
       font-family: 'NeueHaas';
       src: url('../../assets/fonts/NeueHaasDisplayMediu.woff2') format('woff2');
@@ -24,24 +28,34 @@
       font-weight: 700; font-style: normal;
     }
 
-    /* ─── PRINT TOKENS ────────────────────────────────── */
-    /* Every colour is solid. The site's white-at-opacity and frosted glass
-       are flattened over cobalt here, so nothing relies on transparency in print
-       and every value converts cleanly to CMYK. */
+    /* ─── COLOURWAYS ──────────────────────────────────── */
+    /* bg = sheet, ink = copy, head = headings, muted = labels, line = rules
+       and outlines, mark = background logomark, card / card-ink = the one
+       solid hero card (the call to action), pill = kit tags */
     :root {
-      --cobalt:  #3e51a3;  /* sheet */
-      --navy:    #1b2456;  /* depth: the mark */
-      --panel:   #324289;  /* glass flattened: navy at 34% over cobalt */
-      --rule:    #6977b7;  /* white at 22% over cobalt: outlines and rules */
-      --white:   #ffffff;
-      --body:    #cfd4e8;  /* white at 75% over cobalt */
-      --label:   #b2b9da;  /* white at 60% over cobalt */
-      --plate:   #e2e3e7;  /* rules inside the white card */
+      --cobalt: #3e51a3;  /* CMYK 87 78 0 0 */
+      --white:  #ffffff;  /* CMYK 0 0 0 0 */
+      --grey60: #9c9c9c;  /* CMYK 0 0 0 38 */
+      --grey20: #434344;  /* CMYK 67 60 58 44 */
 
       --bleed: 3mm;
-      --margin: 14mm;       /* inside the trim, equal on all four sides */
-      --gutter: 5mm;
-      --gap: 5mm;           /* vertical rhythm between blocks */
+      --margin: 14mm;     /* inside the trim, equal on all four sides */
+      --gutter: 4mm;
+    }
+    .t-cobalt {
+      --bg: var(--cobalt); --ink: var(--white); --head: var(--white); --muted: var(--white);
+      --line: var(--white); --mark: #1b2456;  /* navy, CMYK 100 95 36 31 */
+      --card: var(--white); --card-ink: var(--cobalt); --pill: var(--white); --pill-ink: var(--cobalt);
+    }
+    .t-grey {
+      --bg: var(--grey20); --ink: var(--white); --head: var(--white); --muted: var(--grey60);
+      --line: var(--grey60); --mark: #38383a; /* grey 20 deepened, CMYK 67 60 58 56 */
+      --card: var(--white); --card-ink: var(--grey20); --pill: var(--white); --pill-ink: var(--grey20);
+    }
+    .t-white {
+      --bg: var(--white); --ink: var(--grey20); --head: var(--cobalt); --muted: var(--grey60);
+      --line: var(--grey60); --mark: #ededed; /* grey tint, CMYK 0 0 0 7 */
+      --card: var(--cobalt); --card-ink: var(--white); --pill: var(--cobalt); --pill-ink: var(--white);
     }
 
     @page { size: 216mm 303mm; margin: 0; }
@@ -52,114 +66,95 @@
     }
     body {
       font-family: 'NeueHaas', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-      font-weight: 500; color: var(--white); background: var(--cobalt);
+      font-weight: 500; color: var(--ink); background: var(--bg);
       letter-spacing: -0.01em;
     }
 
     /* ─── SHEET ───────────────────────────────────────── */
-    /* Full-bleed cobalt. The safe area is bleed + margin in from every edge. */
-    .sheet {
-      position: relative; overflow: hidden;
-      width: 216mm; height: 303mm; background: var(--cobalt);
-    }
+    .sheet { position: relative; overflow: hidden; width: 216mm; height: 303mm; background: var(--bg); }
     .safe {
       position: absolute; inset: calc(var(--bleed) + var(--margin));
-      display: flex; flex-direction: column; gap: var(--gap);
+      display: flex; flex-direction: column; justify-content: space-between;
     }
 
-    /* Navy mark: the site footer's mark, bled off the bottom right corner */
-    .mark {
-      position: absolute; width: 92mm; right: -20mm; bottom: -24mm;
-      color: var(--navy);
-    }
+    /* Full-bleed logomark, tone on tone, cropped off the right and bottom
+       edges like the brand guidelines cover */
+    .mark { position: absolute; width: 265mm; right: -78mm; bottom: -34mm; color: var(--mark); }
 
     /* ─── TYPE ────────────────────────────────────────── */
     .eyebrow {
-      font-size: 6.6pt; font-weight: 500; text-transform: uppercase;
-      letter-spacing: 0.12em; color: var(--label);
+      display: block; font-size: 6.6pt; font-weight: 500; text-transform: uppercase;
+      letter-spacing: 0.12em; color: var(--muted);
     }
-    .h2 { font-size: 15pt; font-weight: 700; letter-spacing: -0.035em; line-height: 1; }
-    .copy { font-size: 9pt; line-height: 1.4; color: var(--body); }
-    .em { color: var(--white); font-weight: 700; }
 
     /* ─── HEADER ──────────────────────────────────────── */
-    .head {
-      display: flex; justify-content: space-between; align-items: center;
-      padding-bottom: 4mm; border-bottom: 0.25mm solid var(--rule);
-    }
-    .head img { width: 36mm; height: auto; display: block; }
+    .head { display: flex; justify-content: space-between; align-items: flex-start; }
+    .head img { width: 36mm; height: auto; display: none; }
+    .t-cobalt .logo-white, .t-grey .logo-white, .t-white .logo-positive { display: block; }
     .head-meta { text-align: right; display: flex; flex-direction: column; gap: 1.2mm; }
-    .head-meta strong { font-size: 9pt; font-weight: 700; letter-spacing: -0.01em; color: var(--white); }
+    .head-meta strong { font-size: 9pt; font-weight: 700; color: var(--head); }
 
     /* ─── HERO ────────────────────────────────────────── */
     .hero h1 {
-      font-size: 34pt; font-weight: 700; letter-spacing: -0.045em; line-height: 0.94;
+      font-size: 50pt; font-weight: 700; letter-spacing: -0.045em; line-height: 0.92;
+      color: var(--head); max-width: 160mm;
     }
     .hero .lead {
-      margin-top: 4mm; max-width: 128mm;
-      font-size: 10.5pt; line-height: 1.32; letter-spacing: -0.02em; color: var(--white);
+      margin-top: 6mm; max-width: 112mm;
+      font-size: 11.5pt; line-height: 1.3; letter-spacing: -0.02em;
     }
 
-    /* ─── TWO-COLUMN ROW ──────────────────────────────── */
-    /* Every row shares one grid: two equal columns with the same gutter */
-    .row { display: grid; grid-template-columns: 1fr 1fr; gap: var(--gutter); }
-    .define { padding-top: 4.5mm; border-top: 0.25mm solid var(--rule); align-items: start; }
+    /* ─── SECTION LABEL ───────────────────────────────── */
+    .label { margin-bottom: 3.5mm; }
 
     /* ─── TECHNIQUES ──────────────────────────────────── */
-    .tech-head { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 3.5mm; }
+    /* Outline cards: number top left, icon top right, name at the foot */
     .tech-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--gutter); }
-    /* Icon left, name and line right */
     .tech {
-      background: var(--panel); border: 0.25mm solid var(--rule); border-radius: 4mm;
-      padding: 4mm; display: grid; grid-template-columns: 8mm 1fr; column-gap: 3mm; row-gap: 1mm;
-      align-content: start;
+      height: 25mm; padding: 3.5mm 4mm;
+      border: 0.25mm solid var(--line); border-radius: 3.5mm;
+      display: grid; grid-template-columns: 1fr auto; grid-template-rows: auto 1fr;
     }
-    .tech svg { grid-row: span 2; width: 8mm; height: 8mm; color: var(--white); }
-    .tech-name { font-size: 10.5pt; font-weight: 700; letter-spacing: -0.02em; line-height: 1.1; }
-    .tech-line { font-size: 8pt; line-height: 1.35; color: var(--body); }
-
-    /* ─── HELP (the one white card) + EQUIPMENT ───────── */
-    .card {
-      border-radius: 4mm; padding: 4.5mm 5mm;
-      display: flex; flex-direction: column;
+    .tech .num { font-size: 6.6pt; letter-spacing: 0.12em; color: var(--muted); }
+    .tech svg { width: 7mm; height: 7mm; color: var(--head); }
+    .tech-name {
+      grid-column: 1 / -1; align-self: end;
+      font-size: 11pt; font-weight: 700; letter-spacing: -0.02em; line-height: 1.05; color: var(--head);
     }
-    .card--white { background: var(--white); color: var(--cobalt); }
-    .card--white .eyebrow { color: var(--cobalt); }
-    .card--panel { background: var(--panel); border: 0.25mm solid var(--rule); }
-    .card .h2 { margin: 2mm 0 3mm; }
-    .help-list { list-style: none; }
-    .help-list li { padding: 1.8mm 0; border-top: 0.25mm solid var(--plate); font-size: 8pt; line-height: 1.32; }
-    .help-list strong { font-weight: 700; }
 
-    /* Equipment: one row per technique, instrument on the right */
-    .equip-list { list-style: none; }
-    .equip-list li {
-      display: flex; justify-content: space-between; gap: 3mm;
-      padding: 1.4mm 0; border-top: 0.25mm solid var(--rule);
-      font-size: 8pt; line-height: 1.32; color: var(--body);
+    /* ─── HOW WE WORK ─────────────────────────────────── */
+    .steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--gutter); }
+    .step { padding-top: 3mm; border-top: 0.25mm solid var(--line); }
+    .step .num { margin-bottom: 1.5mm; }
+    .step strong { display: block; font-size: 11pt; font-weight: 700; letter-spacing: -0.02em; color: var(--head); }
+    .step span:last-child { display: block; margin-top: 1mm; font-size: 8pt; line-height: 1.3; }
+
+    /* ─── KIT ─────────────────────────────────────────── */
+    .kit { display: flex; align-items: center; gap: 3mm; }
+    .kit .eyebrow { margin-right: 1mm; }
+    .pill {
+      display: inline-flex; align-items: baseline; gap: 1.6mm;
+      padding: 1.6mm 3.5mm; border-radius: 10mm;
+      background: var(--pill); color: var(--pill-ink);
+      font-size: 8pt; font-weight: 700; letter-spacing: -0.01em;
     }
-    .equip-list strong { font-weight: 700; color: var(--white); text-align: right; }
-    /* Still waiting on Mark: muted so it reads as unfinished on any proof */
-    .equip-list .tbc { font-weight: 500; color: var(--label); }
+    .pill span { font-weight: 500; }
 
-    /* ─── CTA ─────────────────────────────────────────── */
+    /* ─── CTA: the one solid card ─────────────────────── */
     .cta {
-      margin-top: auto; position: relative;
-      padding-top: 5mm; border-top: 0.25mm solid var(--rule);
-      align-items: end;
+      background: var(--card); color: var(--card-ink); border-radius: 4mm;
+      padding: 7mm; display: grid; grid-template-columns: 1fr 1fr; gap: var(--gutter); align-items: end;
     }
-    .cta h2 { font-size: 22pt; font-weight: 700; letter-spacing: -0.04em; line-height: 0.95; }
-    .cta .copy { margin-top: 3mm; max-width: 82mm; }
-    .contact { display: flex; flex-direction: column; gap: 1.6mm; }
-    .contact a, .contact span { color: var(--white); text-decoration: none; font-size: 10pt; font-weight: 700; letter-spacing: -0.01em; }
-    .contact .eyebrow { font-size: 6.6pt; font-weight: 500; letter-spacing: 0.12em; color: var(--label); margin-top: 2mm; }
-    .contact .eyebrow:first-child { margin-top: 0; }
+    .cta h2 { font-size: 26pt; font-weight: 700; letter-spacing: -0.04em; line-height: 0.95; }
+    .cta p { margin-top: 2.5mm; font-size: 9pt; line-height: 1.35; max-width: 70mm; }
+    .contact { display: flex; flex-direction: column; gap: 1.4mm; text-align: right; }
+    .contact a { color: inherit; text-decoration: none; font-size: 11pt; font-weight: 700; letter-spacing: -0.01em; }
   </style>
 </head>
-<body>
+<body class="t-cobalt">
 <main class="sheet">
 
-  <!-- Navy mark, same paths as the site footer mark -->
+  <!-- Background logomark: same paths as the site's footer mark -->
   <svg class="mark" viewBox="0 0 796.86 771.12" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
     <path fill="currentColor" d="M174.68,529.44l74.42,129.24c-4.98,41.48-29.86,78.46-69.26,97.75-57.63,28.21-127.48,7.88-161.09-46.34-33.47-54.01-21.07-125.34,28.9-164.31,37.39-29.15,85.12-34.34,127.04-16.34Z"/>
     <path fill="currentColor" d="M430.17,664.34c-15.43,44.94-45.56,82.81-86.72,106.78l-25.57-43.3L123.62,396.93c44.71-26.78,96.96-33.12,147.33-21.33,25.48,5.96,48.44,16.39,69.21,30.32h.01l101.3,178.49c1.33,26.81-2.23,53.51-11.3,79.92Z"/>
@@ -170,9 +165,10 @@
 
     <!-- ─── HEADER ─────────────────────────────────────── -->
     <header class="head">
-      <img src="../../Brand_Assets/SVG Logos/logo-lockup-white.svg" alt="Align Solutions" />
+      <img class="logo-white" src="../../Brand_Assets/SVG Logos/logo-lockup-white.svg" alt="Align Solutions" />
+      <img class="logo-positive" src="../../Brand_Assets/SVG Logos/Asset 6.svg" alt="Align Solutions" />
       <div class="head-meta">
-        <span class="eyebrow">Condition monitoring offer</span>
+        <span class="eyebrow">Condition monitoring</span>
         <!-- TODO: replace with the recipient company's name before printing -->
         <strong>Prepared for [Company name]</strong>
       </div>
@@ -180,102 +176,75 @@
 
     <!-- ─── HERO ───────────────────────────────────────── -->
     <section class="hero">
-      <h1>Find faults before<br />they stop your plant.</h1>
-      <p class="lead">Our engineers check the plant your site relies on, tell you what is starting to fail, and help you fix it on your schedule, not the breakdown's.</p>
-    </section>
-
-    <!-- ─── WHAT IS CONDITION MONITORING ──────────────── -->
-    <section class="row define">
-      <h2 class="h2">What is condition<br />monitoring?</h2>
-      <p class="copy">Checking equipment while it runs for the early signs of failure: a change in vibration, sound, heat or oil condition. Most faults give those signs weeks or months before a breakdown. <span class="em">Spot them early and the repair becomes a planned job, not an emergency.</span></p>
+      <h1>Find faults before they stop your plant.</h1>
+      <p class="lead">Most failures give weeks of warning. We catch it, so the repair is planned, not an emergency.</p>
     </section>
 
     <!-- ─── SIX TECHNIQUES ─────────────────────────────── -->
     <section>
-      <div class="tech-head">
-        <h2 class="h2">Six techniques, one team.</h2>
-        <span class="eyebrow">alignsolutions.co.uk/condition-monitoring</span>
-      </div>
+      <span class="eyebrow label">Six techniques, one team</span>
       <div class="tech-grid">
         <div class="tech">
-          <!-- Waveform growing in amplitude -->
+          <span class="num">01</span>
           <svg viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 18h4l3-3 3 6 3-9 3 12 3-15 3 18 3-12 3 6 2-3h2"/></svg>
-          <span class="tech-name">Vibration analysis</span>
-          <span class="tech-line">Imbalance, misalignment and bearing wear in rotating plant.</span>
+          <span class="tech-name">Vibration<br />analysis</span>
         </div>
         <div class="tech">
-          <!-- Source with spreading sound arcs -->
+          <span class="num">02</span>
           <svg viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="8" cy="18" r="2.5"/><path d="M14 12a8.5 8.5 0 0 1 0 12"/><path d="M19 8a14 14 0 0 1 0 20"/><path d="M24 4a19.5 19.5 0 0 1 0 28"/></svg>
-          <span class="tech-name">Ultrasound analysis</span>
-          <span class="tech-line">Air and gas leaks, early bearing wear and greasing to condition.</span>
+          <span class="tech-name">Ultrasound<br />analysis</span>
         </div>
         <div class="tech">
-          <!-- Camera frame with a hot spot on the crosshair -->
+          <span class="num">03</span>
           <svg viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M3 10V4h6M27 4h6v6M33 26v6h-6M9 32H3v-6"/><circle cx="18" cy="18" r="6"/><circle cx="18" cy="18" r="2" fill="currentColor"/><path d="M18 8v3M18 25v3M8 18h3M25 18h3"/></svg>
-          <span class="tech-name">Infrared thermography</span>
-          <span class="tech-line">Electrical and mechanical hot spots, surveyed live with no shutdown.</span>
+          <span class="tech-name">Infrared<br />thermography</span>
         </div>
         <div class="tech">
-          <!-- Oil drop with a sample level line -->
+          <span class="num">04</span>
           <svg viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 3c6 8 10 13.5 10 19a10 10 0 0 1-20 0c0-5.5 4-11 10-19Z"/><path d="M10 23h16"/></svg>
-          <span class="tech-name">Oil analysis</span>
-          <span class="tech-line">Wear, contamination and oil health, read from one small sample.</span>
+          <span class="tech-name">Oil<br />analysis</span>
         </div>
         <div class="tech">
-          <!-- Plume rising from a leak point -->
+          <span class="num">05</span>
           <svg viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M6 32h24"/><circle cx="18" cy="29" r="1.6" fill="currentColor"/><path d="M18 25c-3-3 3-6 0-9s3-6 0-9"/><path d="M12 24c-2.5-2.5 2.5-5 0-7.5s2.5-5 0-7.5"/><path d="M24 24c-2.5-2.5 2.5-5 0-7.5s2.5-5 0-7.5"/></svg>
-          <span class="tech-name">Optical gas imaging</span>
-          <span class="tech-line">Invisible gas leaks, located and recorded on video.</span>
+          <span class="tech-name">Optical gas<br />imaging</span>
         </div>
         <div class="tech">
-          <!-- Shaft through two bearings, discharge path to earth -->
+          <span class="num">06</span>
           <svg viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 14h32"/><rect x="7" y="9" width="6" height="10" rx="1"/><rect x="23" y="9" width="6" height="10" rx="1"/><path d="M18 14l-2 5h4l-2 5"/><path d="M13 30h10M15 33h6"/><path d="M18 24v6"/></svg>
-          <span class="tech-name">Shaft current analysis</span>
-          <span class="tech-line">Drive-induced currents that pit and destroy motor bearings.</span>
+          <span class="tech-name">Shaft current<br />analysis</span>
         </div>
       </div>
     </section>
 
-    <!-- ─── HOW ALIGN CAN HELP + OUR EQUIPMENT ─────────── -->
-    <section class="row">
-      <div class="card card--white">
-        <span class="eyebrow">How Align can help</span>
-        <h2 class="h2">Monitoring that leads to action.</h2>
-        <ul class="help-list">
-          <li><strong>Critical assets first.</strong> We monitor where a failure would cost you most, not every machine on site.</li>
-          <li><strong>Every technique, one team.</strong> Results read together by engineers who know how plant fails.</li>
-          <li><strong>Findings you can act on.</strong> A short report each round: what changed, how urgent, what to do.</li>
-          <li><strong>Help with the fix.</strong> Root cause analysis, maintenance strategy and Shell and Castrol lubricants in house.</li>
-        </ul>
+    <!-- ─── HOW WE WORK ────────────────────────────────── -->
+    <section>
+      <span class="eyebrow label">How we work</span>
+      <div class="steps">
+        <div class="step"><span class="eyebrow num">Step 01</span><strong>Assess</strong><span>Critical assets first.</span></div>
+        <div class="step"><span class="eyebrow num">Step 02</span><strong>Monitor</strong><span>Same route, every round.</span></div>
+        <div class="step"><span class="eyebrow num">Step 03</span><strong>Report</strong><span>What changed, what to do.</span></div>
+        <div class="step"><span class="eyebrow num">Step 04</span><strong>Act</strong><span>Planned repairs, checked.</span></div>
       </div>
-      <div class="card card--panel">
-        <span class="eyebrow">Our equipment</span>
-        <h2 class="h2">The kit we bring.</h2>
-        <!-- TODO(Mark): fill in the four remaining instruments, then remove the .tbc styling -->
-        <ul class="equip-list">
-          <li><span>Vibration analysis</span><strong>ACOEM FALCON</strong></li>
-          <li><span>Ultrasound analysis</span><strong class="tbc">[To confirm]</strong></li>
-          <li><span>Infrared thermography</span><strong class="tbc">[To confirm]</strong></li>
-          <li><span>Oil analysis</span><strong>Shell LubeAnalyst</strong></li>
-          <li><span>Optical gas imaging</span><strong class="tbc">[To confirm]</strong></li>
-          <li><span>Shaft current analysis</span><strong class="tbc">[To confirm]</strong></li>
-        </ul>
-      </div>
+    </section>
+
+    <!-- ─── OUR KIT ────────────────────────────────────── -->
+    <!-- Confirmed kit only. Add a pill when Mark confirms another instrument. -->
+    <section class="kit">
+      <span class="eyebrow">Our kit</span>
+      <span class="pill">ACOEM FALCON <span>Vibration</span></span>
+      <span class="pill">Shell LubeAnalyst <span>Oil</span></span>
     </section>
 
     <!-- ─── CTA ────────────────────────────────────────── -->
-    <section class="row cta">
+    <section class="cta">
       <div>
         <h2>Book a site visit.</h2>
-        <p class="copy">We will walk your plant with you, agree which assets are worth monitoring and send you a quote for the first round.</p>
+        <p>We walk your plant with you, agree what is worth monitoring and send a quote for the first round.</p>
       </div>
       <div class="contact">
-        <span class="eyebrow">Email</span>
         <a href="mailto:hello@alignsolutions.co.uk">hello@alignsolutions.co.uk</a>
-        <span class="eyebrow">Web</span>
         <a href="https://www.alignsolutions.co.uk/condition-monitoring.html">alignsolutions.co.uk</a>
-        <span class="eyebrow">Based in</span>
-        <span>Norwich, UK</span>
       </div>
     </section>
 
