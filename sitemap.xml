@@ -3,14 +3,14 @@
 
   <url>
     <loc>https://www.alignsolutions.co.uk/</loc>
-    <lastmod>2026-10-23</lastmod>
+    <lastmod>2026-11-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
 
   <url>
     <loc>https://www.alignsolutions.co.uk/services.html</loc>
-    <lastmod>2026-10-23</lastmod>
+    <lastmod>2026-11-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
@@ -80,7 +80,49 @@
 
   <url>
     <loc>https://www.alignsolutions.co.uk/condition-monitoring.html</loc>
-    <lastmod>2026-10-23</lastmod>
+    <lastmod>2026-11-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://www.alignsolutions.co.uk/vibration-analysis.html</loc>
+    <lastmod>2026-11-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://www.alignsolutions.co.uk/ultrasound-analysis.html</loc>
+    <lastmod>2026-11-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://www.alignsolutions.co.uk/infrared-thermography.html</loc>
+    <lastmod>2026-11-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://www.alignsolutions.co.uk/oil-analysis.html</loc>
+    <lastmod>2026-11-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://www.alignsolutions.co.uk/optical-gas-imaging.html</loc>
+    <lastmod>2026-11-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://www.alignsolutions.co.uk/shaft-current-analysis.html</loc>
+    <lastmod>2026-11-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -199,7 +241,7 @@
 
   <url>
     <loc>https://www.alignsolutions.co.uk/contact.html</loc>
-    <lastmod>2026-10-23</lastmod>
+    <lastmod>2026-11-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
