@@ -916,16 +916,14 @@
 
     <!-- Form column -->
     <div>
-      <!-- FORMSUBMIT: delivers straight to hello@alignsolutions.co.uk (formsubmit.co).
-           The inbox must click the one-time activation email FormSubmit sends on the
-           first submission. JS posts to the /ajax/ endpoint; without JS the native
-           POST lands on _next after sending. -->
-      <form id="contact-form" action="https://formsubmit.co/hello@alignsolutions.co.uk" method="POST" novalidate>
+      <!-- Posts to /api/enquiry (api/enquiry.js), which emails hello@alignsolutions.co.uk
+           through Resend. JS sends it in the background; without JS the native POST
+           lands back here on ?sent=1. -->
+      <form id="contact-form" action="/api/enquiry" method="POST" novalidate>
         <input type="hidden" name="_subject" value="New enquiry, Align Solutions" />
-        <input type="hidden" name="_template" value="table" />
-        <input type="hidden" name="_captcha" value="false" />
-        <input type="hidden" name="_next" value="https://www.alignsolutions.co.uk/contact.html?sent=1" />
-        <!-- Honeypot: FormSubmit silently discards submissions where _honey is filled -->
+        <input type="hidden" name="_page" value="/contact" />
+        <input type="hidden" name="_t" value="" />
+        <!-- Honeypot: submissions where _honey is filled are discarded as bots -->
         <div class="hp-field" aria-hidden="true">
           <label for="gotcha">Leave this field empty</label>
           <input type="text" id="gotcha" name="_honey" tabindex="-1" autocomplete="off" />
@@ -1223,7 +1221,7 @@
   });
 })();
 
-// ── Contact form, FormSubmit async submission ──────────
+// ── Contact form, sent in the background to /api/enquiry ──
 (function initContactForm() {
   const form    = document.getElementById('contact-form');
   const btn     = document.getElementById('form-submit');
@@ -1247,18 +1245,15 @@
     error.style.display   = 'none';
 
     try {
-      // FormSubmit's JSON endpoint sits under /ajax/; the plain endpoint stays
-      // in the action attribute as the no-JS fallback
-      const endpoint = form.action.replace('formsubmit.co/', 'formsubmit.co/ajax/');
-      const payload  = Object.fromEntries(new FormData(form).entries());
-      const res = await fetch(endpoint, {
+      // only a 200 with ok:true counts as sent; anything else shows the error
+      const res = await fetch(form.action, {
         method:  'POST',
-        headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
-        body:    JSON.stringify(payload),
+        headers: { 'Accept': 'application/json' },
+        body:    new FormData(form),
       });
-      const data = res.ok ? await res.json().catch(() => ({})) : {};
+      const data = await res.json().catch(() => ({}));
 
-      if (res.ok && String(data.success) === 'true') {
+      if (res.ok && data.ok === true) {
         form.reset();
         success.style.display = 'block';
         btn.textContent = 'Message Sent';
@@ -1274,6 +1269,9 @@
     }
   });
 })();
+
+// when the page opened, so /api/enquiry can flag forms filled in faster than a person could
+document.querySelectorAll('#contact-form input[name="_t"]').forEach(el => { el.value = String(Date.now()); });
 
 // ── No-JS submissions return to ?sent=1: show the sent state ──
 (function showSentState() {
